@@ -1,0 +1,9 @@
+show databases; (Show Database cmd)
+
+create database demoEmployee; (Create Database cmd)
+
+use demoEmployee; (database use cmd)
+
+create table emp(id int primary key, name varchar(100), salary int, company varchar(100), address varchar(100)); (Create table cmd)
+
+insert into emp values(1, 'Aakash', 2000, 'NCS', 'Indore');
