@@ -7,3 +7,22 @@ use demoEmployee; (database use cmd)
 create table emp(id int primary key, name varchar(100), salary int, company varchar(100), address varchar(100)); (Create table cmd)
 
 insert into emp values(1, 'Aakash', 2000, 'NCS', 'Indore');
+
+------------------------------------------------------------------------
+
+search filter:-
+
+select * from emp where name = '';(you can search also id, slary, or other field)
+
+desc :-
+select * from emp order by salary desc;
+
+asc:-
+select * from emp order by salary asc;
+
+second highest salary:-
+select * from emp order by salary desc limit 1,1;
+
+marksheet
+select *, (phy+chm+math) as total, ((phy+chm+math) / 3) as per from marksheet;  
+
