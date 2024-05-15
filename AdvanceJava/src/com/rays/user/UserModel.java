@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;;
+import java.util.ResourceBundle;
+
+import com.rays.util.JDBCDataSource;;
 
 public class UserModel {
 
@@ -16,10 +18,7 @@ public class UserModel {
 
 		int pk = 0;
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("select max(id) from users");
 
@@ -42,10 +41,12 @@ public class UserModel {
 //
 //		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBCAdvance", "root", "root");
 
-		Class.forName(rb.getString("driver"));
+//		Class.forName(rb.getString("driver"));
+//
+//		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+//				rb.getString("password"));
 
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("insert into users values(?, ?, ?, ?, ?, ?, ?)");
 
@@ -75,10 +76,7 @@ public class UserModel {
 
 	public void update(UserBean bean) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement(
 				"update users set firstName = ?, lastName = ?, loginId = ?, password = ?, dob = ?, address = ?, where id = ?");
@@ -99,10 +97,7 @@ public class UserModel {
 
 	public void delete(int id) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("delete from users where id = ?");
 
@@ -124,10 +119,7 @@ public class UserModel {
 
 	public UserBean findByPk(int id) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("select * from users where id = ?");
 
@@ -156,10 +148,7 @@ public class UserModel {
 
 	public UserBean findByLoginId(String loginId) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("select * from users where loginId = ?");
 
@@ -188,10 +177,7 @@ public class UserModel {
 
 	public UserBean authenticate(String loginId, String pwd) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement("select * from users where loginId = ? and password = ?");
 
@@ -221,10 +207,7 @@ public class UserModel {
 
 	public List search(UserBean bean) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		StringBuffer sql = new StringBuffer("select * from users where 1=1");
 
