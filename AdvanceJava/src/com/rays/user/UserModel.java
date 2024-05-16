@@ -50,6 +50,8 @@ public class UserModel {
 
 		PreparedStatement ps = conn.prepareStatement("insert into users values(?, ?, ?, ?, ?, ?, ?)");
 
+		conn.setAutoCommit(false);
+
 		UserBean existBean = findByLoginId(bean.getLoginId());
 
 		if (existBean != null) {
@@ -68,7 +70,11 @@ public class UserModel {
 
 			int i = ps.executeUpdate();
 
+			conn.commit();
+
 			System.out.println("data inserted " + i);
+
+			conn.rollback();
 
 		}
 
