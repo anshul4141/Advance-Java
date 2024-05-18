@@ -7,8 +7,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Two.Jsp Page</h1>
-	<%=request.getParameter("firstName")%>
-	<%=request.getParameter("lastName")%>
+
+
+	<h1>ScriptLet tag</h1>
+	<%
+		for (int i = 1; i <= 5; i++) {
+	%>
+	<h1><%=i%>
+		Hello JSP
+	</h1>
+	<%
+		}
+	%>
+
+	<%
+		int a = 6, b = 2;
+	%>
+	<h1>
+		sum =<%=a + b%><br>
+		<%=a * b%>
+		<%=a / b%>
+		<%=a - b%>
+	</h1>
 </body>
 </html>
