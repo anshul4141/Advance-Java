@@ -17,6 +17,8 @@ public class FirstServlet extends HttpServlet {
 
 		System.out.println("in do get method");
 
+		response.sendRedirect("First.jsp");
+
 	}
 
 	@Override

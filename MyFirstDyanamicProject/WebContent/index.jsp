@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Hello JSP</h1>
+	<a href="UserRegistrationCtl">SignUp</a>
 </body>
 </html>
