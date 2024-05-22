@@ -7,69 +7,70 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="Header.jsp"%>
+	<center>
+		<form action="UserRegistrationCtl" method="post">
+			<%
+				String msg = (String) request.getAttribute("msg");
+			%>
+			<%
+				if (msg != null) {
+			%>
+			<%=msg%>
+			<%
+				}
+			%>
 
-	<form action="UserRegistrationCtl" method="post">
-		<%
-			String msg = (String) request.getAttribute("msg");
-		%>
-		<%
-			if (msg != null) {
-		%>
-		<%=msg%>
-		<%
-			}
-		%>
+			<table>
+				<tr>
 
-		<table>
-			<tr>
+					<th>First Name</th>
+					<td><input type="text" name="firstName"
+						placeholder="Enter FName"></td>
 
-				<th>First Name</th>
-				<td><input type="text" name="firstName"
-					placeholder="Enter FName"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th>Last Name</th>
+					<td><input type="text" name="lastName"
+						placeholder="Enter LName"></td>
 
-				<th>Last Name</th>
-				<td><input type="text" name="lastName"
-					placeholder="Enter LName"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th>LoginId</th>
+					<td><input type="text" name="email" placeholder="Enter Email"></td>
 
-				<th>LoginId</th>
-				<td><input type="text" name="email" placeholder="Enter Email"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th>Password</th>
+					<td><input type="password" name="password"
+						placeholder="Enter Password"></td>
 
-				<th>Password</th>
-				<td><input type="password" name="password"
-					placeholder="Enter Password"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th>DOB</th>
+					<td><input type="date" name="dob" placeholder="Enter dob"></td>
 
-				<th>DOB</th>
-				<td><input type="date" name="dob" placeholder="Enter dob"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th>Address</th>
+					<td><input type="text" name="address"
+						placeholder="Enter address"></td>
 
-				<th>Address</th>
-				<td><input type="text" name="address"
-					placeholder="Enter address"></td>
+				</tr>
+				<tr>
 
-			</tr>
-			<tr>
+					<th></th>
+					<td><input type="submit" name="operation" value="save"></td>
 
-				<th></th>
-				<td><input type="submit" name="operation" value="save"></td>
+				</tr>
+			</table>
 
-			</tr>
-		</table>
-
-	</form>
-
+		</form>
+	</center>
 </body>
 </html>

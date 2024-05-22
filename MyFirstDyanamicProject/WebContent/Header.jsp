@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>My First JSP</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
-	<h1>Hello JSP</h1>
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="UserListCtl">UserList</a>
+	<hr>
 </body>
 </html>
