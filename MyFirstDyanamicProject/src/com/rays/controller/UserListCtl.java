@@ -27,7 +27,6 @@ public class UserListCtl extends HttpServlet {
 			List list = model.search(bean);
 			request.setAttribute("userList", list);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -39,6 +38,53 @@ public class UserListCtl extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String op = request.getParameter("operation");
+
+		String[] ids = request.getParameterValues("ids");
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		System.out.println("op ====>" + op);
+
+		if (op.equals("search")) {
+
+			bean.setFirstName(request.getParameter("firstName"));
+
+		}
+
+		if (op.equals("delete")) {
+
+			if (ids != null) {
+
+				for (String id : ids) {
+
+					try {
+						model.delete(Integer.parseInt(id));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+
+			} else {
+				request.setAttribute("msg", "select at least one record");
+			}
+
+		}
+
+		try {
+			List list = model.search(bean);
+			request.setAttribute("userList", list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
+		rd.forward(request, response);
 
 	}
 
