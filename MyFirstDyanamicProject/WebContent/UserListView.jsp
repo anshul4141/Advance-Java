@@ -12,38 +12,42 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<form action="UserListCtl" method="post">
-
+		<h2 style="color: darkblue" align="center">User List</h2>
 		<%
 			List userList = (List) request.getAttribute("userList");
-		    String msg = (String) request.getAttribute("msg"); 
+			String msg = (String) request.getAttribute("msg");
 		%>
-		
+
 		<%
-		
-		if(msg != null){
-		
+			if (msg != null) {
 		%>
-		<%=msg %>
-<%} %>
-		<table border="1px" width="100%">
-		<tr>
-		<lable>FristName :</lable>
-		<input type="text" name="firstName" placeholder="Enter First Name">
-		
-		</tr>
-		<tr>
-		
-		<input type="submit" name="operation" value="search">
-		
-		</tr>
+		<%=msg%>
+		<%
+			}
+		%>
+		<table>
 			<tr>
-			    <th>select</th>
+				<lable>FristName :</lable>
+				<input type="text" name="firstName" placeholder="Enter First Name">
+
+			</tr>
+			&nbsp;
+			<tr>
+				<input type="submit" name="operation" value="search">
+			</tr>
+		</table>
+		<table border="1px" style="border-collapse: collapse;" width="100%">
+
+			<br>
+			<tr bgcolor="skyblue">
+				<th>select</th>
 				<th>Id</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>LoginId</th>
 				<th>DOB</th>
 				<th>Address</th>
+				<th>Edit</th>
 			</tr>
 			<%
 				Iterator<UserBean> it = userList.iterator();
@@ -52,13 +56,14 @@
 					UserBean bean = it.next();
 			%>
 			<tr align="center">
-			    <td><input type="checkbox" name="ids" value="<%=bean.getId()%>"></td>
+				<td><input type="checkbox" name="ids" value="<%=bean.getId()%>"></td>
 				<td><%=bean.getId()%></td>
 				<td><%=bean.getFirstName()%></td>
 				<td><%=bean.getLastName()%></td>
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getDob()%></td>
 				<td><%=bean.getAddress()%></td>
+				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}
@@ -67,9 +72,9 @@
 		</table>
 		<br>
 		<table>
-		<tr>
-		<input type="submit" name="operation" value="delete">
-		</tr>
+			<tr>
+				<input type="submit" name="operation" value="delete">
+			</tr>
 		</table>
 
 	</form>

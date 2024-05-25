@@ -48,7 +48,7 @@ public class UserRegistrationCtl extends HttpServlet {
 			bean.setDob(sdf.parse(dob));
 			bean.setAddress(address);
 			model.add(bean);
-			request.setAttribute("msg", "Data inserted successfully");
+			request.setAttribute("msg", "User Register Successfully");
 		} catch (Exception e) {
 			request.setAttribute("msg", "Data Not Inserted");
 			e.printStackTrace();

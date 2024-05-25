@@ -22,7 +22,9 @@
 
 	<form action="LoginCtl" method="post">
 
-		<table>
+		<h2 style="color: darkblue" align="center">Login</h2>
+
+		<table align="center">
 			<tr>
 				<th>LoginId :</th>
 				<td><input type="text" name="loginId"
