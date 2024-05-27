@@ -10,12 +10,25 @@
 	<%@ include file="Header.jsp"%>
 	<%
 		String msg = (String) request.getAttribute("msg");
+		String error = (String) request.getAttribute("error");
 	%>
 
 	<%
 		if (msg != null) {
 	%>
-	<span style="color: red"><%=msg%></span>
+	<center>
+		<font style="color: green"><%=msg%></font>
+	</center>
+	<%
+		}
+	%>
+
+	<%
+		if (error != null) {
+	%>
+	<center>
+		<font style="color: red"><%=error%></font>
+	</center>
 	<%
 		}
 	%>

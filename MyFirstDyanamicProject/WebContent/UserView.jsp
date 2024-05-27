@@ -28,7 +28,9 @@
 		<%
 			if (msg != null) {
 		%>
-		<%=msg%>
+	<center>
+		<font style="color: red"><%=msg%></font>
+	</center>
 		<%
 			}
 		%>

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserCtl")
+@WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet {
 
 	@Override
@@ -61,10 +61,8 @@ public class UserCtl extends HttpServlet {
 		String pwd = request.getParameter("password");
 		String dob = request.getParameter("dob");
 		String address = request.getParameter("address");
-		String id = request.getParameter("id");
 
 		try {
-			bean.setId(Integer.parseInt(id));
 			bean.setDob(sdf.parse(dob));
 			bean.setFirstName(fname);
 			bean.setLastName(lname);
@@ -88,6 +86,8 @@ public class UserCtl extends HttpServlet {
 			}
 
 		} else if (op.equals("update")) {
+			String id = request.getParameter("id");
+			bean.setId(Integer.parseInt(id));
 
 			try {
 				model.update(bean);

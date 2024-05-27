@@ -25,18 +25,21 @@
 		<%
 			}
 		%>
-		<table>
-			<tr>
-				<lable>FristName :</lable>
-				<input type="text" name="firstName" placeholder="Enter First Name">
+		<center>
+			<table>
+				<tr>
+					<lable>FristName :</lable>
+					<input type="text" name="firstName" placeholder="Enter First Name">
 
-			</tr>
-			&nbsp;
-			<tr>
-				<input type="submit" name="operation" value="search">
-			</tr>
-		</table>
-		<table border="1px" style="border-collapse: collapse;" width="100%">
+				</tr>
+				&nbsp;
+				<tr>
+					<input type="submit" name="operation" value="search">
+				</tr>
+			</table>
+		</center>
+		<table border="1px" cellpadding="10px"
+			style="border-collapse: collapse;" width="100%">
 
 			<br>
 			<tr bgcolor="skyblue">
@@ -63,7 +66,7 @@
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getDob()%></td>
 				<td><%=bean.getAddress()%></td>
-				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+				<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}
