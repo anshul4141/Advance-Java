@@ -82,7 +82,7 @@ public class UserModel {
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement ps = conn.prepareStatement(
-				"update users set firstName = ?, lastName = ?, loginId = ?, password = ?, dob = ?, address = ? where id = ?");
+				"update users set firstName = ?, lastName = ?, loginId = ?, password = ?, dob = ?, address = ?, where id = ?");
 
 		ps.setString(1, bean.getFirstName());
 		ps.setString(2, bean.getLastName());
@@ -252,7 +252,7 @@ public class UserModel {
 
 		}
 
-		return list;
+		return null;
 
 	}
 

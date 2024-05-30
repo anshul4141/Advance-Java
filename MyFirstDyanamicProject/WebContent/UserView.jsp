@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<form action="UserCtl" method="post">
+	<form action="UserCtl.do" method="post">
 		<%
 			String msg = (String) request.getAttribute("msg");
 			UserBean bean = (UserBean) request.getAttribute("bean");
@@ -28,9 +28,9 @@
 		<%
 			if (msg != null) {
 		%>
-	<center>
-		<font style="color: red"><%=msg%></font>
-	</center>
+		<center>
+			<font style="color: red"><%=msg%></font>
+		</center>
 		<%
 			}
 		%>
