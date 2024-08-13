@@ -40,3 +40,33 @@ mysql> show databases;
 mysql> use advancejava;
 Database changed
 mysql>
+
+
+
+----------------------------------------------------
+
+
+cmd to create table = 
+
+create table emp(id int primary key, firstName varchar(45), lastName varchar(45), salary int, address varchar(50), company varchar(50));
+Query OK, 0 rows affected (0.13 sec)
+
+cmd to insert data = 
+
+insert into emp values(1, 'Aryan', 'Shrivastav', 40000, 'Indore', 'NCS');
+insert into emp values(2, 'Abhishek', 'Yadav', 50000, 'Bhopal', 'TCS'),(3, 'Ram', 'Sharma', 45000, 'Ujjain', 'BSNL');
+
+cmd to search data = 
+
+select * from emp;
+select * from emp where firstName = 'Aryan';
+select * from emp where id = 2;
+
+cmd to update recoreds
+
+update emp set address = 'Dewas' where id = 3;
+update emp set salary = 60000 where id = 1;
+
+cmd to delete a record
+
+delete from emp where id = 1;
