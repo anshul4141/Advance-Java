@@ -340,3 +340,175 @@ mysql> select * from emp order by salary asc limit 1,1;
 1 row in set (0.00 sec)
 
 mysql>
+
+marksheet=================================
+
+mysql> use result;
+Database changed
+mysql> create table marksheet(id int primary key, rollNo int unique, name varchar(45), physics int, chemistry int, maths int);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into marksheet values(1, 101, 'Naman Meena', 65, 78, 72);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from marksheet;
++----+--------+-------------+---------+-----------+-------+
+| id | rollNo | name        | physics | chemistry | maths |
++----+--------+-------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena |      65 |        78 |    72 |
++----+--------+-------------+---------+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into marksheet values(2, 102, 'Sachin Kalar', 47, 52, 45);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into marksheet values(3, 103, 'Pawan Rajput', 74, 78, 88);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into marksheet values(4, 104, 'Raman Sharma', 15, 32, 23);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into marksheet values(4, 104, 'Raman Sharma', 62, 45, 35);
+ERROR 1062 (23000): Duplicate entry '4' for key 'marksheet.PRIMARY'
+mysql> insert into marksheet values(5, 104, 'Raman Sharma', 62, 45, 35);
+ERROR 1062 (23000): Duplicate entry '104' for key 'marksheet.rollNo'
+mysql> insert into marksheet values(5, 105, 'Raman Sharma', 62, 45, 35);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into marksheet values(6, 106, 'Khushali Rathod', 52, 33, 25);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raman Sharma    |      15 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
++----+--------+-----------------+---------+-----------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into marksheet values(7, 107, 'Anish Malwiya', 63, 75, 52);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> update marksheet set name = 'Raj Jaat' where id = 4
+    -> ;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
++----+--------+-----------------+---------+-----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+
+| id | rollNo | name            | physics | chemistry | maths | total |
++----+--------+-----------------+---------+-----------+-------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |
++----+--------+-----------------+---------+-----------+-------+-------+
+7 rows in set (0.03 sec)
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
++----+--------+-----------------+---------+-----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+
+| id | rollNo | name            | physics | chemistry | maths | total |
++----+--------+-----------------+---------+-----------+-------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |
++----+--------+-----------------+---------+-----------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+-------------------------------+
+| id | rollNo | name            | physics | chemistry | maths | total | ((physics+chemistry+maths)/3) |
++----+--------+-----------------+---------+-----------+-------+-------+-------------------------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |                       71.6667 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |                       48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |                       80.0000 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |                       23.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |                       47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |                       36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |                       63.3333 |
++----+--------+-----------------+---------+-----------+-------+-------+-------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |    71.6667 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |    23.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, (physics+chemistry+maths/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |   167.0000 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |   114.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |   181.3333 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |    54.6667 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |   118.6667 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    93.3333 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |   155.3333 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |    71.6667 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 |
+|  4 |    104 | Raj Jaat        |      15 |        32 |    23 |    70 |    23.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+7 rows in set (0.00 sec)
+
+mysql>
