@@ -70,3 +70,273 @@ update emp set salary = 60000 where id = 1;
 cmd to delete a record
 
 delete from emp where id = 1;
+
+
+-----------------------------------------------
+
+mysql> use advancejava;
+Database changed
+mysql> select * from emp;
++----+-----------+------------+--------+---------+---------+
+| id | firstName | lastName   | salary | address | company |
++----+-----------+------------+--------+---------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore  | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal  | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain  | BSNL    |
++----+-----------+------------+--------+---------+---------+
+3 rows in set (0.02 sec)
+
+mysql> insert into emp values(4, 'Kamal', 'Sharma', 35000, 'Indore', 'Rays'),(5, 'Uday', 'Dabi', 75000, 'Bhopal', 'TCS')
+,(6, 'Shubham', 'Yadav', 30000, 'Indore', 'NCS'),(7, 'Paras', 'Mahajan', 80000, 'Banglore', 'TCS');
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp where firstName = 'Ram';
++----+-----------+----------+--------+---------+---------+
+| id | firstName | lastName | salary | address | company |
++----+-----------+----------+--------+---------+---------+
+|  3 | Ram       | Sharma   |  45000 | Ujjain  | BSNL    |
++----+-----------+----------+--------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select firstName from emp;
++-----------+
+| firstName |
++-----------+
+| Aryan     |
+| Abhishek  |
+| Ram       |
+| Kamal     |
+| Uday      |
+| Shubham   |
+| Paras     |
++-----------+
+7 rows in set (0.00 sec)
+
+mysql> select lastName from emp;
++------------+
+| lastName   |
++------------+
+| Shrivastav |
+| Yadav      |
+| Sharma     |
+| Sharma     |
+| Dabi       |
+| Yadav      |
+| Mahajan    |
++------------+
+7 rows in set (0.00 sec)
+
+mysql> select firstName, lastName from emp;
++-----------+------------+
+| firstName | lastName   |
++-----------+------------+
+| Aryan     | Shrivastav |
+| Abhishek  | Yadav      |
+| Ram       | Sharma     |
+| Kamal     | Sharma     |
+| Uday      | Dabi       |
+| Shubham   | Yadav      |
+| Paras     | Mahajan    |
++-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select salary from emp;
++--------+
+| salary |
++--------+
+|  60000 |
+|  50000 |
+|  45000 |
+|  35000 |
+|  75000 |
+|  30000 |
+|  80000 |
++--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp where salary > 40000;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+5 rows in set (0.02 sec)
+
+mysql> select * from emp;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp limit 0,2;
++----+-----------+------------+--------+---------+---------+
+| id | firstName | lastName   | salary | address | company |
++----+-----------+------------+--------+---------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore  | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal  | TCS     |
++----+-----------+------------+--------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp limit 1,2;
++----+-----------+----------+--------+---------+---------+
+| id | firstName | lastName | salary | address | company |
++----+-----------+----------+--------+---------+---------+
+|  2 | Abhishek  | Yadav    |  50000 | Bhopal  | TCS     |
+|  3 | Ram       | Sharma   |  45000 | Ujjain  | BSNL    |
++----+-----------+----------+--------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp limit 0,4;
++----+-----------+------------+--------+---------+---------+
+| id | firstName | lastName   | salary | address | company |
++----+-----------+------------+--------+---------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore  | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal  | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain  | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore  | Rays    |
++----+-----------+------------+--------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp limit 2,4;
++----+-----------+----------+--------+---------+---------+
+| id | firstName | lastName | salary | address | company |
++----+-----------+----------+--------+---------+---------+
+|  3 | Ram       | Sharma   |  45000 | Ujjain  | BSNL    |
+|  4 | Kamal     | Sharma   |  35000 | Indore  | Rays    |
+|  5 | Uday      | Dabi     |  75000 | Bhopal  | TCS     |
+|  6 | Shubham   | Yadav    |  30000 | Indore  | NCS     |
++----+-----------+----------+--------+---------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary desc;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary asc;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp order by fristName asc;
+ERROR 1054 (42S22): Unknown column 'fristName' in 'order clause'
+mysql> select * from emp order by firstName asc;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.02 sec)
+
+mysql> select * from emp order by salary desc;
++----+-----------+------------+--------+----------+---------+
+| id | firstName | lastName   | salary | address  | company |
++----+-----------+------------+--------+----------+---------+
+|  7 | Paras     | Mahajan    |  80000 | Banglore | TCS     |
+|  5 | Uday      | Dabi       |  75000 | Bhopal   | TCS     |
+|  1 | Aryan     | Shrivastav |  60000 | Indore   | NCS     |
+|  2 | Abhishek  | Yadav      |  50000 | Bhopal   | TCS     |
+|  3 | Ram       | Sharma     |  45000 | Ujjain   | BSNL    |
+|  4 | Kamal     | Sharma     |  35000 | Indore   | Rays    |
+|  6 | Shubham   | Yadav      |  30000 | Indore   | NCS     |
++----+-----------+------------+--------+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from emp order by salary desc limit 1,1;
++----+-----------+----------+--------+---------+---------+
+| id | firstName | lastName | salary | address | company |
++----+-----------+----------+--------+---------+---------+
+|  5 | Uday      | Dabi     |  75000 | Bhopal  | TCS     |
++----+-----------+----------+--------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp order by salary acd limit 1,1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'acd limit 1,1' at line 1
+mysql> select * from emp order by salary asc limit 1,1;
++----+-----------+----------+--------+---------+---------+
+| id | firstName | lastName | salary | address | company |
++----+-----------+----------+--------+---------+---------+
+|  4 | Kamal     | Sharma   |  35000 | Indore  | Rays    |
++----+-----------+----------+--------+---------+---------+
+1 row in set (0.00 sec)
+
+mysql>
