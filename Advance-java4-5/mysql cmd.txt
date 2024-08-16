@@ -511,4 +511,9 @@ mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/
 +----+--------+-----------------+---------+-----------+-------+-------+------------+
 7 rows in set (0.00 sec)
 
-mysql>
+---------------------------------------------
+
+
+select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percanatage from marksheet where physics > 60 and chemistry > 60 and maths > 60 order by total desc limit 0,5;
+
+aggriate fucntion
