@@ -19,3 +19,22 @@ alter table emp add deptId int;
 
 2. create foreign key = deptId
 alter table emp add foreign key(deptId) references dept(id);
+
+
+----------------------------------------------------
+
+1. left join
+select * from emp left join dept on emp.deptId = dept.id;
+
+2. right join
+select * from emp right join dept on emp.deptId = dept.id;
+
+3. inner join
+select * from emp inner join dept on emp.deptId = dept.id;
+
+4. outer join
+select * from emp left join dept on emp.deptId = dept.id union select * from emp right join dept on emp.deptId = dept.id;
+
+5. null outer join
+select * from emp left join dept on emp.deptId where dept.id is null = dept.id union select * from emp right join dept on emp.deptId = dept
+.id where emp.deptId is null;
