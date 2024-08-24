@@ -1,11 +1,10 @@
-package com.rays.jdbc;
+package com.rays.statement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class TestInsert {
+public class TestDelete {
 
 	public static void main(String[] args) throws Exception {
 
@@ -15,9 +14,10 @@ public class TestInsert {
 
 		Statement stmt = conn.createStatement();
 
-		int i = stmt.executeUpdate("insert into emp values(8, 'Anish', 'Malwiya', 75000, 'Ujjain', 'Norm')");
+		int i = stmt.executeUpdate("delete from emp where id = 8");
 
-		System.out.println("data inserted successfully.. " + i);
+		System.out.println("data deleted successfully.. " + i);
+
 	}
 
 }

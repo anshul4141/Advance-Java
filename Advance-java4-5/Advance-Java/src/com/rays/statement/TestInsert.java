@@ -1,8 +1,7 @@
-package com.rays.jdbc;
+package com.rays.statement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TestInsert {
@@ -21,3 +20,4 @@ public class TestInsert {
 	}
 
 }
+
