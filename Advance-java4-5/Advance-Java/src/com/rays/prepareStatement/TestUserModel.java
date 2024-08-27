@@ -9,7 +9,34 @@ public class TestUserModel {
 		// testAdd();
 		// testDelete();
 		// testUpdate();
-		testSearchAll();
+		// testSearchAll();
+		testAuthenticate();
+
+	}
+
+	private static void testAuthenticate() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = new UserBean();
+
+		bean = model.authenticate("ram@gmail.com", "pass123");
+
+		if (bean != null) {
+
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getDob());
+			System.out.println(bean.getPhoneNo());
+			System.out.println(bean.getGender());
+			System.out.println(bean.getAddress());
+
+		} else {
+			System.out.println("invalid loginId or password");
+		}
 
 	}
 
@@ -73,7 +100,7 @@ public class TestUserModel {
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
-		bean.setId(2);
+		bean.setId(3);
 		bean.setFirstName("Shyam");
 		bean.setLastName("Yadav");
 		bean.setLoginId("shyam@gmail.com");

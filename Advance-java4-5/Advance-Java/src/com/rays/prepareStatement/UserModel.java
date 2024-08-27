@@ -104,4 +104,41 @@ public class UserModel {
 
 	}
 
+	public UserBean authenticate(String loginId, String password) throws Exception {
+
+		System.out.println("data = " + loginId + " " + password);
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from user where loginId = ? and password = ?");
+
+		pstmt.setString(1, loginId);
+		pstmt.setString(2, password);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			bean.setPhoneNo(rs.getString(7));
+			bean.setAddress(rs.getString(8));
+			bean.setGender(rs.getString(8));
+
+		}
+
+		return bean;
+
+	}
+
 }
