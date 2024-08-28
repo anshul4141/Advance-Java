@@ -6,11 +6,28 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		 testAdd();
 		// testDelete();
 		// testUpdate();
 		// testSearchAll();
-		testAuthenticate();
+		// testAuthenticate();
+		// testFindByLoginId();
+
+	}
+
+	private static void testFindByLoginId() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = new UserBean();
+
+		bean = model.findByLoginId("ram123@gmail.com");
+
+		if (bean != null) {
+			System.out.println("loginId already exists");
+		} else {
+			System.out.println("loginId is not available");
+		}
 
 	}
 
@@ -103,7 +120,7 @@ public class TestUserModel {
 		bean.setId(3);
 		bean.setFirstName("Shyam");
 		bean.setLastName("Yadav");
-		bean.setLoginId("shyam@gmail.com");
+		bean.setLoginId("shyam123@gmail.com");
 		bean.setPassword("shyam@123");
 		bean.setDob(sdf.parse("2003-03-11"));
 		bean.setPhoneNo("8758632548");

@@ -15,19 +15,26 @@ public class UserModel {
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
 
-		pstmt.setInt(1, bean.getId());
-		pstmt.setString(2, bean.getFirstName());
-		pstmt.setString(3, bean.getLastName());
-		pstmt.setString(4, bean.getLoginId());
-		pstmt.setString(5, bean.getPassword());
-		pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
-		pstmt.setString(7, bean.getPhoneNo());
-		pstmt.setString(8, bean.getAddress());
-		pstmt.setString(9, bean.getGender());
+		UserBean existBean = findByLoginId(bean.getLoginId());
 
-		int i = pstmt.executeUpdate();
+		if (existBean == null) {
 
-		System.out.println("data inserted successfully.. " + i);
+			pstmt.setInt(1, bean.getId());
+			pstmt.setString(2, bean.getFirstName());
+			pstmt.setString(3, bean.getLastName());
+			pstmt.setString(4, bean.getLoginId());
+			pstmt.setString(5, bean.getPassword());
+			pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
+			pstmt.setString(7, bean.getPhoneNo());
+			pstmt.setString(8, bean.getAddress());
+			pstmt.setString(9, bean.getGender());
+
+			int i = pstmt.executeUpdate();
+
+			System.out.println("data inserted successfully.. " + i);
+		} else {
+			System.out.println("loginId already exist");
+		}
 
 	}
 
@@ -116,6 +123,42 @@ public class UserModel {
 
 		pstmt.setString(1, loginId);
 		pstmt.setString(2, password);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			bean.setPhoneNo(rs.getString(7));
+			bean.setAddress(rs.getString(8));
+			bean.setGender(rs.getString(8));
+
+		}
+
+		return bean;
+
+	}
+
+	public UserBean findByLoginId(String loginId) throws Exception {
+
+		System.out.println("data = " + loginId);
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from user where loginId = ?");
+
+		pstmt.setString(1, loginId);
 
 		ResultSet rs = pstmt.executeQuery();
 
