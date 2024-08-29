@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserModel {
 
@@ -181,6 +183,49 @@ public class UserModel {
 		}
 
 		return bean;
+
+	}
+
+	public List search(UserBean bean) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
+
+		StringBuffer sql = new StringBuffer("select * from user where 1=1");
+
+		if (bean != null) {
+
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and firstName like '" + bean.getFirstName() + "'");
+			}
+
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+				sql.append(" and lastName like '" + bean.getLastName() + "'");
+			}
+
+		}
+		System.out.println(sql.toString());
+
+		PreparedStatement ptmt = conn.prepareStatement(sql.toString());
+		ResultSet rs = ptmt.executeQuery();
+
+		List list = new ArrayList();
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			bean.setPhoneNo(rs.getString(7));
+			bean.setAddress(rs.getString(8));
+			bean.setGender(rs.getString(8));
+			list.add(bean);
+		}
+		return list;
 
 	}
 

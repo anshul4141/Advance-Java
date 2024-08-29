@@ -1,17 +1,50 @@
 package com.rays.prepareStatement;
 
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		 testAdd();
+		// testAdd();
 		// testDelete();
 		// testUpdate();
 		// testSearchAll();
 		// testAuthenticate();
 		// testFindByLoginId();
+		testSearch();
+
+	}
+
+	private static void testSearch() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = new UserBean();
+
+		//bean.setFirstName("Ram");
+		//bean.setLastName("Yadav");
+
+		List list = model.search(bean);
+
+		Iterator it = list.iterator();
+
+		while (it.hasNext()) {
+
+			bean = (UserBean) it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getDob());
+			System.out.println(bean.getPhoneNo());
+			System.out.println(bean.getGender());
+			System.out.println(bean.getAddress());
+
+		}
 
 	}
 
