@@ -24,8 +24,8 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		//bean.setFirstName("Ram");
-		//bean.setLastName("Yadav");
+		// bean.setFirstName("Ram");
+		// bean.setLastName("Yadav");
 
 		List list = model.search(bean);
 
