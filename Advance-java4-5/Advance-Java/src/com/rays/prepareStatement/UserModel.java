@@ -16,30 +16,44 @@ public class UserModel {
 
 		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("user"),
-				rb.getString("password"));
+		Connection conn = null;
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
+		try {
 
-		UserBean existBean = findByLoginId(bean.getLoginId());
+			conn = DriverManager.getConnection(rb.getString("url"), rb.getString("user"), rb.getString("password"));
 
-		if (existBean == null) {
+			PreparedStatement pstmt = conn.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
 
-			pstmt.setInt(1, bean.getId());
-			pstmt.setString(2, bean.getFirstName());
-			pstmt.setString(3, bean.getLastName());
-			pstmt.setString(4, bean.getLoginId());
-			pstmt.setString(5, bean.getPassword());
-			pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
-			pstmt.setString(7, bean.getPhoneNo());
-			pstmt.setString(8, bean.getAddress());
-			pstmt.setString(9, bean.getGender());
+			UserBean existBean = findByLoginId(bean.getLoginId());
 
-			int i = pstmt.executeUpdate();
+			conn.setAutoCommit(false);
 
-			System.out.println("data inserted successfully.. " + i);
-		} else {
-			System.out.println("loginId already exist");
+			if (existBean == null) {
+
+				pstmt.setInt(1, bean.getId());
+				pstmt.setString(2, bean.getFirstName());
+				pstmt.setString(3, bean.getLastName());
+				pstmt.setString(4, bean.getLoginId());
+				pstmt.setString(5, bean.getPassword());
+				pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
+				pstmt.setString(7, bean.getPhoneNo());
+				pstmt.setString(8, bean.getAddress());
+				pstmt.setString(9, bean.getGender());
+
+				int i = pstmt.executeUpdate();
+
+				conn.commit();
+
+				System.out.println("data inserted successfully.. " + i);
+			} else {
+				System.out.println("loginId already exist");
+			}
+
+		} catch (Exception e) {
+
+			conn.rollback();
+			e.printStackTrace();
+
 		}
 
 	}
