@@ -1,5 +1,7 @@
 package com.rays.util;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
@@ -41,4 +43,29 @@ public final class JDBCDataSource {
 		return datasource;
 
 	}
+
+	public static Connection getConnection() throws Exception {
+		return getInstance().cpds.getConnection();
+	}
+
+	public static void closeConnection(Connection connection) {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	public static void trnRollback(Connection connection) throws Exception {
+		if (connection != null) {
+
+			try {
+				connection.rollback();
+			} catch (SQLException ex) {
+				throw new Exception(ex.toString());
+			}
+		}
+	}
+
 }
