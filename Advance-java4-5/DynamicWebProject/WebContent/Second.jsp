@@ -8,6 +8,7 @@
 </head>
 <body>
 	<%=request.getParameter("firstName")%>
+	<br>
 	<%=request.getParameter("lastName") %>
 </body>
 </html>
