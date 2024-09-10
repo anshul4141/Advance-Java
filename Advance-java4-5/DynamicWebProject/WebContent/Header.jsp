@@ -8,8 +8,9 @@
 </head>
 <body>
 
-	<h2 align="center">
-		<a href="WelcomeCtl">Welcome to my application</a>
-	</h2>
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="WelcomeCtl">Welcome</a>
+	<hr>
+
 </body>
 </html>

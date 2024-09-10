@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<h2 align="center">
-		<a href="WelcomeCtl">Welcome to my application</a>
-	</h2>
+	<%@ include file="Header.jsp"%>
+
+	<h1 align="center">Welcome to Online Result System</h1>
 </body>
 </html>
