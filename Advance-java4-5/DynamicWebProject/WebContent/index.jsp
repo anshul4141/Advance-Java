@@ -7,9 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h2 align="center">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1 align="center">
 		<a href="WelcomeCtl">Welcome to my application</a>
-	</h2>
+	</h1>
 </body>
 </html>

@@ -7,9 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="Header.jsp"%>
+	<form action="UserCtl" method="post">
 
-	<form action="UserController" method="post">
+		<%
+			String smsg = (String) request.getAttribute("smsg");
+		%>
+
 		<table align="center">
+
+			<%
+				if (smsg != null) {
+			%>
+			<h3 style="color: green" align="center"><%=smsg%></h3>
+			<%
+				}
+			%>
+
 			<h1 align="center">Add User</h1>
 			<tr>
 				<th>FirstName:</th>

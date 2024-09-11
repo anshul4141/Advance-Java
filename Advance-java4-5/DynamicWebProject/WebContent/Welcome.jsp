@@ -10,6 +10,11 @@
 
 	<%@ include file="Header.jsp"%>
 
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1 align="center">Welcome to Online Result System</h1>
 </body>
 </html>
