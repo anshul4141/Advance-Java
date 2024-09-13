@@ -9,7 +9,19 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<form action="LoginCtl" method="post">
+
+		<%
+			String msg = (String) request.getAttribute("msg");
+		%>
+
 		<h1 align="center">Login</h1>
+		<%
+			if (msg != null) {
+		%>
+		<h4 style="color: green" align="center"><%=msg%></h4>
+		<%
+			}
+		%>
 		<table align="center">
 			<tr>
 				<th>LoginId:</th>
@@ -23,8 +35,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="submit" name="operation"
-					value="signIn"></td>
+				<td><input type="submit" name="operation" value="signIn"></td>
 			</tr>
 		</table>
 	</form>

@@ -212,6 +212,40 @@ public class UserModel {
 
 	}
 
+	public UserBean findById(int id) throws Exception {
+
+		System.out.println("data = " + id);
+
+		Connection conn = JDBCDataSource.getConnection();
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from user where id = ?");
+
+		pstmt.setInt(1, id);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			bean.setPhoneNo(rs.getString(7));
+			bean.setAddress(rs.getString(8));
+			bean.setGender(rs.getString(8));
+
+		}
+
+		return bean;
+
+	}
+
 	public List search(UserBean bean) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();

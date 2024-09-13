@@ -23,7 +23,7 @@
 		} else {
 	%>
 	<a href="UserRegistrationCtl">SignUp</a> |
-	<a href="LoginCtl">SignIn</a>
+	<a href="LoginCtl">login</a>
 	<%
 		}
 	%>
