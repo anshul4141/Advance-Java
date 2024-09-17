@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 
 	@Override
@@ -44,6 +44,8 @@ public class UserListCtl extends HttpServlet {
 		UserBean bean = new UserBean();
 
 		String op = request.getParameter("operation");
+		
+		System.out.println("op === " + op);
 
 		String[] ids = request.getParameterValues("ids");
 

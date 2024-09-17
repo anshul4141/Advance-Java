@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<form action="UserListCtl" method="post">
+	<form action="UserListCtl.do" method="post">
 
 		<%
 			List list = (List) request.getAttribute("list");
@@ -49,7 +49,7 @@
 				<td><%=bean.getPhoneNo()%></td>
 				<td><%=bean.getAddress()%></td>
 				<td><%=bean.getGender()%></td>
-				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+				<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}

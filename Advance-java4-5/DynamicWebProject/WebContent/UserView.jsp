@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<form action="UserCtl" method="post">
+	<form action="UserCtl.do" method="post">
 
 		<%
 			String smsg = (String) request.getAttribute("smsg");

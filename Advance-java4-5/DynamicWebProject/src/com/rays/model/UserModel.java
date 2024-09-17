@@ -135,7 +135,7 @@ public class UserModel {
 			bean.setDob(rs.getDate(6));
 			bean.setPhoneNo(rs.getString(7));
 			bean.setAddress(rs.getString(8));
-			bean.setGender(rs.getString(8));
+			bean.setGender(rs.getString(9));
 
 		}
 
@@ -170,7 +170,7 @@ public class UserModel {
 			bean.setDob(rs.getDate(6));
 			bean.setPhoneNo(rs.getString(7));
 			bean.setAddress(rs.getString(8));
-			bean.setGender(rs.getString(8));
+			bean.setGender(rs.getString(9));
 
 		}
 

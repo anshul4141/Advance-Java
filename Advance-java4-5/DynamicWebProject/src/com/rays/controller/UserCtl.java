@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserCtl")
+@WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet {
 
 	@Override
@@ -33,7 +33,7 @@ public class UserCtl extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
 		rd.forward(request, response);
 
@@ -44,6 +44,10 @@ public class UserCtl extends HttpServlet {
 			throws ServletException, IOException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String op = request.getParameter("operation");
+
+		System.out.println("op === " + op);
 
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
@@ -67,8 +71,14 @@ public class UserCtl extends HttpServlet {
 			bean.setAddress(address);
 			bean.setGender(gender);
 
-			model.add(bean);
-			request.setAttribute("smsg", "User Added successfully..");
+			if (op.equals("add")) {
+				model.add(bean);
+				request.setAttribute("smsg", "User Added successfully..");
+			} else if (op.equals("update")) {
+				bean.setId(Integer.parseInt(request.getParameter("id")));
+				model.update(bean);
+				request.setAttribute("smsg", "User Updated successfully..");
+			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
