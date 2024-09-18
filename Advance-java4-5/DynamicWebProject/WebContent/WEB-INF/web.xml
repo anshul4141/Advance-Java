@@ -18,6 +18,15 @@
 		<location>/error500.jsp</location>
 	</error-page>
 
+	<servlet>
+		<servlet-name>HelloCtl</servlet-name>
+		<servlet-class>com.rays.servlet.HelloCtl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloCtl</servlet-name>
+		<url-pattern>/HelloCtl</url-pattern>
+	</servlet-mapping>
+
 	<!-- <session-config> <session-timeout>1</session-timeout> </session-config> -->
 
 </web-app>
