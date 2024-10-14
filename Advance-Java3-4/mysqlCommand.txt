@@ -1,0 +1,6 @@
+1. show databases;   //show database in your MySQL
+2. create database databasename;   //create database in MySQL
+3. use database databasename;    // use database in MySQL
+4. create table employee(id int primary key, name varchar(45), company varchar(45), salary int, address varchar(50)); // create table in MySQL
+5. insert into employee values(1, 'Ram'. 'NCS', 4500, 'Indore');  // data insert into table
+6. select * from employee;   // show data in table;
