@@ -14,3 +14,6 @@
 4. select * from employee where salary > 40000;   //search record where salary > 40000
 5. select * from employee order by salary desc;  // search by salary desc
 6  select * from employee order by salary asc;  //search by salary asc;
+7. select max(salary) from employee where salary < (select max(salary) from employee);  //search sechighest salary by aggregate function
+8. select * from employee limit 0, 3;  //applay limit for pagination
+9. select * from employee order by salary desc limit 1,1;   // secondhighest salary with limit or desc
