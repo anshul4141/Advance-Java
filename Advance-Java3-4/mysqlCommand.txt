@@ -17,3 +17,22 @@
 7. select max(salary) from employee where salary < (select max(salary) from employee);  //search sechighest salary by aggregate function
 8. select * from employee limit 0, 3;  //applay limit for pagination
 9. select * from employee order by salary desc limit 1,1;   // secondhighest salary with limit or desc
+
+
+-----------------------------------------------------------------------------
+
+1. create table department(id int primary key, dept varchar(50));  // create table department
+2. insert into department values(1, 'Manager'),(2, 'Account'),(3, 'HR'),(4, 'Developer');   // insert data into department
+3. alter table employee add dept_id int;   // add column in employee table name dept_id
+4. alter table employee add foreign key(dept_id) references department(id);    // create foreign key dept_id in employee of department primary key id
+5. update employee set name = 'Anish' where id = 7;     // update a record
+6. delete from employee where id = 7;    // delete a record.
+7. update employee set dept_id = 4 where id = 1;
+8. update employee set dept_id = 2 where id = 3;
+9. update employee set dept_id = 1 where id = 5;
+10. select * from employee right join department on employee.dept_id = department.id;   // right join query
+11. select * from employee left join department on employee.dept_id = department.id;   // left join query
+12. select * from employee inner join department on employee.dept_id = department.id;   // inner join query
+13. select * from employee right join department on employee.dept_id = department.id union select * from employee left join department on employee
+.dept_id = department.id;  //outer join
+14. select * from employee right join department on employee.dept_id = department.id where employee.dept_id is null union select * from employee left join department on employee.dept_id = department.id where department.id is null;   // is null data print
