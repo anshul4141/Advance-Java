@@ -36,3 +36,11 @@
 13. select * from employee right join department on employee.dept_id = department.id union select * from employee left join department on employee
 .dept_id = department.id;  //outer join
 14. select * from employee right join department on employee.dept_id = department.id where employee.dept_id is null union select * from employee left join department on employee.dept_id = department.id where department.id is null;   // is null data print
+
+
+---------------------------------------------------------------------------------
+
+1. select *, (physics+chemistry+maths) as total from marksheet;  // marksheet list with total
+2. select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;   // marksheet list with total or percentage
+3. select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet where physics >= 60 and chemistry
+>= 60 and maths >= 60 order by total desc limit 0,3;  // print merit marksheet list
