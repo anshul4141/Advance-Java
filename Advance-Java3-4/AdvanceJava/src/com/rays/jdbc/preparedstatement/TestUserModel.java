@@ -8,10 +8,26 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		 testAdd();
 		// testDelete();
 		// testUpdate();
-		testSearch();
+		// testSearch();
+		// testAuthenticate();
+
+	}
+
+	private static void testAuthenticate() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = model.authenticate("ram123@gmail.com", "pass123");
+
+		if (bean != null) {
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+		} else {
+			System.out.println("user not found");
+		}
 
 	}
 
@@ -31,6 +47,11 @@ public class TestUserModel {
 
 			System.out.println(bean.getId());
 			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getAddress());
+			System.out.println(bean.getDob());
 		}
 
 	}
@@ -59,7 +80,7 @@ public class TestUserModel {
 
 		UserModel model = new UserModel();
 
-		model.delete(3);
+		model.delete(4);
 
 	}
 
@@ -71,10 +92,10 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setId(3);
+		bean.setId(4);
 		bean.setFirstName("Kamal");
 		bean.setLastName("Sharma");
-		bean.setLoginId("kamal@gmail.com");
+		bean.setLoginId("kamal123@gmail.com");
 		bean.setPassword("pass123");
 		bean.setAddress("Bhopal");
 		bean.setDob(sdf.parse("2003-02-02"));
