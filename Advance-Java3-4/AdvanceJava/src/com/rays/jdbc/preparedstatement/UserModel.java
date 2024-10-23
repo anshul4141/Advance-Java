@@ -82,17 +82,34 @@ public class UserModel {
 
 	}
 
-	public List search() throws Exception {
+	public List search(UserBean bean) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1");
+
+		if (bean != null) {
+
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+
+				sql.append(" and firstName like '" + bean.getFirstName() + "'");
+
+			}
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+
+				sql.append(" and lastName like '" + bean.getLastName() + "'");
+
+			}
+
+		}
+
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+		System.out.println("sql = " + sql.toString());
 
 		ResultSet rs = pstmt.executeQuery();
-
-		UserBean bean = null;
 
 		List list = new ArrayList();
 
