@@ -8,10 +8,10 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		testAdd();
 		// testDelete();
 		// testUpdate();
-		testSearch();
+		// testSearch();
 		// testAuthenticate();
 
 	}
@@ -95,10 +95,10 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setId(4);
+		bean.setId(5);
 		bean.setFirstName("Kamal");
 		bean.setLastName("Sharma");
-		bean.setLoginId("kamal123@gmail.com");
+		bean.setLoginId("kamal1234@gmail.com");
 		bean.setPassword("pass123");
 		bean.setAddress("Bhopal");
 		bean.setDob(sdf.parse("2003-02-02"));
