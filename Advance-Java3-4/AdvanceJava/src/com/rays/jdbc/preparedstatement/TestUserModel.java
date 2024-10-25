@@ -13,6 +13,31 @@ public class TestUserModel {
 		// testUpdate();
 		// testSearch();
 		// testAuthenticate();
+		// testFindById();
+
+	}
+
+	private static void testFindById() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = new UserBean();
+
+		bean = model.findById(6);
+
+		if (bean != null) {
+
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getAddress());
+			System.out.println(bean.getDob());
+
+		} else {
+			System.out.println("user not found");
+		}
 
 	}
 
@@ -95,10 +120,9 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setId(5);
-		bean.setFirstName("Kamal");
+		bean.setFirstName("pawan");
 		bean.setLastName("Sharma");
-		bean.setLoginId("kamal1234@gmail.com");
+		bean.setLoginId("pawan@gmail.com");
 		bean.setPassword("pass123");
 		bean.setAddress("Bhopal");
 		bean.setDob(sdf.parse("2003-02-02"));

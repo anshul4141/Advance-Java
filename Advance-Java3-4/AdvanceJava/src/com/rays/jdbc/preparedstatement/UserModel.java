@@ -12,6 +12,31 @@ public class UserModel {
 
 	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.system");
 
+	public int nextPk() throws Exception {
+
+		int pk = 0;
+
+		Class.forName(rb.getString("driver"));
+
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
+
+		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
+
+		ResultSet rs = pstmt.executeQuery();
+
+		while (rs.next()) {
+
+			pk = rs.getInt(1);
+
+			System.out.println("max id " + pk);
+
+		}
+
+		return pk + 1;
+
+	}
+
 	public void add(UserBean bean) throws Exception {
 
 		Class.forName(rb.getString("driver"));
@@ -32,7 +57,7 @@ public class UserModel {
 			System.out.println("loginId already exists");
 
 		} else {
-			pstmt.setInt(1, bean.getId());
+			pstmt.setInt(1, nextPk());
 			pstmt.setString(2, bean.getFirstName());
 			pstmt.setString(3, bean.getLastName());
 			pstmt.setString(4, bean.getLoginId());
@@ -178,6 +203,39 @@ public class UserModel {
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
 
 		pstmt.setString(1, loginId);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setAddress(rs.getString(6));
+			bean.setDob(rs.getDate(7));
+
+		}
+
+		return bean;
+
+	}
+
+	public UserBean findById(int id) throws Exception {
+
+		Class.forName(rb.getString("driver"));
+
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
+
+		pstmt.setInt(1, id);
 
 		ResultSet rs = pstmt.executeQuery();
 
