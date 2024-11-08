@@ -8,10 +8,10 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		testAdd();
+		// testAdd();
 		// testDelete();
 		// testUpdate();
-		// testSearch();
+		 testSearch();
 		// testAuthenticate();
 		// testFindById();
 
@@ -65,7 +65,7 @@ public class TestUserModel {
 		// bean.setFirstName("Ram");
 		// bean.setLastName("Gupta");
 
-		List list = model.search(bean);
+		List list = model.search(bean, 0, 0);
 
 		Iterator it = list.iterator();
 

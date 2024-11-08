@@ -74,9 +74,10 @@ public class UserModel {
 
 	public void delete(int id) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id = ?");
 
@@ -90,9 +91,10 @@ public class UserModel {
 
 	public void update(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_user set firstName = ?, lastName = ?, loginId = ?, password = ?, address = ?, dob = ? where id = ?");
@@ -111,14 +113,16 @@ public class UserModel {
 
 	}
 
-	public List search(UserBean bean) throws Exception {
+	public List search(UserBean bean, int pageNo, int pageSize) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1");
 
+		// for search field
 		if (bean != null) {
 
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
@@ -131,6 +135,16 @@ public class UserModel {
 				sql.append(" and lastName like '" + bean.getLastName() + "'");
 
 			}
+
+		}
+
+		
+		// for pagination
+		if (pageSize > 0) {
+
+			pageNo = (pageNo - 1) * pageSize;
+
+			sql.append(" limit " + pageNo + "," + pageSize);
 
 		}
 
@@ -163,9 +177,10 @@ public class UserModel {
 
 	public UserBean authenticate(String loginId, String password) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ? and password = ?");
 
@@ -196,9 +211,10 @@ public class UserModel {
 
 	public UserBean findByLoginId(String loginId) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
 
