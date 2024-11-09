@@ -8,8 +8,7 @@
 </head>
 <body>
 
-	<form action="second.jsp">
-
+	<form action="FirstServlet" method="post">
 		<table>
 
 			<tr>
@@ -23,12 +22,30 @@
 					placeholder="Enter Last Name"></td>
 			</tr>
 			<tr>
+				<th>LoginId:</th>
+				<td><input type="email" name="loginId"
+					placeholder="Enter your LoginId"></td>
+			</tr>
+			<tr>
+				<th>password:</th>
+				<td><input type="password" name="password"
+					placeholder="Enter your Password"></td>
+			</tr>
+			<tr>
+				<th>Address:</th>
+				<td><input type="text" name="address"
+					placeholder="Enter your Address"></td>
+			</tr>
+			<tr>
+				<th>DOB:</th>
+				<td><input type="date" name="dob" placeholder="Enter your dob"></td>
+			</tr>
+			<tr>
 				<th></th>
 				<td><input type="submit"></td>
 			</tr>
 
 		</table>
-
 	</form>
 
 </body>
