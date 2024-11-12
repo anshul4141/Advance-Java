@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<center>
-		<h1>this is header</h1>
-		<hr>
-	</center>
+
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="WelcomeCtl">Welcome</a>
+
+	<hr>
 
 </body>
 </html>
