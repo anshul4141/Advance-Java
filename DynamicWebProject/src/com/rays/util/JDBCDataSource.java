@@ -28,16 +28,17 @@ public final class JDBCDataSource {
 			datasource.cpds = new ComboPooledDataSource();
 			try {
 				datasource.cpds.setDriverClass(rb.getString("driver"));
+				datasource.cpds.setJdbcUrl(rb.getString("url"));
+				datasource.cpds.setUser(rb.getString("username"));
+				datasource.cpds.setPassword(rb.getString("password"));
+				datasource.cpds.setInitialPoolSize(Integer.parseInt(rb.getString("initialpoolsize")));
+				datasource.cpds.setAcquireIncrement(Integer.parseInt(rb.getString("acquireincrement")));
+				datasource.cpds.setMaxPoolSize(Integer.parseInt(rb.getString("maxpoolsize")));
 			} catch (Exception e) {
 				System.out.println(e);
 				e.printStackTrace();
 			}
-			datasource.cpds.setJdbcUrl(rb.getString("url"));
-			datasource.cpds.setUser(rb.getString("username"));
-			datasource.cpds.setPassword(rb.getString("password"));
-			datasource.cpds.setInitialPoolSize(Integer.parseInt(rb.getString("initialpoolsize")));
-			datasource.cpds.setAcquireIncrement(Integer.parseInt(rb.getString("acquireincrement")));
-			datasource.cpds.setMaxPoolSize(Integer.parseInt(rb.getString("maxpoolsize")));
+
 		}
 		return datasource;
 	}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,11 @@ public class UserRegistrationCtl extends HttpServlet {
 			bean.setDob(sdf.parse(dob));
 
 			model.add(bean);
+			request.setAttribute("msg", "User Registered Successfully");
+
+			RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
+
+			rd.forward(request, response);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

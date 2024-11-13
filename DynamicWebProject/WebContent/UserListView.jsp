@@ -4,17 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-
-	<br>
-	<br>
-	<br>
-
 	<center>
-		<h1>Online Result System</h1>
+		<h1>User List</h1>
 	</center>
 	<%@ include file="Footer.jsp"%>
 </body>

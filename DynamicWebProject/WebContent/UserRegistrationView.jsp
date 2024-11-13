@@ -4,12 +4,26 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>User Registration</title>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
 	<center>
 		<form action="UserRegistrationCtl" method="post">
+
+			<br> <br> <br>
+
+			<%
+				String msg = (String) request.getAttribute("msg");
+			%>
+
+			<%
+				if (msg != null) {
+			%>
+			<span><%=msg%></span>
+			<%
+				}
+			%>
 
 			<h1>User Registration</h1>
 
