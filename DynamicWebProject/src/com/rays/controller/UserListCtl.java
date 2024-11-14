@@ -24,7 +24,7 @@ public class UserListCtl extends HttpServlet {
 		UserBean bean = new UserBean();
 
 		try {
-			List list = model.search(bean, 1, 5);
+			List list = model.search(bean, 0, 0);
 			request.setAttribute("list", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -39,6 +39,31 @@ public class UserListCtl extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String op = request.getParameter("operation");
+
+		System.out.println("op = " + op);
+
+		UserModel model = new UserModel();
+
+		String[] ids = request.getParameterValues("ids");
+
+		if (op.equals("delete")) {
+
+			for (String id : ids) {
+
+				try {
+					model.delete(Integer.parseInt(id));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		}
+
+		response.sendRedirect("UserListCtl");
 
 	}
 
