@@ -20,7 +20,7 @@
 		<h1 align="center">User List</h1>
 
 		<table border="1px" width="100%">
-		
+
 
 			<tr>
 				<th>Delete</th>
@@ -29,6 +29,7 @@
 				<th>LoginId</th>
 				<th>Address</th>
 				<th>DOB</th>
+				<th>Edit</th>
 			</tr>
 
 			<%
@@ -43,6 +44,7 @@
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getAddress()%></td>
 				<td><%=bean.getDob()%></td>
+				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}

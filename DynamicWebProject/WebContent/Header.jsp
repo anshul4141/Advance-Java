@@ -9,6 +9,7 @@
 <body>
 
 	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="UserCtl">Add User</a> |
 	<a href="UserListCtl">User List</a> |
 	<a href="WelcomeCtl">Welcome</a>
 
