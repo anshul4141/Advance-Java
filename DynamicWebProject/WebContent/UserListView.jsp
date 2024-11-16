@@ -19,6 +19,24 @@
 
 		<h1 align="center">User List</h1>
 
+		<table>
+			<th>First Name</th>
+			<td><input type="text" name="firstName"
+				placeholder="Enter First Name"></td> &nbsp;
+
+			<th>Last Name</th>
+			<td><input type="text" name="lastName"
+				placeholder="Enter Last Name"></td> &nbsp;
+
+			<th>DOB</th>
+			<td><input type="date" name="dob"></td> &nbsp;
+
+			<th></th>
+			<td><input type="submit" name="operation" value="search"></td>
+		</table>
+
+		<br>
+
 		<table border="1px" width="100%">
 
 
@@ -50,6 +68,7 @@
 				}
 			%>
 		</table>
+		<br>
 		<table>
 			<tr>
 				<input type="submit" name="operation" value="delete">

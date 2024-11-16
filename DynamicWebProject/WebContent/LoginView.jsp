@@ -8,13 +8,11 @@
 </head>
 <body>
 
-	<a href="UserRegistrationCtl">SignUp</a> |
-	<a href="LoginCtl">login</a> |
-	<a href="UserCtl">Add User</a> |
-	<a href="UserListCtl">User List</a> |
-	<a href="WelcomeCtl">Welcome</a>
+	<%@ include file="Header.jsp"%>
 
-	<hr>
+	<h1>Login</h1>
+
+	<%@ include file="Footer.jsp"%>
 
 </body>
 </html>

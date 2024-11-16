@@ -1,6 +1,7 @@
 package com.rays.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,11 +41,14 @@ public class UserListCtl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
 		String op = request.getParameter("operation");
 
 		System.out.println("op = " + op);
 
 		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
 
 		String[] ids = request.getParameterValues("ids");
 
@@ -63,7 +67,25 @@ public class UserListCtl extends HttpServlet {
 
 		}
 
-		response.sendRedirect("UserListCtl");
+		if (op.equals("search")) {
+
+			try {
+
+				bean.setFirstName(request.getParameter("firstName"));
+				bean.setLastName(request.getParameter("lastName"));
+				bean.setDob(sdf.parse(request.getParameter("dob")));
+
+				List list = model.search(bean, 0, 0);
+				request.setAttribute("list", list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
+		rd.forward(request, response);
 
 	}
 
