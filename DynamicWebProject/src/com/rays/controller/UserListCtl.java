@@ -67,21 +67,26 @@ public class UserListCtl extends HttpServlet {
 
 		}
 
-		if (op.equals("search")) {
+		try {
 
-			try {
+			if (op.equals("search")) {
 
 				bean.setFirstName(request.getParameter("firstName"));
 				bean.setLastName(request.getParameter("lastName"));
-				bean.setDob(sdf.parse(request.getParameter("dob")));
 
-				List list = model.search(bean, 0, 0);
-				request.setAttribute("list", list);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				if (request.getParameter("dob") != "") {
+
+					bean.setDob(sdf.parse(request.getParameter("dob")));
+
+				}
+
 			}
 
+			List list = model.search(bean, 0, 0);
+			request.setAttribute("list", list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");

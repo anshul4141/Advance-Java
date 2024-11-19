@@ -40,7 +40,7 @@
 		<table border="1px" width="100%">
 
 
-			<tr>
+			<tr style="background: skyblue">
 				<th>Delete</th>
 				<th>First Name</th>
 				<th>Last Name</th>
