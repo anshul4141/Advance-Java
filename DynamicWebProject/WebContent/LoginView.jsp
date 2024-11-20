@@ -16,12 +16,21 @@
 
 			<%
 				String msg = (String) request.getAttribute("msg");
+				String err = (String) request.getAttribute("err");
 			%>
 
 			<%
 				if (msg != null) {
 			%>
-			<span><%=msg%></span>
+			<span style="color: green"><%=msg%></span>
+			<%
+				}
+			%>
+
+			<%
+				if (err != null) {
+			%>
+			<span style="color: red"><%=err%></span>
 			<%
 				}
 			%>

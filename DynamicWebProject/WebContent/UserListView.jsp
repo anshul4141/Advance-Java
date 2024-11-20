@@ -15,7 +15,7 @@
 	<%
 		List list = (List) request.getAttribute("list");
 	%>
-	<form action="UserListCtl" method="post">
+	<form action="UserListCtl.do" method="post">
 
 		<h1 align="center">User List</h1>
 
@@ -62,7 +62,7 @@
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getAddress()%></td>
 				<td><%=bean.getDob()%></td>
-				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+				<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}

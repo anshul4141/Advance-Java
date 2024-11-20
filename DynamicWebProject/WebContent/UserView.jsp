@@ -15,7 +15,7 @@
 	%>
 
 	<center>
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 
 			<br> <br> <br>
 

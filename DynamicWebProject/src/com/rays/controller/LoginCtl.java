@@ -27,11 +27,12 @@ public class LoginCtl extends HttpServlet {
 		if (op != null) {
 
 			session.invalidate();
+			request.setAttribute("msg", "User Logout Successfully");
 
 		}
 
-		response.sendRedirect("LoginView.jsp");
-
+		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		rd.forward(request, response);
 	}
 
 	@Override
@@ -60,8 +61,8 @@ public class LoginCtl extends HttpServlet {
 					rd.forward(request, response);
 
 				} else {
-					request.setAttribute("msg", "invalid loginId or Password");
-					RequestDispatcher rd = request.getRequestDispatcher("loginView.jsp");
+					request.setAttribute("err", "Invalid loginId or Password");
+					RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
 					rd.forward(request, response);
 				}
 
