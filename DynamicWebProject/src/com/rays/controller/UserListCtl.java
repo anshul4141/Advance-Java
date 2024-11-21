@@ -25,7 +25,7 @@ public class UserListCtl extends HttpServlet {
 		UserBean bean = new UserBean();
 
 		try {
-			List list = model.search(bean, 0, 0);
+			List list = model.search(bean, 1, 5);
 			request.setAttribute("list", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -45,6 +45,9 @@ public class UserListCtl extends HttpServlet {
 
 		String op = request.getParameter("operation");
 
+		int pageNo = 1;
+		int pageSize = 5;
+
 		System.out.println("op = " + op);
 
 		UserModel model = new UserModel();
@@ -54,17 +57,21 @@ public class UserListCtl extends HttpServlet {
 
 		if (op.equals("delete")) {
 
-			for (String id : ids) {
+			if (ids != null && ids.length > 0) {
 
-				try {
-					model.delete(Integer.parseInt(id));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				for (String id : ids) {
+
+					try {
+						model.delete(Integer.parseInt(id));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
-
+			} else {
+				System.out.println("select at least one record to delete");
 			}
-
 		}
 
 		try {
@@ -82,9 +89,27 @@ public class UserListCtl extends HttpServlet {
 
 			}
 
-			List list = model.search(bean, 0, 0);
-			request.setAttribute("list", list);
+			if (op.equals("next")) {
 
+				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+
+				pageNo++;
+
+			}
+
+			if (op.equals("previous")) {
+
+				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+
+				pageNo--;
+
+			}
+			
+
+			List list = model.search(bean, pageNo, pageSize);
+			request.setAttribute("list", list);
+			request.setAttribute("pageNo", pageNo);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -53,6 +53,8 @@ public class UserCtl extends HttpServlet {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
+
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
 
@@ -76,21 +78,25 @@ public class UserCtl extends HttpServlet {
 				model.add(bean);
 				request.setAttribute("bean", bean);
 				request.setAttribute("msg", "User Added Successfully");
+				rd.forward(request, response);
 
-			} else {
+			}
+			if (op.equals("update")) {
 
 				bean.setId(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("bean", bean);
 				model.update(bean);
 				request.setAttribute("msg", "User Updated Successfully");
+				rd.forward(request, response);
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
+			if (op.equals("back")) {
 
-			rd.forward(request, response);
+				response.sendRedirect("UserListCtl.do");
+
+			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -89,7 +89,13 @@
 				<tr>
 					<th></th>
 					<td><input type="submit" name="operation"
-						value="<%=bean != null ? "update" : "save"%>"></td>
+						value="<%=bean != null ? "update" : "save"%>"> <%
+ 	if (bean != null) {
+ %>
+						<input type="submit" name="operation" value="back"%></td>
+					<%
+						}
+					%>
 				</tr>
 
 			</table>
