@@ -41,6 +41,8 @@ public class UserListCtl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("in do post method in userlistctl");
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		String op = request.getParameter("operation");
@@ -56,6 +58,8 @@ public class UserListCtl extends HttpServlet {
 		String[] ids = request.getParameterValues("ids");
 
 		if (op.equals("delete")) {
+
+			System.out.println("in delete condition");
 
 			if (ids != null && ids.length > 0) {
 
@@ -104,12 +108,11 @@ public class UserListCtl extends HttpServlet {
 				pageNo--;
 
 			}
-			
 
 			List list = model.search(bean, pageNo, pageSize);
 			request.setAttribute("list", list);
 			request.setAttribute("pageNo", pageNo);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
