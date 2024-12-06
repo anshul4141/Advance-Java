@@ -22,7 +22,7 @@
 			<%
 				if (msg != null) {
 			%>
-			<span style="color: green"><%=msg%></span>
+			<div class="alert alert-success"><%=msg%></div>
 			<%
 				}
 			%>
@@ -30,7 +30,7 @@
 			<%
 				if (err != null) {
 			%>
-			<span style="color: red"><%=err%></span>
+			<div class="alert alert-danger"><%=err%></div>
 			<%
 				}
 			%>

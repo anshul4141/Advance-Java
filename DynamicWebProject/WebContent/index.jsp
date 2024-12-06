@@ -8,11 +8,10 @@
 </head>
 <body>
 	<center>
-
 		<br> <br> <br> <br> <br> <br>
 
 		<h1>
-			<a href="WelcomeCtl">Welcome To my Application</a>
+			<a style="color: red" href="WelcomeCtl">Welcome To my Application</a>
 		</h1>
 	</center>
 </body>

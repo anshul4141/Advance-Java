@@ -6,9 +6,8 @@
 <meta charset="ISO-8859-1">
 <title>Welcome</title>
 </head>
+<%@ include file="Header.jsp"%>
 <body>
-	<%@ include file="Header.jsp"%>
-
 	<br>
 	<br>
 	<br>

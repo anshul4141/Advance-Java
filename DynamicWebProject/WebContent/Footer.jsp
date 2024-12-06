@@ -9,8 +9,8 @@
 	left: 0;
 	width: 100%;
 	bottom: 0;
-	background-color: white;
-	color: black;
+	background-color: black;
+	color: white;
 	text-align: center;
 }
 </style>
@@ -20,8 +20,7 @@
 
 	<div id="footer">
 		<CENTER>
-			<hr>
-			<H3>&copy; Copyrights RAYS Technologies</H3>
+			<h4>&copy; Copyrights RAYS Technologies</h4>
 		</CENTER>
 	</div>
 </html>

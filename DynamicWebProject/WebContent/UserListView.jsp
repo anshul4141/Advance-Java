@@ -11,6 +11,8 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
+	<br>
+	<br>
 
 	<%
 		List list = (List) request.getAttribute("list");
@@ -50,7 +52,8 @@
 
 		<br>
 
-		<table border="1px" width="100%">
+		<table height="100" width="100%" cellpadding=10 border=4
+			style="border-collapse: collapse;" 1px">
 
 
 			<tr align="center" style="background: skyblue">
