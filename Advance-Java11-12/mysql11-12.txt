@@ -1,0 +1,241 @@
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Ram       | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  65000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
+| 11 | Meena     | Bose     | Accenture     |  75000 | Jaipur    |
++----+-----------+----------+---------------+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set firstName = 'Shyam' where id = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  65000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
+| 11 | Meena     | Bose     | Accenture     |  75000 | Jaipur    |
++----+-----------+----------+---------------+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set salary = 45000 where id = 2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
+| 11 | Meena     | Bose     | Accenture     |  75000 | Jaipur    |
++----+-----------+----------+---------------+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> update employee set lastName = 'Jain' where firstName = 'Meena';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
+| 11 | Meena     | Jain     | Accenture     |  75000 | Jaipur    |
++----+-----------+----------+---------------+--------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> delete from employee where id = 11;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
++----+-----------+----------+---------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
++----+-----------+----------+---------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee where firstName = 'Amit';
++----+-----------+----------+---------+--------+---------+
+| id | firstName | lastName | compony | salary | address |
++----+-----------+----------+---------+--------+---------+
+|  2 | Amit      | Verma    | TCS     |  45000 | Mumbai  |
++----+-----------+----------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where firstName = 'Aman';
+Empty set (0.00 sec)
+
+mysql> select * from employee where lastName = 'Patel';
++----+-----------+----------+----------+--------+-----------+
+| id | firstName | lastName | compony  | salary | address   |
++----+-----------+----------+----------+--------+-----------+
+| 10 | Rohan     | Patel    | Mindtree |  72000 | Ahmedabad |
++----+-----------+----------+----------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where compony = 'TSC';
+Empty set (0.00 sec)
+
+mysql> select * from employee where compony = 'TCS';
++----+-----------+----------+---------+--------+---------+
+| id | firstName | lastName | compony | salary | address |
++----+-----------+----------+---------+--------+---------+
+|  2 | Amit      | Verma    | TCS     |  45000 | Mumbai  |
++----+-----------+----------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> select compony from employee;
++---------------+
+| compony       |
++---------------+
+| NCS           |
+| TCS           |
+| Infosys       |
+| Wipro         |
+| HCL           |
+| Tech Mahindra |
+| Cognizant     |
+| L&T Infotech  |
+| Capgemini     |
+| Mindtree      |
++---------------+
+10 rows in set (0.00 sec)
+
+mysql> select compony from employee where fristName = 'Amit';
+ERROR 1054 (42S22): Unknown column 'fristName' in 'where clause'
+mysql> select compony from employee where firstName = 'Amit';
++---------+
+| compony |
++---------+
+| TCS     |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select compony, salary from employee where firstName = 'Amit';
++---------+--------+
+| compony | salary |
++---------+--------+
+| TCS     |  45000 |
++---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select compony, salary, address from employee where firstName = 'Amit';
++---------+--------+---------+
+| compony | salary | address |
++---------+--------+---------+
+| TCS     |  45000 | Mumbai  |
++---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Users\Dell>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database result;
+ERROR 1007 (HY000): Can't create database 'result'; database exists
+mysql> use result;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_result |
++------------------+
+| marksheet        |
++------------------+
+1 row in set (0.04 sec)
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |
++----+--------+-----------------+---------+-----------+-------+
+10 rows in set (0.04 sec)
+
+mysql>
