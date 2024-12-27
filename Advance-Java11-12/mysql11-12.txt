@@ -239,3 +239,609 @@ mysql> select * from marksheet;
 10 rows in set (0.04 sec)
 
 mysql>
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+C:\Users\Dell>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use advance;
+Database changed
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee limit 0, 10;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
++----+-----------+----------+---------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee limit 1, 10;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai   |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow   |
++----+-----------+----------+---------------+--------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee limit 5, 5;
++----+-----------+----------+---------------+--------+-----------+
+| id | firstName | lastName | compony       | salary | address   |
++----+-----------+----------+---------------+--------+-----------+
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune      |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida     |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata   |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad |
++----+-----------+----------+---------------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee where firstName like 'a%';
++----+-----------+----------+---------------+--------+---------+
+| id | firstName | lastName | compony       | salary | address |
++----+-----------+----------+---------------+--------+---------+
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai  |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur  |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal  |
++----+-----------+----------+---------------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where firstName like '%a';
++----+-----------+----------+-----------+--------+------------+
+| id | firstName | lastName | compony   | salary | address    |
++----+-----------+----------+-----------+--------+------------+
+|  3 | Priya     | Kumar    | Infosys   |  75000 | Bangalore  |
+|  7 | Neha      | Sharma   | Cognizant |  67000 | Hyderabad  |
+| 12 | Pooja     | Sharma   | Infosys   |  52000 | Jaipur     |
+| 14 | Sneha     | Mehta    | HCL       |  58000 | Chandigarh |
+| 16 | Ritika    | Gupta    | Cognizant |  64000 | Kanpur     |
+| 20 | Isha      | Singh    | NCS       |  47000 | Ranchi     |
++----+-----------+----------+-----------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> use result;
+Database changed
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |
++----+--------+-----------------+---------+-----------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from employee;
+ERROR 1146 (42S02): Table 'result.employee' doesn't exist
+mysql> select *, (physics+chemistry+maths) as total from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+
+| id | rollNo | name            | physics | chemistry | maths | total |
++----+--------+-----------------+---------+-----------+-------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |
++----+--------+-----------------+---------+-----------+-------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |    71.6667 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |    37.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |    43.3333 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |    58.3333 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |    65.0000 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |    25.0000 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |    73.3333 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |    43.6667 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |    57.0000 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |    87.0000 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |    36.6667 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |    56.0000 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |    77.3333 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |    35.0000 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |    61.0000 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |
++----+--------+-----------------+---------+-----------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet order by total asc;
++----+--------+-----------------+---------+-----------+-------+-------+
+| id | rollNo | name            | physics | chemistry | maths | total |
++----+--------+-----------------+---------+-----------+-------+-------+
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |
++----+--------+-----------------+---------+-----------+-------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet order by total desc;
++----+--------+-----------------+---------+-----------+-------+-------+
+| id | rollNo | name            | physics | chemistry | maths | total |
++----+--------+-----------------+---------+-----------+-------+-------+
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |
++----+--------+-----------------+---------+-----------+-------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet order by total desc limit 0, 10;
++----+--------+----------------+---------+-----------+-------+-------+
+| id | rollNo | name           | physics | chemistry | maths | total |
++----+--------+----------------+---------+-----------+-------+-------+
+| 15 |    115 | Priya Mehta    |      82 |        88 |    91 |   261 |
+|  3 |    103 | Pawan Rajput   |      74 |        78 |    88 |   240 |
+| 18 |    118 | Akshay Kumar   |      73 |        78 |    81 |   232 |
+| 12 |    112 | Manoj Sharma   |      68 |        72 |    80 |   220 |
+|  1 |    101 | Naman Meena    |      65 |        78 |    72 |   215 |
+| 10 |    110 | bhvgf          |      54 |        87 |    54 |   195 |
+|  7 |    107 | Anish Malwiya  |      63 |        75 |    52 |   190 |
+| 20 |    120 | Kunal Mishra   |      58 |        65 |    60 |   183 |
+|  9 |    109 | Abhishek Yadav |      65 |        47 |    63 |   175 |
+| 14 |    114 | Vishal Patel   |      59 |        67 |    45 |   171 |
++----+--------+----------------+---------+-----------+-------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet order by total desc limit 0, 5;
++----+--------+--------------+---------+-----------+-------+-------+
+| id | rollNo | name         | physics | chemistry | maths | total |
++----+--------+--------------+---------+-----------+-------+-------+
+| 15 |    115 | Priya Mehta  |      82 |        88 |    91 |   261 |
+|  3 |    103 | Pawan Rajput |      74 |        78 |    88 |   240 |
+| 18 |    118 | Akshay Kumar |      73 |        78 |    81 |   232 |
+| 12 |    112 | Manoj Sharma |      68 |        72 |    80 |   220 |
+|  1 |    101 | Naman Meena  |      65 |        78 |    72 |   215 |
++----+--------+--------------+---------+-----------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      65 |        78 |    72 |   215 |    71.6667 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |    37.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |    43.3333 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |    58.3333 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |    65.0000 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |    25.0000 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |    73.3333 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |    43.6667 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |    57.0000 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |    87.0000 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |    36.6667 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |    56.0000 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |    77.3333 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |    35.0000 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |    61.0000 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+20 rows in set (0.00 sec)
+
+mysql> update marksheet set physics = 22, chemistry = 100, maths = 100 where rollNo = 101;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      22 |       100 |   100 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |
++----+--------+-----------------+---------+-----------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+|  1 |    101 | Naman Meena     |      22 |       100 |   100 |   222 |    74.0000 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |    37.3333 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |    43.3333 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |    58.3333 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |    65.0000 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |    25.0000 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |    73.3333 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |    43.6667 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |    57.0000 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |    87.0000 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |    36.6667 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |    56.0000 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |    77.3333 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |    35.0000 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |    61.0000 |
++----+--------+-----------------+---------+-----------+-------+-------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet order by total desc limit 0, 5;
++----+--------+--------------+---------+-----------+-------+-------+
+| id | rollNo | name         | physics | chemistry | maths | total |
++----+--------+--------------+---------+-----------+-------+-------+
+| 15 |    115 | Priya Mehta  |      82 |        88 |    91 |   261 |
+|  3 |    103 | Pawan Rajput |      74 |        78 |    88 |   240 |
+| 18 |    118 | Akshay Kumar |      73 |        78 |    81 |   232 |
+|  1 |    101 | Naman Meena  |      22 |       100 |   100 |   222 |
+| 12 |    112 | Manoj Sharma |      68 |        72 |    80 |   220 |
++----+--------+--------------+---------+-----------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *, (physics+chemistry+maths) as total from marksheet where physics > 33 and chemistry > 33 and maths > 33 order by total desc limit 0,
+5;
++----+--------+--------------+---------+-----------+-------+-------+
+| id | rollNo | name         | physics | chemistry | maths | total |
++----+--------+--------------+---------+-----------+-------+-------+
+| 15 |    115 | Priya Mehta  |      82 |        88 |    91 |   261 |
+|  3 |    103 | Pawan Rajput |      74 |        78 |    88 |   240 |
+| 18 |    118 | Akshay Kumar |      73 |        78 |    81 |   232 |
+| 12 |    112 | Manoj Sharma |      68 |        72 |    80 |   220 |
+| 10 |    110 | bhvgf        |      54 |        87 |    54 |   195 |
++----+--------+--------------+---------+-----------+-------+-------+
+5 rows in set (0.02 sec)
+
+mysql> use advance;
+Database changed
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee limt 0, 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0, 5' at line 1
+mysql> select * from employee limit 0, 5;
++----+-----------+----------+---------+--------+-----------+
+| id | firstName | lastName | compony | salary | address   |
++----+-----------+----------+---------+--------+-----------+
+|  1 | Shyam     | Sharma   | NCS     |  50000 | Indore    |
+|  2 | Amit      | Verma    | TCS     |  45000 | Mumbai    |
+|  3 | Priya     | Kumar    | Infosys |  75000 | Bangalore |
+|  4 | Rahul     | Singh    | Wipro   |  58000 | Delhi     |
+|  5 | Anjali    | Mehra    | HCL     |  62000 | Chennai   |
++----+-----------+----------+---------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql>
