@@ -845,3 +845,470 @@ mysql> select * from employee;
 20 rows in set (0.00 sec)
 
 mysql>
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+mysql> use result;
+Database changed
+mysql> select * from marksheet;
++----+--------+-----------------+---------+-----------+-------+
+| id | rollNo | name            | physics | chemistry | maths |
++----+--------+-----------------+---------+-----------+-------+
+|  1 |    101 | Naman Meena     |      22 |       100 |   100 |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |
++----+--------+-----------------+---------+-----------+-------+
+20 rows in set (0.03 sec)
+
+mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as percentage, if(physics >= 33 and chemistry >= 33 and maths >=33, 'pass', 'fail') as result from marksheet;
++----+--------+-----------------+---------+-----------+-------+-------+------------+--------+
+| id | rollNo | name            | physics | chemistry | maths | total | percentage | result |
++----+--------+-----------------+---------+-----------+-------+-------+------------+--------+
+|  1 |    101 | Naman Meena     |      22 |       100 |   100 |   222 |    74.0000 | fail   |
+|  2 |    102 | Sachin Kalar    |      47 |        52 |    45 |   144 |    48.0000 | pass   |
+|  3 |    103 | Pawan Rajput    |      74 |        78 |    88 |   240 |    80.0000 | pass   |
+|  4 |    104 | Raj Jaat        |      57 |        32 |    23 |   112 |    37.3333 | fail   |
+|  5 |    105 | Raman Sharma    |      62 |        45 |    35 |   142 |    47.3333 | pass   |
+|  6 |    106 | Khushali Rathod |      52 |        33 |    25 |   110 |    36.6667 | fail   |
+|  7 |    107 | Anish Malwiya   |      63 |        75 |    52 |   190 |    63.3333 | pass   |
+|  8 |    108 | Uday Dabi       |      25 |        63 |    42 |   130 |    43.3333 | fail   |
+|  9 |    109 | Abhishek Yadav  |      65 |        47 |    63 |   175 |    58.3333 | pass   |
+| 10 |    110 | bhvgf           |      54 |        87 |    54 |   195 |    65.0000 | pass   |
+| 11 |    111 | Ravi Verma      |      35 |        22 |    18 |    75 |    25.0000 | fail   |
+| 12 |    112 | Manoj Sharma    |      68 |        72 |    80 |   220 |    73.3333 | pass   |
+| 13 |    113 | Aarti Gupta     |      44 |        48 |    39 |   131 |    43.6667 | pass   |
+| 14 |    114 | Vishal Patel    |      59 |        67 |    45 |   171 |    57.0000 | pass   |
+| 15 |    115 | Priya Mehta     |      82 |        88 |    91 |   261 |    87.0000 | pass   |
+| 16 |    116 | Rajni Singh     |      49 |        35 |    26 |   110 |    36.6667 | fail   |
+| 17 |    117 | Nidhi Chawla    |      60 |        55 |    53 |   168 |    56.0000 | pass   |
+| 18 |    118 | Akshay Kumar    |      73 |        78 |    81 |   232 |    77.3333 | pass   |
+| 19 |    119 | Neha Joshi      |      34 |        29 |    42 |   105 |    35.0000 | fail   |
+| 20 |    120 | Kunal Mishra    |      58 |        65 |    60 |   183 |    61.0000 | pass   |
++----+--------+-----------------+---------+-----------+-------+-------+------------+--------+
+20 rows in set (0.02 sec)
+
+mysql> use advance;
+Database changed
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.03 sec)
+
+mysql> select count(id) from employee;
++-----------+
+| count(id) |
++-----------+
+|        20 |
++-----------+
+1 row in set (0.03 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|     1210000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       75000 |
++-------------+
+1 row in set (0.03 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|       45000 |
++-------------+
+1 row in set (0.02 sec)
+
+mysql> select * from employee order by salary desc limit 0,1;
++----+-----------+----------+---------+--------+-----------+
+| id | firstName | lastName | compony | salary | address   |
++----+-----------+----------+---------+--------+-----------+
+|  3 | Priya     | Kumar    | Infosys |  75000 | Bangalore |
++----+-----------+----------+---------+--------+-----------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_advance |
++-------------------+
+| employee          |
++-------------------+
+1 row in set (0.03 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> create table department(id int primary key, department varchar(50));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_advance |
++-------------------+
+| department        |
+| employee          |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> insert into department values(1, 'Admin'),(2, 'Manager'),(3, 'Developer'),(4, 'Account'),(5, 'HR');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+
+| id | firstName | lastName | compony       | salary | address    |
++----+-----------+----------+---------------+--------+------------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |
++----+-----------+----------+---------------+--------+------------+
+20 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+------------+
+| id | department |
++----+------------+
+|  1 | Admin      |
+|  2 | Manager    |
+|  3 | Developer  |
+|  4 | Account    |
+|  5 | HR         |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee deptId id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'deptId id' at line 1
+mysql> alter table employee add deptId id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id' at line 1
+mysql> alter table employee add deptId int;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+--------+
+| id | firstName | lastName | compony       | salary | address    | deptId |
++----+-----------+----------+---------------+--------+------------+--------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |   NULL |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |   NULL |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |   NULL |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |   NULL |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |   NULL |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |   NULL |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |   NULL |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |   NULL |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |   NULL |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |   NULL |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |   NULL |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |   NULL |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |   NULL |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |   NULL |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |   NULL |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |   NULL |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |   NULL |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |   NULL |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |   NULL |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |   NULL |
++----+-----------+----------+---------------+--------+------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> alter table employee add foreign key (deptId) referances department (id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'referances department (id)' at line 1
+mysql> alter table employee add foreign key (deptId) references department (id);
+Query OK, 20 rows affected (0.14 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+--------+
+| id | firstName | lastName | compony       | salary | address    | deptId |
++----+-----------+----------+---------------+--------+------------+--------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |   NULL |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |   NULL |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |   NULL |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |   NULL |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |   NULL |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |   NULL |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |   NULL |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |   NULL |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |   NULL |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |   NULL |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |   NULL |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |   NULL |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |   NULL |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |   NULL |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |   NULL |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |   NULL |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |   NULL |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |   NULL |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |   NULL |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |   NULL |
++----+-----------+----------+---------------+--------+------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+------------+
+| id | department |
++----+------------+
+|  1 | Admin      |
+|  2 | Manager    |
+|  3 | Developer  |
+|  4 | Account    |
+|  5 | HR         |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set deptId = 6 where firstName = 'Shyam';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`advance`.`employee`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`deptId`) REFERENCES `department` (`id`))
+mysql> update employee set deptId = 1 where firstName = 'Shyam';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+--------+
+| id | firstName | lastName | compony       | salary | address    | deptId |
++----+-----------+----------+---------------+--------+------------+--------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |      1 |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |   NULL |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |   NULL |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |   NULL |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |   NULL |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |   NULL |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |   NULL |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |   NULL |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |   NULL |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |   NULL |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |   NULL |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |   NULL |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |   NULL |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |   NULL |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |   NULL |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |   NULL |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |   NULL |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |   NULL |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |   NULL |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |   NULL |
++----+-----------+----------+---------------+--------+------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+------------+
+| id | department |
++----+------------+
+|  1 | Admin      |
+|  2 | Manager    |
+|  3 | Developer  |
+|  4 | Account    |
+|  5 | HR         |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set deptId = 3 where firstName = 'Amit';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from department;
++----+------------+
+| id | department |
++----+------------+
+|  1 | Admin      |
+|  2 | Manager    |
+|  3 | Developer  |
+|  4 | Account    |
+|  5 | HR         |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+--------+
+| id | firstName | lastName | compony       | salary | address    | deptId |
++----+-----------+----------+---------------+--------+------------+--------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |      1 |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |      3 |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |   NULL |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |   NULL |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |   NULL |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |   NULL |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |   NULL |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |   NULL |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |   NULL |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |   NULL |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |   NULL |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |   NULL |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |   NULL |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |   NULL |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |   NULL |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |   NULL |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |   NULL |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |   NULL |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |   NULL |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |   NULL |
++----+-----------+----------+---------------+--------+------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> update employee set deptId = 4 where firstName = 'Harsh';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set deptId = 2 where firstName = 'Isha';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set deptId = 5 where firstName = 'Ritika';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-----------+----------+---------------+--------+------------+--------+
+| id | firstName | lastName | compony       | salary | address    | deptId |
++----+-----------+----------+---------------+--------+------------+--------+
+|  1 | Shyam     | Sharma   | NCS           |  50000 | Indore     |      1 |
+|  2 | Amit      | Verma    | TCS           |  45000 | Mumbai     |      3 |
+|  3 | Priya     | Kumar    | Infosys       |  75000 | Bangalore  |   NULL |
+|  4 | Rahul     | Singh    | Wipro         |  58000 | Delhi      |   NULL |
+|  5 | Anjali    | Mehra    | HCL           |  62000 | Chennai    |   NULL |
+|  6 | Vikas     | Gupta    | Tech Mahindra |  56000 | Pune       |   NULL |
+|  7 | Neha      | Sharma   | Cognizant     |  67000 | Hyderabad  |   NULL |
+|  8 | Raj       | Yadav    | L&T Infotech  |  70000 | Noida      |   NULL |
+|  9 | Kriti     | Joshi    | Capgemini     |  68000 | Kolkata    |   NULL |
+| 10 | Rohan     | Patel    | Mindtree      |  72000 | Ahmedabad  |   NULL |
+| 11 | Ravi      | Kumar    | TCS           |  48000 | Lucknow    |   NULL |
+| 12 | Pooja     | Sharma   | Infosys       |  52000 | Jaipur     |   NULL |
+| 13 | Akash     | Verma    | Wipro         |  60000 | Nagpur     |   NULL |
+| 14 | Sneha     | Mehta    | HCL           |  58000 | Chandigarh |   NULL |
+| 15 | Ankit     | Rathore  | Tech Mahindra |  55000 | Bhopal     |   NULL |
+| 16 | Ritika    | Gupta    | Cognizant     |  64000 | Kanpur     |      5 |
+| 17 | Harsh     | Yadav    | L&T Infotech  |  71000 | Patna      |      4 |
+| 18 | Surbhi    | Jain     | Capgemini     |  63000 | Surat      |   NULL |
+| 19 | Kunal     | Mishra   | Mindtree      |  69000 | Thane      |   NULL |
+| 20 | Isha      | Singh    | NCS           |  47000 | Ranchi     |      2 |
++----+-----------+----------+---------------+--------+------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+------------+
+| id | department |
++----+------------+
+|  1 | Admin      |
+|  2 | Manager    |
+|  3 | Developer  |
+|  4 | Account    |
+|  5 | HR         |
++----+------------+
+5 rows in set (0.00 sec)
+
+mysql>
