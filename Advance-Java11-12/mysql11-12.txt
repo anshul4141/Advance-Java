@@ -1311,4 +1311,58 @@ mysql> select * from department;
 +----+------------+
 5 rows in set (0.00 sec)
 
+mysql> select id empId, firstName from employee;
++-------+-----------+
+| empId | firstName |
++-------+-----------+
+|     1 | Shyam     |
+|     2 | Amit      |
+|     3 | Priya     |
+|     4 | Rahul     |
+|     5 | Anjali    |
+|     6 | Vikas     |
+|     7 | Neha      |
+|     8 | Raj       |
+|     9 | Kriti     |
+|    10 | Rohan     |
+|    11 | Ravi      |
+|    12 | Pooja     |
+|    13 | Akash     |
+|    14 | Sneha     |
+|    15 | Ankit     |
+|    16 | Ritika    |
+|    17 | Harsh     |
+|    18 | Surbhi    |
+|    19 | Kunal     |
+|    20 | Isha      |
++-------+-----------+
+20 rows in set (0.00 sec)
+
+mysql> select id empId, firstName empName from employee;
++-------+---------+
+| empId | empName |
++-------+---------+
+|     1 | Shyam   |
+|     2 | Amit    |
+|     3 | Priya   |
+|     4 | Rahul   |
+|     5 | Anjali  |
+|     6 | Vikas   |
+|     7 | Neha    |
+|     8 | Raj     |
+|     9 | Kriti   |
+|    10 | Rohan   |
+|    11 | Ravi    |
+|    12 | Pooja   |
+|    13 | Akash   |
+|    14 | Sneha   |
+|    15 | Ankit   |
+|    16 | Ritika  |
+|    17 | Harsh   |
+|    18 | Surbhi  |
+|    19 | Kunal   |
+|    20 | Isha    |
++-------+---------+
+20 rows in set (0.00 sec)
+
 mysql>
