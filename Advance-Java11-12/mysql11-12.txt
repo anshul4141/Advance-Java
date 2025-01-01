@@ -1663,3 +1663,39 @@ mysql> select * from employee where salary in (50000,60000);
 3 rows in set (0.00 sec)
 
 mysql>
+
+--------------------------------------------------------------------------------
+
+mysql> select * from st_user;
++----+-----------+----------+--------------------------+-------------+---------------------+------------+
+| id | firstName | lastName | loginId                  | password    | address             | dob        |
++----+-----------+----------+--------------------------+-------------+---------------------+------------+
+|  1 | Tarun     | Sharma   | kamal@gmail.com          | pass123     | Bhopal              | 2003-02-02 |
+|  2 | Kamal     | Sharma   | kamal123@gmail.com       | pass123     | Bhopal              | 2003-02-02 |
+|  3 | Kamal     | Sharma   | kamal1234@gmail.com      | pass123     | Bhopal              | 2003-02-02 |
+|  4 | pawan     | Sharma   | pawan@gmail.com          | pass123     | Bhopal              | 2003-02-02 |
+|  5 | abc123    | abc      | abc@gmail.com            | abc         | abc                 | 2024-11-13 |
+|  6 | Kanak     | soni     | kanaksoni159@gmail.com   | dgdsffd     | indore              | 2024-11-20 |
+|  7 | Prabhas   | Salar    | admin@gmail.com          | admin       | 07 Ganga Bag Colony | 2002-01-25 |
+|  8 | Aarav     | Gupta    | aarav.gupta@gmail.com    | password123 | Mumbai              | 2000-05-15 |
+|  9 | Ananya    | Sharma   | ananya.sharma@gmail.com  | password123 | Delhi               | 1998-08-21 |
+| 10 | Rohan     | Verma    | rohan.verma@gmail.com    | rohanpass   | Bangalore           | 2001-11-10 |
+| 11 | Priya     | Singh    | priya.singh@gmail.com    | priyapass   | Chennai             | 2002-07-05 |
+| 12 | Ishaan    | Patel    | ishaan.patel@gmail.com   | ishaanpwd   | Ahmedabad           | 1999-12-25 |
+| 13 | Sneha     | Joshi    | sneha.joshi@gmail.com    | snehapwd    | Pune                | 2003-01-15 |
+| 14 | Kabir     | Khan     | kabir.khan@gmail.com     | kabir123    | Lucknow             | 2000-03-18 |
+| 15 | Meera     | Reddy    | meera.reddy@gmail.com    | meerapwd    | Hyderabad           | 2002-06-22 |
+| 16 | Aditi     | Mishra   | aditi.mishra@gmail.com   | aditipass   | Kolkata             | 2001-10-30 |
+| 17 | Vikram    | Thakur   | vikram.thakur@gmail.com  | vikrampwd   | Jaipur              | 1998-09-12 |
+| 18 | Sanjana   | Deshmukh | sanjana.d@gmail.com      | sanjanapass | Nagpur              | 1997-11-23 |
+| 19 | Arjun     | Nair     | arjun.nair@gmail.com     | arjun123    | Thiruvananthapuram  | 2000-04-11 |
+| 20 | Divya     | Bhatt    | divya.bhatt@gmail.com    | divyapwd    | Dehradun            | 2003-08-08 |
+| 21 | Raj       | Chauhan  | raj.chauhan@gmail.com    | rajpass     | Chandigarh          | 2001-02-14 |
+| 22 | Neha      | Kapoor   | neha.kapoor@gmail.com    | nehapass    | Indore              | 1999-10-05 |
+| 23 | Karan     | Malhotra | karan.malhotra@gmail.com | karanpwd    | Bhopal              | 1996-12-31 |
+| 24 | Pooja     | Agarwal  | pooja.agarwal@gmail.com  | poojapwd    | Kanpur              | 2003-01-20 |
+| 25 | Aditya    | Singhal  | aditya.singhal@gmail.com | adityapwd   | Noida               | 1997-07-15 |
+| 26 | Tanya     | Mehta    | tanya.mehta@gmail.com    | tanyapwd    | Surat               | 2002-05-10 |
+| 27 | Rahul     | Yadav    | rahul.yadav@gmail.com    | rahul123    | Varanasi            | 2000-09-09 |
++----+-----------+----------+--------------------------+-------------+---------------------+------------+
+27 rows in set (0.05 sec)
