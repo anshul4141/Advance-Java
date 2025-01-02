@@ -23,9 +23,9 @@ public class SearchUser {
 		// 'a%'");
 
 		// findeBy id
-		ResultSet rs = stmt.executeQuery("select * from st_user where id = 3");
+		ResultSet rs = stmt.executeQuery("select * from st_user");
 		while (rs.next()) {
-			System.out.println(rs.getString(2) + " " + rs.getString(3));
+			System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
 
 		}
 
