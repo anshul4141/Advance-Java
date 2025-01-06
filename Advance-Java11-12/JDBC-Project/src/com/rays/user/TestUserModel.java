@@ -8,10 +8,27 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		testAdd();
 		// testUpdate();
 		// testDelete();
-		testSearch();
+		// testSearch();
+		// testFindByLoginId();
+
+	}
+
+	private static void testFindByLoginId() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = new UserBean();
+
+		bean = model.findByLoginId("abc123@gmail.com");
+
+		if (bean != null) {
+			System.out.println("login Id already exist..");
+		} else {
+			System.out.println("record not found");
+		}
 
 	}
 
@@ -72,7 +89,7 @@ public class TestUserModel {
 
 		bean.setFirstName("abc");
 		bean.setLastName("abc");
-		bean.setLoginId("abc@gmail.com");
+		bean.setLoginId("abc123@gmail.com");
 		bean.setPassword("abc123");
 		bean.setAddress("indore");
 		bean.setDob(sdf.parse("2000-02-02"));

@@ -36,19 +36,29 @@ public class UserModel {
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?,?,?,?,?,?,?)");
+		UserBean existsBean = findByLoginId(bean.getLoginId());
 
-		pstmt.setInt(1, nextPk());
-		pstmt.setString(2, bean.getFirstName());
-		pstmt.setString(3, bean.getLastName());
-		pstmt.setString(4, bean.getLoginId());
-		pstmt.setString(5, bean.getPassword());
-		pstmt.setString(6, bean.getAddress());
-		pstmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
+		if (existsBean != null) {
 
-		int i = pstmt.executeUpdate();
+			System.err.println("loginId already exists");
 
-		System.out.println("data added successfully: " + i);
+		} else {
+
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?,?,?,?,?,?,?)");
+
+			pstmt.setInt(1, nextPk());
+			pstmt.setString(2, bean.getFirstName());
+			pstmt.setString(3, bean.getLastName());
+			pstmt.setString(4, bean.getLoginId());
+			pstmt.setString(5, bean.getPassword());
+			pstmt.setString(6, bean.getAddress());
+			pstmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
+
+			int i = pstmt.executeUpdate();
+
+			System.out.println("data added successfully: " + i);
+
+		}
 
 	}
 
@@ -119,6 +129,38 @@ public class UserModel {
 		}
 
 		return list;
+	}
+
+	public UserBean findByLoginId(String loginId) throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
+
+		System.out.println("loginId == " + loginId);
+
+		pstmt.setString(1, loginId);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setAddress(rs.getString(6));
+			bean.setDob(rs.getDate(7));
+
+		}
+
+		return bean;
 	}
 
 }
