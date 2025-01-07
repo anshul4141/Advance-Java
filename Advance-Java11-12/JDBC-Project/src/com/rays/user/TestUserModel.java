@@ -8,10 +8,10 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		testAdd();
+		// testAdd();
 		// testUpdate();
 		// testDelete();
-		// testSearch();
+		testSearch();
 		// testFindByLoginId();
 
 	}
@@ -34,11 +34,15 @@ public class TestUserModel {
 
 	private static void testSearch() throws Exception {
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
 		UserModel model = new UserModel();
 
 		UserBean bean = new UserBean();
 
-		List list = model.search();
+		bean.setDob(sdf.parse("2002-06-22"));
+
+		List list = model.search(bean);
 
 		Iterator it = list.iterator();
 

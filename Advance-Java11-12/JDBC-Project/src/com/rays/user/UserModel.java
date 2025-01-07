@@ -1,21 +1,29 @@
 package com.rays.user;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class UserModel {
+
+	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.app");
+	String driver = rb.getString("driver");
+	String url = rb.getString("url");
+	String username = rb.getString("username");
+	String pwd = rb.getString("password");
 
 	public int nextPk() throws Exception {
 
 		int pk = 0;
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, pwd);
 
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 
@@ -101,17 +109,46 @@ public class UserModel {
 
 	}
 
-	public List search() throws Exception {
+	public List search(UserBean bean) throws Exception {
+
+		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1 ");
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+		if (bean != null) {
+
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+
+				sql.append("and firstName like '" + bean.getFirstName() + "%'");
+
+			}
+
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+
+				sql.append("and lastName like '" + bean.getLastName() + "%'");
+
+			}
+
+			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
+
+				Date d = new Date(bean.getDob().getTime());
+
+				System.out.println("dob ===> " + d);
+
+				sql.append("and dob = '" + d + "'");
+
+			}
+
+		}
+
+		System.out.println("sql === > " + sql.toString());
+
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
 		ResultSet rs = pstmt.executeQuery();
 
-		UserBean bean = null;
 		List list = new ArrayList();
 
 		while (rs.next()) {
