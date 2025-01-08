@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,32 +41,44 @@ public class UserModel {
 
 	public void add(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+		try {
 
-		UserBean existsBean = findByLoginId(bean.getLoginId());
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-		if (existsBean != null) {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
 
-			System.err.println("loginId already exists");
+			UserBean existsBean = findByLoginId(bean.getLoginId());
 
-		} else {
+			conn.setAutoCommit(false);
 
-			PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?,?,?,?,?,?,?)");
+			if (existsBean != null) {
 
-			pstmt.setInt(1, nextPk());
-			pstmt.setString(2, bean.getFirstName());
-			pstmt.setString(3, bean.getLastName());
-			pstmt.setString(4, bean.getLoginId());
-			pstmt.setString(5, bean.getPassword());
-			pstmt.setString(6, bean.getAddress());
-			pstmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
+				System.err.println("loginId already exists");
 
-			int i = pstmt.executeUpdate();
+			} else {
 
-			System.out.println("data added successfully: " + i);
+				PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?,?,?,?,?,?,?)");
 
+				pstmt.setInt(1, nextPk());
+				pstmt.setString(2, bean.getFirstName());
+				pstmt.setString(3, bean.getLastName());
+				pstmt.setString(4, bean.getLoginId());
+				pstmt.setString(5, bean.getPassword());
+				pstmt.setString(6, bean.getAddress());
+				pstmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
+
+				int i = pstmt.executeUpdate();
+
+				System.out.println("data added successfully: " + i);
+
+				conn.commit();
+
+			}
+
+		} catch (Exception e) {
+			conn.rollback();
 		}
 
 	}
@@ -148,6 +161,17 @@ public class UserModel {
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
 		ResultSet rs = pstmt.executeQuery();
+
+		ResultSetMetaData rsmt = rs.getMetaData();
+
+		int i = rsmt.getColumnCount();
+		System.out.println("columns: " + i);
+
+		for (int j = 1; j <= i; j++) {
+
+			System.out.println("colum name: " + rsmt.getColumnName(j));
+
+		}
 
 		List list = new ArrayList();
 

@@ -40,7 +40,7 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setDob(sdf.parse("2002-06-22"));
+		// bean.setDob(sdf.parse("2002-06-22"));
 
 		List list = model.search(bean);
 
