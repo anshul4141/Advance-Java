@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.rays.util.JDBCDataSource;
+
 public class UserModel {
 
 	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.app");
@@ -22,9 +24,7 @@ public class UserModel {
 
 		int pk = 0;
 
-		Class.forName(driver);
-
-		Connection conn = DriverManager.getConnection(url, username, pwd);
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 
@@ -45,9 +45,7 @@ public class UserModel {
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			UserBean existsBean = findByLoginId(bean.getLoginId());
 
