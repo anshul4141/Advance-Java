@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello JSP</h1>
+
+	<%
+		for (int i = 1; i <= 5; i++) {
+	%>
+
+	<h1><%=i%>Hello World
+	</h1>
+	<%
+		}
+	%>
+
 </body>
 </html>

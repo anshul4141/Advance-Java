@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello JSP</h1>
+	<h1>Second JSP</h1>
+	<%
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+	%>
+	<h1><%=firstName%></h1>
+	<h1><%=lastName%></h1>
 </body>
 </html>
