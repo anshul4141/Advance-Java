@@ -110,35 +110,35 @@ public class UserModel {
 
 	public List search(UserBean bean) throws Exception {
 
-		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1 ");
+		StringBuffer sql = new StringBuffer("select * from st_user limit 0,10 ");
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		if (bean != null) {
-
-			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
-
-				sql.append("and firstName like '" + bean.getFirstName() + "%'");
-
-			}
-
-			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
-
-				sql.append("and lastName like '" + bean.getLastName() + "%'");
-
-			}
-
-			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
-
-				Date d = new Date(bean.getDob().getTime());
-
-				System.out.println("dob ===> " + d);
-
-				sql.append("and dob = '" + d + "'");
-
-			}
-
-		}
+//		if (bean != null) {
+//
+//			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+//
+//				sql.append("and firstName like '" + bean.getFirstName() + "%'");
+//
+//			}
+//
+//			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+//
+//				sql.append("and lastName like '" + bean.getLastName() + "%'");
+//
+//			}
+//
+//			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
+//
+//				Date d = new Date(bean.getDob().getTime());
+//
+//				System.out.println("dob ===> " + d);
+//
+//				sql.append("and dob = '" + d + "'");
+//
+//			}
+//
+//		}
 
 		System.out.println("sql === > " + sql.toString());
 

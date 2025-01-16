@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 align="center">
-		<a href="WelcomeCtl">Welcome to my Website</a>
-	</h1>
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="UserListCtl">User List</a>
+	<hr>
 </body>
 </html>
