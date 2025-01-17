@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="submit"></td>
+				<td><input type="submit" name="operation" value="SignUp"></td>
 			</tr>
 		</table>
 	</form>

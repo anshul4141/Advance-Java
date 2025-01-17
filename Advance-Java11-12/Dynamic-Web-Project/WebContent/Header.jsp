@@ -8,6 +8,7 @@
 </head>
 <body>
 	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="LoginCtl">Login</a> |
 	<a href="UserListCtl">User List</a>
 	<hr>
 </body>
