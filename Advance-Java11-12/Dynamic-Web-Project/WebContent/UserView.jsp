@@ -8,24 +8,31 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<h1 align="center">Login</h1>
-	<form action="LoginCtl" method="post">
+	<form action="UserCtl" method="post">
 
 		<%
 			String msg = (String) request.getAttribute("msg");
 		%>
 
+		<h1 align="center">Add User</h1>
 		<%
 			if (msg != null) {
 		%>
-		<center>
-			<h2 style="color: green"><%=msg%></h2>
-		</center>
+		<h1 align="center"><%=msg%></h1>
 		<%
 			}
 		%>
-
 		<table align="center">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="firstName"
+					placeholder="Enter First Name"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="lastName"
+					placeholder="Enter Last Name"></td>
+			</tr>
 			<tr>
 				<th>LoginId</th>
 				<td><input type="email" name="loginId"
@@ -37,8 +44,17 @@
 					placeholder="Enter Your Password"></td>
 			</tr>
 			<tr>
+				<th>DOB</th>
+				<td><input type="date" name="dob" placeholder="Enter Your Dob"></td>
+			</tr>
+			<tr>
+				<th>Address</th>
+				<td><input type="text" name="address"
+					placeholder="Enter Your address"></td>
+			</tr>
+			<tr>
 				<th></th>
-				<td><input type="submit" name="operation" value="SignIn"></td>
+				<td><input type="submit" name="operation" value="save"></td>
 			</tr>
 		</table>
 	</form>
