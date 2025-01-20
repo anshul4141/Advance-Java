@@ -20,13 +20,33 @@ public class UserCtl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("UserView.jsp");
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+		String id = request.getParameter("id");
+
+		System.out.println("id == " + id);
+
+		if (id != null) {
+
+			try {
+				bean = model.findById(Integer.parseInt(id));
+				request.setAttribute("bean", bean);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
+		rd.forward(request, response);
 
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String op = request.getParameter("operation");
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
@@ -46,9 +66,17 @@ public class UserCtl extends HttpServlet {
 			bean.setPassword(password);
 			bean.setAddress(address);
 			bean.setDob(sdf.parse(dob));
-			model.add(bean);
 
-			request.setAttribute("msg", "User added successfully");
+			if (op.equals("update")) {
+
+				bean.setId(Integer.parseInt(request.getParameter("id")));
+				model.update(bean);
+				request.setAttribute("msg", "User updated successfully");
+
+			} else {
+				model.add(bean);
+				request.setAttribute("msg", "User added successfully");
+			}
 
 			RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
 			rd.forward(request, response);

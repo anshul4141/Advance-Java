@@ -27,6 +27,7 @@
 				<th>LoginId</th>
 				<th>DOB</th>
 				<th>Address</th>
+				<th>Edit</th>
 			</tr>
 			<%
 				Iterator it = list.iterator();
@@ -41,6 +42,7 @@
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getDob()%></td>
 				<td><%=bean.getAddress()%></td>
+				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}
