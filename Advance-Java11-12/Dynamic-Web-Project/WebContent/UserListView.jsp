@@ -12,7 +12,7 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<h1 align="center">User List</h1>
-	<form action="UserListCtl" method="post">
+	<form action="UserListCtl.do" method="post">
 
 		<%
 			List list = (List) request.getAttribute("list");
@@ -42,20 +42,25 @@
 				<td><%=bean.getLoginId()%></td>
 				<td><%=bean.getDob()%></td>
 				<td><%=bean.getAddress()%></td>
-				<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+				<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 			</tr>
 			<%
 				}
 			%>
 		</table>
 		<br>
-		<center>
-			<table>
-				<tr>
-					<input type="submit" name="operation" value="delete">
-				</tr>
-			</table>
-		</center>
+		<table>
+			<tr>
+				<table width="100%">
+					<tr>
+						<td><input type="submit" name="operation" value="previous"></td>
+						<td><input type="submit" name="operation" value="delete"></td>
+						<td align="right"><input type="submit" name="operation"
+							value="next"></td>
+					</tr>
+				</table>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>

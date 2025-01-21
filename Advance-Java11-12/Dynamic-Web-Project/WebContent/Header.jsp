@@ -17,8 +17,10 @@
 		if (user != null) {
 	%>
 	<h1><%="Hi, " + user.getFirstName()%></h1>
-	<a href="UserCtl">Add User</a> |
-	<a href="UserListCtl">User List</a> |
+	<a href="UserCtl.do">Add User</a> |
+	<a href="UserListCtl.do">User List</a> |
+	<a href="StudentCtl.do">Add Student</a> |
+	<a href="StudentListCtl.do">Student List</a> |
 	<a href="LoginCtl?operation=logout">Logout</a>
 	<%
 		} else {

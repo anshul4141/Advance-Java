@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.mbeans.UserMBean;
-
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
