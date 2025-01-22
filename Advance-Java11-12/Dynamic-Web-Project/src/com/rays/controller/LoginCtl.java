@@ -26,6 +26,8 @@ public class LoginCtl extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		if (op != null) {
+			
+			// no 1 to destroy session invalidate()
 			session.invalidate();
 			req.setAttribute("msg", "user logout successfully");
 		}
