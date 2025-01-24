@@ -16,8 +16,22 @@
 
 		<%
 			List list = (List) request.getAttribute("list");
+			int pageNo = (int) request.getAttribute("pageNo");
+			int pageSize = (int) request.getAttribute("pageSize");
 		%>
 
+		<table>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="firstName"
+					placeholder="search by firstName"></td>
+				<th>Last Name</th>
+				<td><input type="text" name="lastName"
+					placeholder="search by lastName"></td>
+				<td>&nbsp;<input type="submit" name="operation" value="search"></td>
+			</tr>
+		</table>
+		<br>
 		<table algin="center" width="100%" border="1px">
 			<tr style="background-color: orange">
 				<th>Select</th>
@@ -49,18 +63,17 @@
 			%>
 		</table>
 		<br>
-		<table>
+		<table width="100%">
 			<tr>
-				<table width="100%">
-					<tr>
-						<td><input type="submit" name="operation" value="previous"></td>
-						<td><input type="submit" name="operation" value="delete"></td>
-						<td align="right"><input type="submit" name="operation"
-							value="next"></td>
-					</tr>
-				</table>
+				<td><input type="submit" name="operation" value="previous"
+					<%=pageNo == 1 ? "disabled" : ""%>></td>
+				<td><input type="submit" name="operation" value="delete"></td>
+				<td align="right"><input type="submit" name="operation"
+					value="next"></td>
 			</tr>
 		</table>
+		<input type="text" name="pageNo" value="<%=pageNo%>"> <input
+			type="text" name="pageSize" value="<%=pageSize%>">
 	</form>
 </body>
 </html>
