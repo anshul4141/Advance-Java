@@ -22,7 +22,7 @@ public final class JDBCDataSource {
 
 	}
 
-	// step 4 make getInstance method
+	// step 4 make getInstance method that returns instance of same type
 	public static JDBCDataSource getInstance() {
 
 		if (datasource == null) {
@@ -41,7 +41,7 @@ public final class JDBCDataSource {
 				datasource.cpds.setAcquireIncrement(Integer.parseInt(rb.getString("acquireincrement")));
 
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 
 		}
