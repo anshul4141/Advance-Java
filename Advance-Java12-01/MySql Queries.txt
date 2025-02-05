@@ -1,0 +1,288 @@
+mysql> create database advancejava;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use advancejava;
+Database changed
+mysql> create table employee(id int primary key, name varchar(45), company varchar(45), salary int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into employee(1, 'Ram', 'NCS', 5000),(2, 'Shyam', 'Rays', 60000),(3, 'Tarun', 'TCS', 45000),(4, 'Uday', 'TechM', 65000),(5, 'Anish', 'infosys', 78000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, 'Ram', 'NCS', 5000),(2, 'Shyam', 'Rays', 60000),(3, 'Tarun', 'TCS', 45000),(4' at line 1
+mysql> insert into employee values(1, 'Ram', 'NCS', 5000),(2, 'Shyam', 'Rays', 60000),(3, 'Tarun', 'TCS', 45000),(4, 'Uday', 'TechM', 65000),(5, 'An
+ish', 'infosys', 78000);
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.02 sec)
+
+mysql> select name from employee;
++-------+
+| name  |
++-------+
+| Ram   |
+| Shyam |
+| Tarun |
+| Uday  |
+| Anish |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select name, company from employee;
++-------+---------+
+| name  | company |
++-------+---------+
+| Ram   | NCS     |
+| Shyam | Rays    |
+| Tarun | TCS     |
+| Uday  | TechM   |
+| Anish | infosys |
++-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where name = 'Ram';
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  1 | Ram  | NCS     |   5000 |
++----+------+---------+--------+
+1 row in set (0.02 sec)
+
+mysql> select * from employee where company = 'TCS';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  3 | Tarun | TCS     |  45000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary = 45000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  3 | Tarun | TCS     |  45000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary > 30000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where salary > 50000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  2 | Shyam | Rays    |  60000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary < 50000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  3 | Tarun | TCS     |  45000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  4 | Uday  | TechM   |  65000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  1 | Ram   | NCS     |   5000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by name asc;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
++----+-------+---------+--------+
+5 rows in set (0.02 sec)
+
+mysql> select * from employee order by name desc;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  4 | Uday  | TechM   |  65000 |
+|  3 | Tarun | TCS     |  45000 |
+|  2 | Shyam | Rays    |  60000 |
+|  1 | Ram   | NCS     |   5000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee(6, 'Arun', 'SoftTec', 35000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '6, 'Arun', 'SoftTec', 35000)' at line 1
+mysql> insert into employee values(6, 'Arun', 'SoftTec', 35000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee where name like 'a%'
+    -> ;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+2 rows in set (0.02 sec)
+
+mysql> select * from employee where name like 'a%';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where name like 'a';
+Empty set (0.00 sec)
+
+mysql> select * from employee where name like 'a%';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%a';
+Empty set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%n';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  3 | Tarun | TCS     |  45000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
+|  6 | Arun  | SoftTec |  35000 |
++----+-------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> delete from employee where id = 6;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Tarun | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set name = 'Kamal' where id = 3;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |   5000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set salary = 10000 where id = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
