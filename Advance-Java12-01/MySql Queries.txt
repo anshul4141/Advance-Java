@@ -546,3 +546,73 @@ mysql> select *, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/
 | 12 |    112 | Manoj Sharma |      68 |        72 |    80 |   220 | 73.3333 |
 +----+--------+--------------+---------+-----------+-------+-------+---------+
 3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 1, 1;
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  4 | Uday | TechM   |  65000 |
++----+------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary asc limit 1, 1;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  3 | Kamal | TCS     |  45000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
+|  4 | Uday  | TechM   |  65000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  1 | Ram   | NCS     |  10000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 1, 1;
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  4 | Uday | TechM   |  65000 |
++----+------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary asc;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  3 | Kamal | TCS     |  45000 |
+|  2 | Shyam | Rays    |  60000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary asc limit 1, 1;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  3 | Kamal | TCS     |  45000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql>
