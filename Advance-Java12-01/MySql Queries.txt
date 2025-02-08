@@ -616,3 +616,322 @@ mysql> select * from employee order by salary asc limit 1, 1;
 1 row in set (0.00 sec)
 
 mysql>
+
+------------------------------------------------------------------------------------------------------------
+
+mysql> use advancejava;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_advancejava |
++-----------------------+
+| employee              |
++-----------------------+
+1 row in set (0.04 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.04 sec)
+
+mysql> select count(salary) from employee;
++---------------+
+| count(salary) |
++---------------+
+|             5 |
++---------------+
+1 row in set (0.03 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|      258000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       78000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|       10000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select id empId, name empName, company empCompany, salary empSalary from employee;
++-------+---------+------------+-----------+
+| empId | empName | empCompany | empSalary |
++-------+---------+------------+-----------+
+|     1 | Ram     | NCS        |     10000 |
+|     2 | Shyam   | Rays       |     60000 |
+|     3 | Kamal   | TCS        |     45000 |
+|     4 | Uday    | TechM      |     65000 |
+|     5 | Anish   | infosys    |     78000 |
++-------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where salary between 10000 to 62000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to 62000' at line 1
+mysql> select * from employee where salary between 10000 and 62000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
++----+-------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary in(10000 and 62000);
+Empty set (0.02 sec)
+
+mysql> select * from employee where salary in(10000 and 60000);
+Empty set (0.00 sec)
+
+mysql> select * from employee where salary in(10000,62000);
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  1 | Ram  | NCS     |  10000 |
++----+------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary in(10000,60000);
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where salary > 70000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary = 70000;
+Empty set (0.00 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_advancejava |
++-----------------------+
+| employee              |
++-----------------------+
+1 row in set (0.03 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table department(id primary key, deptName varchar(45));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key, deptName varchar(45))' at line 1
+mysql> create table department(id int primary key, deptName varchar(45));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_advancejava |
++-----------------------+
+| department            |
+| employee              |
++-----------------------+
+2 rows in set (0.03 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into department values(1, 'Account');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into department values(2, 'Developer'),(3, 'Manager');
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | NCS     |  10000 |
+|  2 | Shyam | Rays    |  60000 |
+|  3 | Kamal | TCS     |  45000 |
+|  4 | Uday  | TechM   |  65000 |
+|  5 | Anish | infosys |  78000 |
++----+-------+---------+--------+
+5 rows in set (0.02 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Developer |
+|  3 | Manager   |
++----+-----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add deptId int;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+--------+
+| id | name  | company | salary | deptId |
++----+-------+---------+--------+--------+
+|  1 | Ram   | NCS     |  10000 |   NULL |
+|  2 | Shyam | Rays    |  60000 |   NULL |
+|  3 | Kamal | TCS     |  45000 |   NULL |
+|  4 | Uday  | TechM   |  65000 |   NULL |
+|  5 | Anish | infosys |  78000 |   NULL |
++----+-------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add foreign key employee.deptId reference department.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.deptId reference department.id' at line 1
+mysql> alter table employee add foreign key deptId reference department.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference department.id' at line 1
+mysql> alter table employee add foreign key(deptId) reference department.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference department.id' at line 1
+mysql> alter table employee add foreign key (deptId) references department.id;
+ERROR 1239 (42000): Incorrect foreign key definition for 'foreign key without name': Key reference and table reference don't match
+mysql> alter table employee add foreign key (deptId) references department(id);
+Query OK, 5 rows affected (0.13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+--------+
+| id | name  | company | salary | deptId |
++----+-------+---------+--------+--------+
+|  1 | Ram   | NCS     |  10000 |   NULL |
+|  2 | Shyam | Rays    |  60000 |   NULL |
+|  3 | Kamal | TCS     |  45000 |   NULL |
+|  4 | Uday  | TechM   |  65000 |   NULL |
+|  5 | Anish | infosys |  78000 |   NULL |
++----+-------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Developer |
+|  3 | Manager   |
++----+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update employee set deptId = 2 where id = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+-------+---------+--------+--------+
+| id | name  | company | salary | deptId |
++----+-------+---------+--------+--------+
+|  1 | Ram   | NCS     |  10000 |      2 |
+|  2 | Shyam | Rays    |  60000 |   NULL |
+|  3 | Kamal | TCS     |  45000 |   NULL |
+|  4 | Uday  | TechM   |  65000 |   NULL |
+|  5 | Anish | infosys |  78000 |   NULL |
++----+-------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Developer |
+|  3 | Manager   |
++----+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update employee set deptId = 5 where id = 4;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`advancejava`.`employee`, CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`deptId`) REFERENCES `department` (`id`))
+mysql> update employee set deptId = 3 where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Developer |
+|  3 | Manager   |
++----+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+-------+---------+--------+--------+
+| id | name  | company | salary | deptId |
++----+-------+---------+--------+--------+
+|  1 | Ram   | NCS     |  10000 |      2 |
+|  2 | Shyam | Rays    |  60000 |   NULL |
+|  3 | Kamal | TCS     |  45000 |   NULL |
+|  4 | Uday  | TechM   |  65000 |      3 |
+|  5 | Anish | infosys |  78000 |   NULL |
++----+-------+---------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
