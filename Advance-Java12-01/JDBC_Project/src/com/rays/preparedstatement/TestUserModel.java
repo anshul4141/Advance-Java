@@ -8,10 +8,32 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		testAdd();
 		// testDelete();
 		// testSearch();
-		testFindByPk();
+		// testFindByPk();
+		// testAuthenticate();
+
+	}
+
+	private static void testAuthenticate() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserBean bean = model.authenticate("ram@gmail.com", "ram123");
+
+		if (bean != null) {
+			System.out.print(bean.getId());
+			System.out.print("\t" + bean.getFirstName());
+			System.out.print("\t" + bean.getLastName());
+			System.out.print("\t" + bean.getLoginId());
+			System.out.print("\t" + bean.getPassword());
+			System.out.print("\t" + bean.getAddress());
+			System.out.print("\t" + bean.getGender());
+			System.out.println("\t" + bean.getDob());
+		} else {
+			System.out.println("Invalid loginId or password");
+		}
 
 	}
 
@@ -74,10 +96,10 @@ public class TestUserModel {
 
 		UserBean bean = new UserBean();
 
-		bean.setId(2);
+		bean.setId(3);
 		bean.setFirstName("Aman");
 		bean.setLastName("Sharma");
-		bean.setLoginId("aman@gmail.com");
+		bean.setLoginId("aman123@gmail.com");
 		bean.setPassword("aman123");
 		bean.setAddress("bhopal");
 		bean.setGender("male");
