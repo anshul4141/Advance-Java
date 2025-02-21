@@ -24,20 +24,28 @@ public class UserModel {
 
 		}
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into user values(?,?,?,?,?,?,?,?)");
+		conn.setAutoCommit(false);
 
-		pstmt.setInt(1, bean.getId());
-		pstmt.setString(2, bean.getFirstName());
-		pstmt.setString(3, bean.getLastName());
-		pstmt.setString(4, bean.getLoginId());
-		pstmt.setString(5, bean.getPassword());
-		pstmt.setString(6, bean.getAddress());
-		pstmt.setString(7, bean.getGender());
-		pstmt.setDate(8, new java.sql.Date(bean.getDob().getTime()));
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("insert into user values(?,?,?,?,?,?,?,?)");
 
-		int i = pstmt.executeUpdate();
+			pstmt.setInt(1, bean.getId());
+			pstmt.setString(2, bean.getFirstName());
+			pstmt.setString(3, bean.getLastName());
+			pstmt.setString(4, bean.getLoginId());
+			pstmt.setString(5, bean.getPassword());
+			pstmt.setString(6, bean.getAddress());
+			pstmt.setString(7, bean.getGender());
+			pstmt.setDate(8, new java.sql.Date(bean.getDob().getTime()));
 
-		System.out.println("data added successfully: " + i);
+			int i = pstmt.executeUpdate();
+
+			System.out.println("data added successfully: " + i);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		}
 
 	}
 
@@ -47,13 +55,21 @@ public class UserModel {
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("delete from user where id = ?");
+		conn.setAutoCommit(false);
 
-		pstmt.setInt(1, id);
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("delete from user where id = ?");
 
-		int i = pstmt.executeUpdate();
+			pstmt.setInt(1, id);
 
-		System.out.println("data deleted successfully: " + i);
+			int i = pstmt.executeUpdate();
+
+			System.out.println("data deleted successfully: " + i);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		}
 
 	}
 
