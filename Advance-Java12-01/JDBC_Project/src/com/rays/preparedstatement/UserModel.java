@@ -7,14 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class UserModel {
 
+	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.system");
+
 	public void add(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(rb.getString("driver"));
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
+		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
+				rb.getString("password"));
 
 		UserBean existBean = findByLogin(bean.getLoginId());
 
