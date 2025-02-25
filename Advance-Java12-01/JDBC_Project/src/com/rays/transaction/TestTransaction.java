@@ -27,9 +27,11 @@ public class TestTransaction {
 
 			System.out.println("data inserted = " + i + i + i);
 
+			// step 2
 			conn.commit();
 
 		} catch (Exception e) {
+			// step 3
 			conn.rollback();
 			e.printStackTrace();
 			System.out.println(e.getMessage());
