@@ -9,16 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UserModel {
+import com.rays.util.JDBCDataSource;
 
-	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.system");
+public class UserModel {
 
 	public void add(UserBean bean) throws Exception {
 
-		Class.forName(rb.getString("driver"));
-
-		Connection conn = DriverManager.getConnection(rb.getString("url"), rb.getString("username"),
-				rb.getString("password"));
+		Connection conn = JDBCDataSource.getConnection();
 
 		UserBean existBean = findByLogin(bean.getLoginId());
 
