@@ -8,5 +8,10 @@
 </head>
 <body>
 	<h1>data submited</h1>
+
+	<h1><%=request.getParameter("firstName")%></h1>
+	<br>
+	<h1><%=request.getParameter("lastName")%></h1>
+
 </body>
 </html>
