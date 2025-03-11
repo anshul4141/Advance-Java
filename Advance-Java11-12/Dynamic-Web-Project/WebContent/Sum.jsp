@@ -7,14 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h1 align="center">
-		<a href="WelcomeCtl">Welcome to my web application</a>
-	</h1>
+
+	<!-- scriptlet tag use to write java code in jsp -->
+	<%
+		int i = 5;
+		int j = 10;
+	%>
+
+	<!-- expression tag use to print java values -->
+	<h1><%=i + j%></h1>
 
 </body>
 </html>

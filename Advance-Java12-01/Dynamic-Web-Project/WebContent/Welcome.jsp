@@ -7,14 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h1 align="center">
-		<a href="WelcomeCtl">Welcome to my web application</a>
-	</h1>
-
+	<%@ include file="Header.jsp"%>
+	<h1 style="color: darkblue" align="center">Online result system</h1>
 </body>
 </html>
