@@ -11,7 +11,15 @@
 
 	<form action="LoginCtl" method="post">
 
+		<%
+			String msg = (String) request.getAttribute("msg");
+		%>
+
 		<h1 align="center">Login</h1>
+		
+		<%if(msg != null) {%>
+		<h3 align="center"><%=msg %></h3>
+		<%} %>
 
 		<table align="center">
 			<tr>

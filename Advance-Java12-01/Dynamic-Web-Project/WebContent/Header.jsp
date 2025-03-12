@@ -28,8 +28,21 @@
 	%>
 
 	<a href="WelcomeCtl">welcome</a> |
+
+	<%
+		if (userBean != null) {
+	%>
+	<a href="UserCtl">Add User</a> |
+	<a href="UserListCtl">User List</a> |
+	<a href="LoginCtl?operation=logout">logout</a>
+	<%
+		} else {
+	%>
 	<a href="LoginCtl">Login</a> |
-	<a href="UserRegistrationCtl">SingUp</a>
+	<a href="UserRegistrationCtl">SignUp</a>
+	<%
+		}
+	%>
 
 	<hr>
 

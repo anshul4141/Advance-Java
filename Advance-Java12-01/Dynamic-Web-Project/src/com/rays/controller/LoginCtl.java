@@ -2,6 +2,7 @@ package com.rays.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,18 @@ public class LoginCtl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("LoginView.jsp");
+		String op = request.getParameter("operation");
+
+		if (op != null && op.equals("logout")) {
+
+			HttpSession session = request.getSession();
+			session.invalidate();
+			request.setAttribute("msg", "User Logout Successfully");
+
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		rd.forward(request, response);
 
 	}
 
