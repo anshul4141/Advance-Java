@@ -68,7 +68,8 @@
 
 			<tr>
 				<th></th>
-				<td><input type="submit" name="operation" value="save"></td>
+				<td><input style="background: red" type="submit"
+					name="operation" value="save"></td>
 			</tr>
 
 		</table>
