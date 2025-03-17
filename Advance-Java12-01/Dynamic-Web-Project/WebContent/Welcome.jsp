@@ -8,6 +8,10 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<h1 style="color: darkblue" align="center">Online result system</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1 style="color: red" align="center">Online result system</h1>
 </body>
 </html>
