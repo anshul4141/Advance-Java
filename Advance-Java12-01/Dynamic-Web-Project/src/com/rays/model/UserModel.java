@@ -69,6 +69,35 @@ public class UserModel {
 
 	}
 
+	public void update(UserBean bean) throws Exception {
+
+		Connection conn = JDBCDataSource.getConnection();
+
+		conn.setAutoCommit(false);
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(
+					"update user set firstName = ?, lastName = ?, loginId = ?, password = ?, address = ?, gender = ?, dob = ? where id = ?");
+
+			pstmt.setString(1, bean.getFirstName());
+			pstmt.setString(2, bean.getLastName());
+			pstmt.setString(3, bean.getLoginId());
+			pstmt.setString(4, bean.getPassword());
+			pstmt.setString(5, bean.getAddress());
+			pstmt.setString(6, bean.getGender());
+			pstmt.setDate(7, new java.sql.Date(bean.getDob().getTime()));
+			pstmt.setInt(8, bean.getId());
+			int i = pstmt.executeUpdate();
+
+			System.out.println("data updated successfully: " + i);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		}
+
+	}
+
 	public void delete(int id) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");

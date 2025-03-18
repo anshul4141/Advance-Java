@@ -65,6 +65,10 @@ public class UserCtl extends HttpServlet {
 			if (op.equals("save")) {
 				model.add(bean);
 				request.setAttribute("msg", "user added successfully");
+			} else if (op.equals("update")) {
+				bean.setId(Integer.parseInt(request.getParameter("id")));
+				model.update(bean);
+				request.setAttribute("msg", "user updated successfully");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
