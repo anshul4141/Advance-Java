@@ -18,7 +18,7 @@
 		<h1 align="center">Login</h1>
 		
 		<%if(msg != null) {%>
-		<h3 align="center"><%=msg %></h3>
+		<h3 align="center"><%=msg%></h3>
 		<%} %>
 
 		<table align="center">
