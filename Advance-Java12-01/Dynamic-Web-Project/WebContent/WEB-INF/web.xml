@@ -12,4 +12,24 @@
 		<session-timeout>5</session-timeout>
 	</session-config>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/Error404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/Error500.jsp</location>
+	</error-page>
+
+
+	<servlet>
+		<servlet-name>HelloCtl</servlet-name>
+		<servlet-class>com.rays.servlet.HelloCtl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloCtl</servlet-name>
+		<url-pattern>/HelloCtl</url-pattern>
+	</servlet-mapping>
+
 </web-app>
