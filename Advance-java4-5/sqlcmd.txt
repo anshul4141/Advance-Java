@@ -1,0 +1,360 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| advance            |
+| advancejava        |
+| demo               |
+| demo_ors           |
+| information_schema |
+| myproject          |
+| mysql              |
+| nsc                |
+| ors_p10            |
+| performance_schema |
+| project            |
+| project04          |
+| project_3          |
+| project_4          |
+| rays               |
+| result             |
+| samarth            |
+| spring_boot_simple |
+| sys                |
+| vedik              |
++--------------------+
+20 rows in set (0.10 sec)
+
+mysql> create database mydb;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| advance            |
+| advancejava        |
+| demo               |
+| demo_ors           |
+| information_schema |
+| mydb               |
+| myproject          |
+| mysql              |
+| nsc                |
+| ors_p10            |
+| performance_schema |
+| project            |
+| project04          |
+| project_3          |
+| project_4          |
+| rays               |
+| result             |
+| samarth            |
+| spring_boot_simple |
+| sys                |
+| vedik              |
++--------------------+
+21 rows in set (0.00 sec)
+
+mysql> use mydb;
+Database changed
+mysql> create table employee(id int primary key, name varchar(45), company varchar(45), salary int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| employee       |
++----------------+
+1 row in set (0.04 sec)
+
+mysql> insert into employee values(1, 'Ram', 'TCS', 45000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from employee;
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  1 | Ram  | TCS     |  45000 |
++----+------+---------+--------+
+1 row in set (0.02 sec)
+
+mysql> insert into employee values(2, 'Shyam', 'Infosys', 75000),(3, 'Pawan', 'NCS', 35000),(4, 'Mayank', 'Wipro', 65000),(5, 'Shyam', 'Infosys', 95000);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee values(2, 'Shyam', 'Infosys', 75000),(3, 'Pawan', 'NCS', 35000),(4, 'Mayank', 'Wipro', 65000),(5, 'Shyam', 'Infosys', 95000);
+ERROR 1062 (23000): Duplicate entry '2' for key 'employee.PRIMARY'
+mysql> select * from employee;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  1 | Ram    | TCS     |  45000 |
+|  2 | Shyam  | Infosys |  75000 |
+|  3 | Pawan  | NCS     |  35000 |
+|  4 | Mayank | Wipro   |  65000 |
+|  5 | Shyam  | Infosys |  95000 |
++----+--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select name from employee;
++--------+
+| name   |
++--------+
+| Ram    |
+| Shyam  |
+| Pawan  |
+| Mayank |
+| Shyam  |
++--------+
+5 rows in set (0.00 sec)
+
+mysql> select name, company from employee;
++--------+---------+
+| name   | company |
++--------+---------+
+| Ram    | TCS     |
+| Shyam  | Infosys |
+| Pawan  | NCS     |
+| Mayank | Wipro   |
+| Shyam  | Infosys |
++--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select name, company, salary from employee;
++--------+---------+--------+
+| name   | company | salary |
++--------+---------+--------+
+| Ram    | TCS     |  45000 |
+| Shyam  | Infosys |  75000 |
+| Pawan  | NCS     |  35000 |
+| Mayank | Wipro   |  65000 |
+| Shyam  | Infosys |  95000 |
++--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  1 | Ram    | TCS     |  45000 |
+|  2 | Shyam  | Infosys |  75000 |
+|  3 | Pawan  | NCS     |  35000 |
+|  4 | Mayank | Wipro   |  65000 |
+|  5 | Shyam  | Infosys |  95000 |
++----+--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where name = 'Shyam';
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  2 | Shyam | Infosys |  75000 |
+|  5 | Shyam | Infosys |  95000 |
++----+-------+---------+--------+
+2 rows in set (0.02 sec)
+
+mysql> select * from employee where salary = 45000;
++----+------+---------+--------+
+| id | name | company | salary |
++----+------+---------+--------+
+|  1 | Ram  | TCS     |  45000 |
++----+------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where salary > 50000;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  2 | Shyam  | Infosys |  75000 |
+|  4 | Mayank | Wipro   |  65000 |
+|  5 | Shyam  | Infosys |  95000 |
++----+--------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where salary < 50000;
++----+-------+---------+--------+
+| id | name  | company | salary |
++----+-------+---------+--------+
+|  1 | Ram   | TCS     |  45000 |
+|  3 | Pawan | NCS     |  35000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where salary = 50000;
+Empty set (0.00 sec)
+
+mysql> select * from employee;
++----+--------+---------+--------+
+| id | name   | company | salary |
++----+--------+---------+--------+
+|  1 | Ram    | TCS     |  45000 |
+|  2 | Shyam  | Infosys |  75000 |
+|  3 | Pawan  | NCS     |  35000 |
+|  4 | Mayank | Wipro   |  65000 |
+|  5 | Shyam  | Infosys |  95000 |
++----+--------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> INSERT INTO employee (id, name, company, salary) VALUES (6,'Amit','HCL',55000),(7,'Rohit','TCS',48000),(8,'Priya','Infosys',70000),(9,'Sneha','Wipro',62000),(10,'Vikram','Capgemini',58000),(11,'Anjali','Tech Mahindra',53000),(12,'Ramesh','Cognizant',60000),(13,'Neha','TCS',45000),(14,'Suresh','Infosys',88000),(15,'Divya','Accenture',72000),(16,'Kunal','HCL',50000),(17,'Ishita','IBM',65000),(18,'Arjun','Mindtree',56000),(19,'Ritika','Wipro',61000),(20,'Manish','Capgemini',74000),(21,'Pooja','Cognizant',68000);
+Query OK, 16 rows affected (0.03 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | company       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  75000 |
+|  3 | Pawan  | NCS           |  35000 |
+|  4 | Mayank | Wipro         |  65000 |
+|  5 | Shyam  | Infosys       |  95000 |
+|  6 | Amit   | HCL           |  55000 |
+|  7 | Rohit  | TCS           |  48000 |
+|  8 | Priya  | Infosys       |  70000 |
+|  9 | Sneha  | Wipro         |  62000 |
+| 10 | Vikram | Capgemini     |  58000 |
+| 11 | Anjali | Tech Mahindra |  53000 |
+| 12 | Ramesh | Cognizant     |  60000 |
+| 13 | Neha   | TCS           |  45000 |
+| 14 | Suresh | Infosys       |  88000 |
+| 15 | Divya  | Accenture     |  72000 |
+| 16 | Kunal  | HCL           |  50000 |
+| 17 | Ishita | IBM           |  65000 |
+| 18 | Arjun  | Mindtree      |  56000 |
+| 19 | Ritika | Wipro         |  61000 |
+| 20 | Manish | Capgemini     |  74000 |
+| 21 | Pooja  | Cognizant     |  68000 |
++----+--------+---------------+--------+
+21 rows in set (0.00 sec)
+
+mysql> select * from employee where name like 'a%';
++----+--------+---------------+--------+
+| id | name   | company       | salary |
++----+--------+---------------+--------+
+|  6 | Amit   | HCL           |  55000 |
+| 11 | Anjali | Tech Mahindra |  53000 |
+| 18 | Arjun  | Mindtree      |  56000 |
++----+--------+---------------+--------+
+3 rows in set (0.02 sec)
+
+mysql> select * from employee where name like '%a';
++----+--------+-----------+--------+
+| id | name   | company   | salary |
++----+--------+-----------+--------+
+|  8 | Priya  | Infosys   |  70000 |
+|  9 | Sneha  | Wipro     |  62000 |
+| 13 | Neha   | TCS       |  45000 |
+| 15 | Divya  | Accenture |  72000 |
+| 17 | Ishita | IBM       |  65000 |
+| 19 | Ritika | Wipro     |  61000 |
+| 21 | Pooja  | Cognizant |  68000 |
++----+--------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | company       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  75000 |
+|  3 | Pawan  | NCS           |  35000 |
+|  4 | Mayank | Wipro         |  65000 |
+|  5 | Shyam  | Infosys       |  95000 |
+|  6 | Amit   | HCL           |  55000 |
+|  7 | Rohit  | TCS           |  48000 |
+|  8 | Priya  | Infosys       |  70000 |
+|  9 | Sneha  | Wipro         |  62000 |
+| 10 | Vikram | Capgemini     |  58000 |
+| 11 | Anjali | Tech Mahindra |  53000 |
+| 12 | Ramesh | Cognizant     |  60000 |
+| 13 | Neha   | TCS           |  45000 |
+| 14 | Suresh | Infosys       |  88000 |
+| 15 | Divya  | Accenture     |  72000 |
+| 16 | Kunal  | HCL           |  50000 |
+| 17 | Ishita | IBM           |  65000 |
+| 18 | Arjun  | Mindtree      |  56000 |
+| 19 | Ritika | Wipro         |  61000 |
+| 20 | Manish | Capgemini     |  74000 |
+| 21 | Pooja  | Cognizant     |  68000 |
++----+--------+---------------+--------+
+21 rows in set (0.00 sec)
+
+mysql> delete from employee where name = 'Shyam';
+Query OK, 2 rows affected (0.03 sec)
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | company       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  3 | Pawan  | NCS           |  35000 |
+|  4 | Mayank | Wipro         |  65000 |
+|  6 | Amit   | HCL           |  55000 |
+|  7 | Rohit  | TCS           |  48000 |
+|  8 | Priya  | Infosys       |  70000 |
+|  9 | Sneha  | Wipro         |  62000 |
+| 10 | Vikram | Capgemini     |  58000 |
+| 11 | Anjali | Tech Mahindra |  53000 |
+| 12 | Ramesh | Cognizant     |  60000 |
+| 13 | Neha   | TCS           |  45000 |
+| 14 | Suresh | Infosys       |  88000 |
+| 15 | Divya  | Accenture     |  72000 |
+| 16 | Kunal  | HCL           |  50000 |
+| 17 | Ishita | IBM           |  65000 |
+| 18 | Arjun  | Mindtree      |  56000 |
+| 19 | Ritika | Wipro         |  61000 |
+| 20 | Manish | Capgemini     |  74000 |
+| 21 | Pooja  | Cognizant     |  68000 |
++----+--------+---------------+--------+
+19 rows in set (0.00 sec)
+
+mysql> delete from employee where id > 21;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> update employee set company = 'IBM' where id = 3;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | company       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  3 | Pawan  | IBM           |  35000 |
+|  4 | Mayank | Wipro         |  65000 |
+|  6 | Amit   | HCL           |  55000 |
+|  7 | Rohit  | TCS           |  48000 |
+|  8 | Priya  | Infosys       |  70000 |
+|  9 | Sneha  | Wipro         |  62000 |
+| 10 | Vikram | Capgemini     |  58000 |
+| 11 | Anjali | Tech Mahindra |  53000 |
+| 12 | Ramesh | Cognizant     |  60000 |
+| 13 | Neha   | TCS           |  45000 |
+| 14 | Suresh | Infosys       |  88000 |
+| 15 | Divya  | Accenture     |  72000 |
+| 16 | Kunal  | HCL           |  50000 |
+| 17 | Ishita | IBM           |  65000 |
+| 18 | Arjun  | Mindtree      |  56000 |
+| 19 | Ritika | Wipro         |  61000 |
+| 20 | Manish | Capgemini     |  74000 |
+| 21 | Pooja  | Cognizant     |  68000 |
++----+--------+---------------+--------+
+19 rows in set (0.00 sec)
+
+mysql>
