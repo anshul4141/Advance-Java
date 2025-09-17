@@ -2,11 +2,10 @@ package com.rays.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TestConnection {
+public class TestUpdate {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
@@ -20,15 +19,9 @@ public class TestConnection {
 		Statement stmt = conn.createStatement();
 
 		// 4. Execute Query and get ResultSet
-		ResultSet rs = stmt.executeQuery("select * from marksheet where rollNo = 17");
+		int i = stmt.executeUpdate("update marksheet set name = 'Sachin Mandal', phy = 78, math = 97, chm = 63 where rollNo = 17");
 
-		while (rs.next()) {
-			System.out.print(rs.getInt(1));
-			System.out.print("\t" + rs.getString(2));
-			System.out.print("\t" + rs.getInt(3));
-			System.out.print("\t" + rs.getInt(4));
-			System.out.println("\t" + rs.getInt(5));
-		}
+		System.out.println("data updated successfully: " + i);
 
 		conn.close();
 

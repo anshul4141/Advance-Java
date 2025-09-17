@@ -19,10 +19,10 @@ public class TestInsert {
 		Statement stmt = conn.createStatement();
 
 		// 4. Execute Query and get ResultSet
-		int i = stmt.executeUpdate("insert into marksheet values(17, 'Suresh', 45, 65, 75),(18, 'Mukesh', 69, 36, 41)");
-		
+		int i = stmt.executeUpdate("insert into marksheet values(18, 'Suresh', 45, 65, 75)");
+
 		System.out.println("data inserted successfully: " + i);
-		
+
 		conn.close();
 
 	}
