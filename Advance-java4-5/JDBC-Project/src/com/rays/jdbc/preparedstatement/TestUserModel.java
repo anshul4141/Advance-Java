@@ -1,15 +1,19 @@
 package com.rays.jdbc.preparedstatement;
 
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		testAdd();
+//		testAdd();
 //		testDelete();
 //		testUpdate();
 //		testFindByLogin();
+//		changePassword();
+		testSearch();
 
 	}
 
@@ -55,19 +59,47 @@ public class TestUserModel {
 
 		model.update(bean);
 	}
-	
+
 	public static void testFindByLogin() throws Exception {
-		
+
 		UserModel model = new UserModel();
-		
+
 		UserBean existsBean = model.findByLogin("lucky@gmail.com");
-		
-		if(existsBean != null) {
+
+		if (existsBean != null) {
 			System.out.println("login id is already exist");
 		} else {
 			System.out.println("no record found");
 		}
-		
+
+	}
+
+	public static void changePassword() throws Exception {
+
+		UserModel model = new UserModel();
+
+		model.changePassword("shyam@2021", "shyam@2021", "shyam@gmail.com");
+
+	}
+
+	public static void testSearch() throws Exception {
+
+		UserModel model = new UserModel();
+
+		List list = model.search(null);
+
+		Iterator<UserBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			UserBean bean = it.next();
+			System.out.print(bean.getId());
+			System.out.print("\t"+bean.getFirstName());
+			System.out.print("\t"+bean.getLastName());
+			System.out.print("\t"+bean.getLogin());
+			System.out.print("\t"+bean.getPassword());
+			System.out.println("\t"+bean.getDob());
+		}
+
 	}
 
 }
