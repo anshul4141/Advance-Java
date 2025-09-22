@@ -219,7 +219,16 @@ public class UserModel {
 
 		List list = new ArrayList();
 
-		StringBuffer sql = new StringBuffer("select * from st_user");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1");
+
+		if (bean != null) {
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+			}
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+				sql.append(" and lastName like '" + bean.getLastName() + "%'");
+			}
+		}
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
