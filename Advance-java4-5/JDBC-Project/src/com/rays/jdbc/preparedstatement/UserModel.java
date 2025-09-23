@@ -6,16 +6,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class UserModel {
+
+	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.app");
+	String url = rb.getString("url");
+	String driver = rb.getString("driver");
+	String username = rb.getString("username");
+	String password = rb.getString("password");
 
 	/* <---------Generate next primary key----------> */
 	public int nextPk() throws Exception {
 
 		int pk = 0;
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Class.forName(driver);
+		Connection conn = DriverManager.getConnection(url, username, password);
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 		ResultSet rs = pstmt.executeQuery();
 
@@ -38,9 +45,9 @@ public class UserModel {
 			throw new Exception("login id already exist");
 		}
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
@@ -61,9 +68,9 @@ public class UserModel {
 	/* <---------delete a record----------> */
 	public void delete(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id = ?");
 
@@ -78,10 +85,9 @@ public class UserModel {
 	/* <---------update a record----------> */
 	public void update(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
-
+		Connection conn = DriverManager.getConnection(url, username, password);
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_user set firstName = ?, lastName = ?, login = ?, password = ?, dob = ? where id = ?");
 
@@ -101,9 +107,9 @@ public class UserModel {
 	/* <---------record find by login----------> */
 	public UserBean findByLogin(String login) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ?");
 
@@ -131,10 +137,9 @@ public class UserModel {
 	/* <---------authenticate user----------> */
 	public UserBean authenticate(String login, String password) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
-
+		Connection conn = DriverManager.getConnection(url, username, password);
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
 
 		pstmt.setString(1, login);
@@ -169,8 +174,9 @@ public class UserModel {
 
 		if (existBean.getPassword().equals(oldPassword)) {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+			Class.forName(driver);
+
+			Connection conn = DriverManager.getConnection(url, username, password);
 			PreparedStatement pstmt = conn.prepareStatement("update st_user set password = ? where login = ?");
 
 			pstmt.setString(1, newPassword);
@@ -188,9 +194,9 @@ public class UserModel {
 
 	public UserBean findById(int id) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
 
@@ -230,9 +236,9 @@ public class UserModel {
 			}
 		}
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+		Class.forName(driver);
 
+		Connection conn = DriverManager.getConnection(url, username, password);
 		System.out.println("sql ----> " + sql.toString());
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		ResultSet rs = pstmt.executeQuery();
