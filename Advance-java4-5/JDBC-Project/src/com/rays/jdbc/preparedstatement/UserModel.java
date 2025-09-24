@@ -49,6 +49,8 @@ public class UserModel {
 
 		Connection conn = DriverManager.getConnection(url, username, password);
 
+		
+		
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
 		int pk = nextPk();
@@ -61,6 +63,7 @@ public class UserModel {
 		pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
 
 		int i = pstmt.executeUpdate();
+		
 		System.out.println("data inserted successfully: " + i);
 		conn.close();
 	}
