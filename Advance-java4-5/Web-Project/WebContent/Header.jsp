@@ -9,8 +9,7 @@
 <body>
 
 	<a href="LoginCtl">Login</a> |
-	<a href="UserRegistrationCtl">SignUp</a> |
-	<a href="#">Logout</a> 
+	<a href="UserRegistrationCtl">SignUp</a>
 
 	<hr>
 

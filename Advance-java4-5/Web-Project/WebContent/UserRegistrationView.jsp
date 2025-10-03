@@ -11,5 +11,6 @@
 	<div align="center">
 		<h1>User Registration</h1>
 	</div>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
