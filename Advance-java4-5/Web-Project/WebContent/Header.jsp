@@ -9,32 +9,34 @@
 </head>
 <body>
 	<%
-		UserBean user = (UserBean) session.getAttribute("user");
+	UserBean user = (UserBean) session.getAttribute("user");
 	%>
 
 	<%
-		if (user != null) {
+	if (user != null) {
 	%>
 	<h3><%="Hi, " + user.getFirstName()%></h3>
 	<%
-		} else {
+	} else {
 	%>
 	<h3>Hi, Guest</h3>
 	<%
-		}
+	}
 	%>
 
 	<%
-		if (user != null) {
+	if (user != null) {
 	%>
+	<a href="UserCtl">Add User</a> |
+	<a href="UserListCtl">User List</a> |
 	<a href="LoginCtl?operation=logout">Logout</a>
 	<%
-		} else {
+	} else {
 	%>
 	<a href="LoginCtl">Login</a> |
 	<a href="UserRegistrationCtl">SignUp</a>
 	<%
-		}
+	}
 	%>
 
 
