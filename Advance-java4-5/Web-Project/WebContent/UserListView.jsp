@@ -37,6 +37,15 @@
 		%>
 		<form action="UserListCtl" method="post">
 
+			<table>
+				<tr>
+					<th>First Name</th>
+					<td><input type="text" name="firstName" value=""
+						placeholder="search by first name"></td>
+					<td><input type="submit" name="operation" value="search"></td>
+				</tr>
+			</table>
+
 			<table border="1px" width="100%">
 
 				<tr style="background-color: skyblue">
@@ -46,6 +55,7 @@
 					<th>Last Name</th>
 					<th>Login</th>
 					<th>DOB</th>
+					<th>Edit</th>
 				</tr>
 
 				<%
@@ -64,6 +74,7 @@
 					<td><%=bean.getLastName()%></td>
 					<td><%=bean.getLogin()%></td>
 					<td><%=bean.getDob()%></td>
+					<td><a href="UserCtl?id=<%=bean.getId()%>">edit</a></td>
 				</tr>
 				<%
 				}
