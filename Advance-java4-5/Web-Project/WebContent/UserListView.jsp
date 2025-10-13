@@ -12,8 +12,10 @@
 
 	<%
 	List list = (List) request.getAttribute("list");
+	List nextlist = (List) request.getAttribute("nextList");
 	String successMsg = (String) request.getAttribute("successMsg");
 	String errorMsg = (String) request.getAttribute("errorMsg");
+	int pageNo = (int) request.getAttribute("pageNo");
 	%>
 
 	<%@ include file="Header.jsp"%>
@@ -41,7 +43,11 @@
 				<tr>
 					<th>First Name</th>
 					<td><input type="text" name="firstName" value=""
-						placeholder="search by first name"></td>
+						placeholder="search by first name">&nbsp;</td>
+
+					<th>Dob</th>
+					<td><input type="date" name="dob" value=""></td>
+
 					<td><input type="submit" name="operation" value="search"></td>
 				</tr>
 			</table>
@@ -81,13 +87,17 @@
 				%>
 			</table>
 
-			<table>
+			<table width="100%">
 				<tr>
 					<th></th>
+					<td><input type="submit" name="operation" value="previous"
+						<%=pageNo == 1 ? "disabled" : ""%>></td>
 					<td><input type="submit" name="operation" value="delete"></td>
+					<td align="right"><input type="submit" name="operation"
+						value="next" <%=nextlist.size() == 0 ? "disabled" : ""%>></td>
 				</tr>
 			</table>
-
+			<input type="hidden" name="pageNo" value="<%=pageNo%>">
 		</form>
 	</div>
 	<%@ include file="Footer.jsp"%>
