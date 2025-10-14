@@ -250,6 +250,7 @@ public class UserModel {
 
 		}
 
+		JDBCDataSource.closeConnection(conn);
 		return list;
 
 	}

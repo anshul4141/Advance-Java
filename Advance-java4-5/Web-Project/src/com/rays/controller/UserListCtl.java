@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +52,7 @@ public class UserListCtl extends HttpServlet {
 		UserBean bean = new UserBean();
 		String op = request.getParameter("operation");
 
-		int pageNo = 0;
+		int pageNo = 1;
 		int pageSize = 5;
 
 		String[] ids = request.getParameterValues("ids");
