@@ -12,20 +12,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
+import com.rays.util.DataValidator;
 
 @WebServlet("/UserRegistrationCtl")
 public class UserRegistrationCtl extends HttpServlet {
 
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("service method chali");
+
+		String op = request.getParameter("operation");
+		System.out.println("op ===> " + op);
+
+		if (op != null) {
+			System.out.println("op mila ==> ");
+			if (!DataValidator.signUpValidation(request)) {
+				System.out.println("data validate nahi hai");
+				RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
+				rd.forward(request, response);
+				return;
+			}
+		}
+
+		super.service(request, response);
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("do get chali");
 		response.sendRedirect("UserRegistrationView.jsp");
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("do post chali");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		UserBean bean = new UserBean();
