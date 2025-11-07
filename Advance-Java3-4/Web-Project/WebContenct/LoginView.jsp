@@ -13,7 +13,7 @@
 	String errorMsg = (String) request.getAttribute("errorMsg");
 	%>
 	<div align="center">
-		<h1>User Registration</h1>
+		<h1>Login</h1>
 
 		<%
 		if (successMsg != null) {
@@ -31,18 +31,8 @@
 		}
 		%>
 
-		<form action="UserRegistrationCtl" method="post">
+		<form action="LoginCtl" method="post">
 			<table>
-				<tr>
-					<th>First Name</th>
-					<td><input type="text" name="firstName" value=""
-						placeholder="enter first name"></td>
-				</tr>
-				<tr>
-					<th>Last Name</th>
-					<td><input type="text" name="lastName" value=""
-						placeholder="enter last name"></td>
-				</tr>
 				<tr>
 					<th>Login</th>
 					<td><input type="email" name="login" value=""
@@ -54,12 +44,8 @@
 						placeholder="enter your password"></td>
 				</tr>
 				<tr>
-					<th>Dob</th>
-					<td><input type="date" name="dob"></td>
-				</tr>
-				<tr>
 					<th></th>
-					<td><input type="submit" name="operation" value="signUp"></td>
+					<td><input type="submit" name="operation" value="signIn"></td>
 				</tr>
 			</table>
 		</form>

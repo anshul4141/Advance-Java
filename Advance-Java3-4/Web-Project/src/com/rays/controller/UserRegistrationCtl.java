@@ -3,6 +3,7 @@ package com.rays.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,9 +43,14 @@ public class UserRegistrationCtl extends HttpServlet {
 			bean.setPassword(password);
 			bean.setDob(sdf.parse(dob));
 			model.add(bean);
+			request.setAttribute("successMsg", "user register successfully");
 		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
+		rd.forward(request, response);
 
 	}
 
