@@ -207,33 +207,12 @@ public class UserModel {
 
 	}
 
-	public List search(UserBean bean, int pageNo, int pageSize) throws Exception {
+	public List search(UserBean bean) throws Exception {
 
 		List list = new ArrayList();
 
-		StringBuffer sql = new StringBuffer("select * from st_user where 1 = 1");
-
-		if (bean != null) {
-			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
-				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
-			}
-			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
-				sql.append(" and lastName like '" + bean.getLastName() + "%'");
-			}
-			if (bean.getDob() != null && bean.getDob().getTime() > 0) {
-				Date dob = new Date(bean.getDob().getTime());
-				sql.append(" and dob like '" + dob + "%'");
-			}
-		}
-
-		if (pageSize > 0) {
-			pageNo = (pageNo - 1) * pageSize;
-			sql.append(" limit " + pageNo + ", " + pageSize);
-		}
-
 		Connection conn = JDBCDataSource.getConnection();
-		System.out.println("sql ----> " + sql.toString());
-		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
 		ResultSet rs = pstmt.executeQuery();
 
 		while (rs.next()) {
