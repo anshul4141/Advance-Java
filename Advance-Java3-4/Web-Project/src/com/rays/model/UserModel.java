@@ -210,9 +210,21 @@ public class UserModel {
 	public List search(UserBean bean) throws Exception {
 
 		List list = new ArrayList();
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
+
+		if (bean != null) {
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+			}
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+				sql.append(" and lastName like '" + bean.getLastName() + "%'");
+			}
+		}
+
+		System.out.println("sql ===> " + sql.toString());
 
 		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		ResultSet rs = pstmt.executeQuery();
 
 		while (rs.next()) {
