@@ -32,7 +32,7 @@
 		<%
 		}
 		%>
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
 
 			<table>
 				<tr>
@@ -54,6 +54,7 @@
 					<th>Last Name</th>
 					<th>Login</th>
 					<th>DOB</th>
+					<th>Edit</th>
 				</tr>
 
 				<%
@@ -69,6 +70,7 @@
 					<td><%=bean.getLastName()%></td>
 					<td><%=bean.getLogin()%></td>
 					<td><%=bean.getDob()%></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}
