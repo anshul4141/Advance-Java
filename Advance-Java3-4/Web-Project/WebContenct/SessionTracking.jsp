@@ -25,7 +25,7 @@
 	</h3>
 
 	<form action="track" method="post">
-		<input type="text" name="jsessionid" value="<%=session.getId()%>">
+		<input type="hidden" name="jsessionid" value="<%=session.getId()%>">
 		<input type="submit" value="Submit">
 	</form>
 </body>

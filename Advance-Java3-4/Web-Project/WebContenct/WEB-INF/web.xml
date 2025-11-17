@@ -8,8 +8,29 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- <session-config>
-		<session-timeout>1</session-timeout>
-	</session-config> -->
+	<servlet>
+		<servlet-name>HelloCtl</servlet-name>
+		<servlet-class>com.rays.servlet.HelloCtl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloCtl</servlet-name>
+		<url-pattern>/HelloCtl</url-pattern>
+	</servlet-mapping>
+
+	<!-- <filter> <filter-name>FrontCtl</filter-name> <filter-class>com.rays.controller.FrontCtl</filter-class> 
+		</filter> <filter-mapping> <filter-name>FrontCtl</filter-name> <url-pattern>*.do</url-pattern> 
+		</filter-mapping> -->
+
+	<!-- <session-config> <session-timeout>1</session-timeout> </session-config> -->
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/Error404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/Error500.jsp</location>
+	</error-page>
 
 </web-app>
