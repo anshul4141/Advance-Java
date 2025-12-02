@@ -160,7 +160,7 @@ public class CollegeModel {
 		return bean;
 	}
 
-	public List list() throws Exception {
+	public List search() throws Exception {
 		return search(null, 0, 0);
 	}
 

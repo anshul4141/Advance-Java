@@ -136,7 +136,7 @@ public class UserModel {
 
 		try {
 			conn = JDBCDataSource.getConnection();
-			
+
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id = ?");
@@ -144,7 +144,7 @@ public class UserModel {
 			pstmt.setLong(1, id);
 
 			int i = pstmt.executeUpdate();
-			
+
 			conn.commit();
 
 			System.out.println("data deleted => " + i);
@@ -274,6 +274,10 @@ public class UserModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		return bean;
+	}
+
+	public List search() throws ApplicationException {
+		return search(null, 0, 0);
 	}
 
 	public List search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {

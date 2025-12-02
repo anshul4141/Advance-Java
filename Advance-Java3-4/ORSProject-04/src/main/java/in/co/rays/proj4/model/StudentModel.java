@@ -29,6 +29,8 @@ public class StudentModel {
 
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPk(bean.getCollegeId());
+		System.out.println("college Id in student bean ==> " + bean.getCollegeId());
+		System.out.println("college name at college Id ==> " + collegeBean.getName());
 		bean.setCollegeName(collegeBean.getName());
 
 		StudentBean existBean = findByEmail(bean.getEmail());
