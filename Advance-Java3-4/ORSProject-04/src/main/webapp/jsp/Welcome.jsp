@@ -1,4 +1,3 @@
-<%@page import="in.co.rays.proj4.controller.ORSView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -8,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="Header.jsp"%>
 	<div align="center" style="margin-top: 50px">
-		<h1>
-			<a href="<%=ORSView.WELCOME_CTL%>">Online Result System</a>
-		</h1>
+		<h1>Welcome to Online result System</h1>
 	</div>
 </body>
 </html>

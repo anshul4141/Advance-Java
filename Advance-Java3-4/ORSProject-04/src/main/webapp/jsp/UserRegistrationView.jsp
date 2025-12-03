@@ -8,10 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center" style="margin-top: 50px">
-		<h1>
-			<a href="<%=ORSView.WELCOME_CTL%>">Online Result System</a>
-		</h1>
-	</div>
+	<%@ include file="Header.jsp"%>
+	<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
+		<div align="center">
+			<h1>User Registration</h1>
+		</div>
+	</form>
 </body>
 </html>
