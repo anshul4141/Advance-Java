@@ -203,7 +203,7 @@ public class RoleModel {
 		return bean;
 	}
 
-	public List<RoleBean> search() throws ApplicationException {
+	public List<RoleBean> list() throws ApplicationException {
 		return search(null, 0, 0);
 	}
 

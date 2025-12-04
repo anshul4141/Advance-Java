@@ -34,7 +34,7 @@ public class UserModel {
 		return pk + 1;
 	}
 
-	public void add(UserBean bean) throws DuplicateRecordException, ApplicationException {
+	public long add(UserBean bean) throws DuplicateRecordException, ApplicationException {
 
 		Connection conn = null;
 		int pk = 0;
@@ -83,6 +83,7 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		return pk;
 	}
 
 	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
