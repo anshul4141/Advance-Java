@@ -14,6 +14,7 @@ import in.co.rays.proj4.exception.ApplicationException;
 import in.co.rays.proj4.exception.DuplicateRecordException;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
+import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.ServletUtility;
 
 @WebServlet("/UserRegistrationCtl")
@@ -25,6 +26,46 @@ public class UserRegistrationCtl extends BaseCtl {
 	protected boolean validate(HttpServletRequest request) {
 
 		boolean pass = true;
+
+		if (DataValidator.isNull(request.getParameter("firstName"))) {
+			request.setAttribute("firstName", "firstName is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("lastName"))) {
+			request.setAttribute("lastName", "lastName is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("login"))) {
+			request.setAttribute("login", "login is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("password"))) {
+			request.setAttribute("password", "password is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", "confirmPassword is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("dob"))) {
+			request.setAttribute("dob", "dob is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("gender"))) {
+			request.setAttribute("gender", "gender is required");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
+			request.setAttribute("mobileNo", "mobileNo is required");
+			pass = false;
+		}
 
 		return pass;
 	}
@@ -54,7 +95,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("in userregistrationCtl doPost method");
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		UserModel model = new UserModel();
@@ -63,7 +104,9 @@ public class UserRegistrationCtl extends BaseCtl {
 			UserBean bean = (UserBean) populateBean(request);
 			try {
 				long pk = model.add(bean);
+				// request.setAttribute("bean", bean);
 				ServletUtility.setBean(bean, request);
+				// request.setAttribute("success", "Registration successful!");
 				ServletUtility.setSuccessMessage("Registration successful!", request);
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);

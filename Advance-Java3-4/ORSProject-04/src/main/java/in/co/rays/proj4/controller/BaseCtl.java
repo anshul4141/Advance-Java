@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.proj4.bean.BaseBean;
+import in.co.rays.proj4.util.DataUtility;
+import in.co.rays.proj4.util.DataValidator;
+import in.co.rays.proj4.util.ServletUtility;
 
 public abstract class BaseCtl extends HttpServlet {
 
@@ -52,8 +55,20 @@ public abstract class BaseCtl extends HttpServlet {
 
 	// Generic work flow
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.service(req, resp);
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("in baseCtl service method");
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		if (DataValidator.isNotNull(op)) {
+			if (!validate(request)) {
+				ServletUtility.forward(getView(), request, response);
+				return;
+			}
+		}
+
+		super.service(request, response);
 	}
 
 	// return view of same controller
