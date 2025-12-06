@@ -30,25 +30,42 @@ public class UserRegistrationCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("firstName"))) {
 			request.setAttribute("firstName", "firstName is required");
 			pass = false;
+		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
+			request.setAttribute("firstName", "firstName contains only alphabates");
+			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
 			request.setAttribute("lastName", "lastName is required");
+			pass = false;
+		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
+			request.setAttribute("lastName", "lastName contains only alphabates");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
 			request.setAttribute("login", "login is required");
 			pass = false;
+		} else if (!DataValidator.isEmail(request.getParameter("login"))) {
+			request.setAttribute("login", "invalid login format");
+			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("password"))) {
 			request.setAttribute("password", "password is required");
 			pass = false;
+		} else if (!DataValidator.isPasswordLength(request.getParameter("password"))) {
+			request.setAttribute("password", "password lenght min 8 or max 12");
+			pass = false;
+		} else if (!DataValidator.isPassword(request.getParameter("password"))) {
+			request.setAttribute("password", "password must in xyz format");
+			pass = false;
 		}
-
 		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
 			request.setAttribute("confirmPassword", "confirmPassword is required");
+			pass = false;
+		} else if (!(request.getParameter("confirmPassword").equals(request.getParameter("password")))) {
+			request.setAttribute("confirmPassword", "password and confirmPassword must be equal");
 			pass = false;
 		}
 
@@ -64,6 +81,12 @@ public class UserRegistrationCtl extends BaseCtl {
 
 		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
 			request.setAttribute("mobileNo", "mobileNo is required");
+			pass = false;
+		} else if (!DataValidator.isPhoneNo(request.getParameter("mobileNo"))) {
+			request.setAttribute("mobileNo", "invalid mobileNo format");
+			pass = false;
+		} else if (!DataValidator.isPhoneLength(request.getParameter("mobileNo"))) {
+			request.setAttribute("mobileNo", "phoneNo contain only 10 digit");
 			pass = false;
 		}
 
