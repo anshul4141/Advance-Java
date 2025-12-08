@@ -21,4 +21,10 @@ public interface ORSView {
 	public String USER_LIST_VIEW = PAGE_FOLDER + "/UserListView.jsp";
 	public String USER_LIST_CTL = APP_CONTEXT + "/UserListCtl";
 
+	public String ROLE_VIEW = PAGE_FOLDER + "/RoleView.jsp";
+	public String ROLE_CTL = APP_CONTEXT + "/RoleCtl";
+
+	public String ROLE_LIST_VIEW = PAGE_FOLDER + "/RoleListView.jsp";
+	public String ROLE_LIST_CTL = APP_CONTEXT + "/RoleListCtl";
+
 }
