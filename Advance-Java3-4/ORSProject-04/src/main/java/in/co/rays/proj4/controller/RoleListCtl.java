@@ -47,6 +47,7 @@ public class RoleListCtl extends BaseCtl {
 				ServletUtility.setErrorMessage("No record found", request);
 			}
 
+			//request.setAttribute("list", list);
 			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
@@ -68,7 +69,7 @@ public class RoleListCtl extends BaseCtl {
 		List next = null;
 
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
+		int pageSize = 10;
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = 10;
@@ -92,7 +93,7 @@ public class RoleListCtl extends BaseCtl {
 				}
 
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.USER_CTL, request, response);
+				ServletUtility.redirect(ORSView.ROLE_CTL, request, response);
 				return;
 
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
