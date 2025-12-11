@@ -1,17 +1,20 @@
 package in.co.rays.proj4.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 
 import in.co.rays.proj4.bean.BaseBean;
 import in.co.rays.proj4.bean.RoleBean;
 import in.co.rays.proj4.bean.UserBean;
 import in.co.rays.proj4.exception.ApplicationException;
 import in.co.rays.proj4.exception.DuplicateRecordException;
+import in.co.rays.proj4.model.RoleModel;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
@@ -19,6 +22,20 @@ import in.co.rays.proj4.util.ServletUtility;
 
 @WebServlet("/UserCtl")
 public class UserCtl extends BaseCtl {
+
+	@Override
+	protected void preload(HttpServletRequest request) {
+
+		RoleModel model = new RoleModel();
+
+		try {
+			List roleList = model.list();
+			request.setAttribute("roleList", roleList);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
@@ -104,7 +121,7 @@ public class UserCtl extends BaseCtl {
 		bean.setGender(DataUtility.getString(request.getParameter("gender")));
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
-		bean.setRoleId(RoleBean.STUDENT);
+		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
 
 		return bean;
 

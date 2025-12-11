@@ -56,6 +56,9 @@ public class HTMLUtility {
 			}
 		}
 		sb.append("\n</select>");
+		
+		System.out.println("dropdowncode=====> " + sb.toString());
+		
 		return sb.toString();
 	}
 

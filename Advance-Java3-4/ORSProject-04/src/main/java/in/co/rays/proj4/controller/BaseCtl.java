@@ -59,6 +59,8 @@ public abstract class BaseCtl extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("in baseCtl service method");
 
+		preload(request);
+		
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		if (DataValidator.isNotNull(op)) {

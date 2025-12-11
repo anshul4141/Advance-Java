@@ -112,4 +112,14 @@ public class FacultyBean extends BaseBean {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
+	
+	@Override
+	public String getKey() {
+		return null;
+	}
+
+	@Override
+	public String getValue() {
+		return null;
+	}
 }
