@@ -43,6 +43,18 @@
 
 			if (list.size() != 0) {
 			%>
+
+			<table>
+				<tr>
+					<th>Role:</th>
+					<td><input type="text" name="name"
+						value="<%=DataUtility.getStringData(bean.getName())%>"
+						placeholder="search by roleName"></td>
+					<td><input type="submit" name="operation"
+						value="<%=RoleListCtl.OP_SEARCH%>"></td>
+				</tr>
+			</table>
+
 			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
 				type="hidden" name="pageSize" value="<%=pageSize%>"> <br>
 			<table border="1" style="width: 100%; border: groove;">
@@ -76,7 +88,7 @@
 					<td style="width: 25%"><input type="submit" name="operation"
 						value="<%=RoleListCtl.OP_PREVIOUS%>"
 						<%=pageNo > 1 ? "" : "disabled"%>></td>
-						<td align="center" style="width: 25%"><input type="submit"
+					<td align="center" style="width: 25%"><input type="submit"
 						name="operation" value="<%=RoleListCtl.OP_NEW%>"></td>
 					<td align="center" style="width: 25%"><input type="submit"
 						name="operation" value="<%=RoleListCtl.OP_DELETE%>"></td>

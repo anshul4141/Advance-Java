@@ -230,7 +230,7 @@ public class RoleModel {
 
 		Connection conn = null;
 		ArrayList<RoleBean> list = new ArrayList<RoleBean>();
-
+		System.out.println("sql ===> " + sql.toString());
 		try {
 			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
