@@ -56,9 +56,6 @@ public class HTMLUtility {
 			}
 		}
 		sb.append("\n</select>");
-		
-		System.out.println("dropdowncode=====> " + sb.toString());
-		
 		return sb.toString();
 	}
 
@@ -68,7 +65,7 @@ public class HTMLUtility {
 		map.put("male", "male");
 		map.put("female", "female");
 
-		String selectedValue = null;
+		String selectedValue = "male";
 		String htmlSelectFromMap = HTMLUtility.getList("gender", selectedValue, map);
 
 		System.out.println(htmlSelectFromMap);

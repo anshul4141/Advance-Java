@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-public class JDBCDataSource {
+public final class JDBCDataSource {
 
 	private static JDBCDataSource jds = null;
 
@@ -69,5 +69,4 @@ public class JDBCDataSource {
 	public static void closeConnection(Connection conn) {
 		closeConnection(conn, null);
 	}
-
 }

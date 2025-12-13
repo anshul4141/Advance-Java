@@ -36,5 +36,4 @@ public class RoleBean extends BaseBean {
 	public String getValue() {
 		return name;
 	}
-
 }

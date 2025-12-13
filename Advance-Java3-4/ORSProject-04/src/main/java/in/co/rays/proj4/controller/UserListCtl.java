@@ -14,23 +14,21 @@ import in.co.rays.proj4.exception.ApplicationException;
 import in.co.rays.proj4.model.RoleModel;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
+import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
 @WebServlet(name = "UserListCtl", urlPatterns = { "/UserListCtl" })
 public class UserListCtl extends BaseCtl {
-	
+
 	@Override
 	protected void preload(HttpServletRequest request) {
-
-		RoleModel model = new RoleModel();
-
+		RoleModel roleModel = new RoleModel();
 		try {
-			List roleList = model.list();
+			List roleList = roleModel.list();
 			request.setAttribute("roleList", roleList);
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -41,8 +39,6 @@ public class UserListCtl extends BaseCtl {
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLogin(DataUtility.getString(request.getParameter("login")));
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
-		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
-		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 
 		return bean;
 	}
@@ -52,7 +48,7 @@ public class UserListCtl extends BaseCtl {
 			throws ServletException, IOException {
 
 		int pageNo = 1;
-		int pageSize = 10;
+		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
 		UserBean bean = (UserBean) populateBean(request);
 		UserModel model = new UserModel();
@@ -75,6 +71,7 @@ public class UserListCtl extends BaseCtl {
 
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			ServletUtility.handleException(e, request, response);
 			return;
 		}
 	}
@@ -90,7 +87,7 @@ public class UserListCtl extends BaseCtl {
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
-		pageSize = 10;
+		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		UserBean bean = (UserBean) populateBean(request);
 		UserModel model = new UserModel();
@@ -113,7 +110,7 @@ public class UserListCtl extends BaseCtl {
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.USER_CTL, request, response);
 				return;
-
+				
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
 				pageNo = 1;
 				if (ids != null && ids.length > 0) {
@@ -126,11 +123,11 @@ public class UserListCtl extends BaseCtl {
 				} else {
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
-
+				
 			} else if (OP_RESET.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
-
+				
 			} else if (OP_BACK.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
@@ -153,12 +150,13 @@ public class UserListCtl extends BaseCtl {
 
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			ServletUtility.handleException(e, request, response);
 			return;
 		}
 	}
 
 	@Override
-	public String getView() {
+	protected String getView() {
 		return ORSView.USER_LIST_VIEW;
 	}
 }

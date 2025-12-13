@@ -47,15 +47,14 @@ public class CollegeBean extends BaseBean {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-	
+
 	@Override
 	public String getKey() {
-		return null;
+		return id + "";
 	}
 
 	@Override
 	public String getValue() {
-		return null;
+		return name;
 	}
-
 }

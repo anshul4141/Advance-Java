@@ -29,15 +29,14 @@ public class CourseBean extends BaseBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	@Override
 	public String getKey() {
-		return null;
+		return id + "";
 	}
 
 	@Override
 	public String getValue() {
-		return null;
+		return name;
 	}
-
 }

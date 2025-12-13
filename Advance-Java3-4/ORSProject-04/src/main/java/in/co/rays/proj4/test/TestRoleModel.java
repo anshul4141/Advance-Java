@@ -1,6 +1,8 @@
 package in.co.rays.proj4.test;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,118 +16,112 @@ public class TestRoleModel {
 
 	public static RoleModel model = new RoleModel();
 
-	public static void main(String[] args) throws ApplicationException, DuplicateRecordException {
-
-//		testAdd();
+	public static void main(String[] args) throws ParseException {
+		// testAdd();
 		testUpdate();
-//		testDelete();
-//		testFindByPk();
-//		testFindByName();
-//		testSearch();
-
+		// testDelete();
+		// testfindByPk();
+		// testFindByName();
+		// testSearch();
 	}
 
-	private static void testAdd() throws ApplicationException, DuplicateRecordException {
-
-		RoleBean bean = new RoleBean();
-
-		bean.setName("admin");
-		bean.setDescription("admin");
-		bean.setCreatedBy("root");
-		bean.setModifiedBy("root");
-		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
-		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
-
-		long pk = model.add(bean);
-
-		System.out.println("data added successfully at id: " + pk);
-
-	}
-
-	private static void testUpdate() throws ApplicationException, DuplicateRecordException {
-
-		RoleBean bean = new RoleBean();
-
-		bean.setId(2);
-		bean.setName("admin");
-		bean.setDescription("student see only marksheet");
-		bean.setCreatedBy("root");
-		bean.setModifiedBy("root");
-		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
-		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
-
-		model.update(bean);
-
-	}
-
-	private static void testDelete() throws ApplicationException {
-
-		RoleBean bean = new RoleBean();
-
-		bean.setId(5);
-
-		model.delete(bean);
-		System.out.println("role deleted successfully");
-
-	}
-
-	private static void testFindByPk() throws ApplicationException {
-
-		RoleBean bean = new RoleBean();
-
-		bean = model.findByPk(1);
-
-		if (bean != null) {
-			System.out.print(bean.getId());
-			System.out.print("\t" + bean.getName());
-			System.out.print("\t" + bean.getDescription());
-			System.out.print("\t" + bean.getCreatedBy());
-			System.out.print("\t" + bean.getModifiedBy());
-			System.out.print("\t" + bean.getCreatedDatetime());
-			System.out.println("\t" + bean.getModifiedDatetime());
-		} else {
-			System.out.println("role not found");
+	public static void testAdd() throws ParseException {
+		try {
+			RoleBean bean = new RoleBean();
+			bean.setName("student");
+			bean.setDescription("student");
+			bean.setCreatedBy("admin");
+			bean.setModifiedBy("admin");
+			bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
+			bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
+			long pk = model.add(bean);
+			RoleBean addedbean = model.findByPk(pk);
+			if (addedbean == null) {
+				System.out.println("Test add fail");
+			}
+		} catch (ApplicationException | DuplicateRecordException e) {
+			e.printStackTrace();
 		}
-
 	}
 
-	private static void testFindByName() throws ApplicationException {
+	public static void testUpdate() {
+		try {
+			RoleBean bean = model.findByPk(1L);
+			bean.setName("admin");
+			bean.setDescription("admin");
+			model.update(bean);
 
-		RoleBean bean = new RoleBean();
-
-		bean = model.findByName("student");
-
-		if (bean != null) {
-			System.out.print(bean.getId());
-			System.out.print("\t" + bean.getName());
-			System.out.print("\t" + bean.getDescription());
-			System.out.print("\t" + bean.getCreatedBy());
-			System.out.print("\t" + bean.getModifiedBy());
-			System.out.print("\t" + bean.getCreatedDatetime());
-			System.out.println("\t" + bean.getModifiedDatetime());
-		} else {
-			System.out.println("role not found");
+			RoleBean updatedbean = model.findByPk(1L);
+			
+			if (!"Admin".equals(updatedbean.getName())) {
+				System.out.println("Test Update Success");
+			}
+		} catch (ApplicationException | DuplicateRecordException e) {
+			e.printStackTrace();
 		}
-
 	}
 
-	private static void testSearch() throws ApplicationException {
+	public static void testDelete() {
+		try {
+			RoleBean bean = new RoleBean();
+			long pk = 1L;
+			bean.setId(pk);
+			model.delete(bean);
+			RoleBean deletedbean = model.findByPk(pk);
+			if (deletedbean != null) {
+				System.out.println("Test Delete fail");
+			}
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+	}
 
-		RoleBean bean = new RoleBean();
+	public static void testfindByPk() {
+		try {
+			RoleBean bean = model.findByPk(1L);
+			if (bean == null) {
+				System.out.println("Test Find By PK fail");
+			}
+			System.out.println(bean.getId());
+			System.out.println(bean.getName());
+			System.out.println(bean.getDescription());
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+	}
 
-		List<RoleBean> list = model.search(bean, 0, 0);
+	public static void testFindByName() {
+		try {
+			RoleBean bean = model.findByName("admin");
+			if (bean == null) {
+				System.out.println("Test Find By PK fail");
+			}
+			System.out.println(bean.getId());
+			System.out.println(bean.getName());
+			System.out.println(bean.getDescription());
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+	}
 
-		Iterator<RoleBean> it = list.iterator();
-
-		while (it.hasNext()) {
-			bean = it.next();
-			System.out.print(bean.getId());
-			System.out.print("\t" + bean.getName());
-			System.out.print("\t" + bean.getDescription());
-			System.out.print("\t" + bean.getCreatedBy());
-			System.out.print("\t" + bean.getModifiedBy());
-			System.out.print("\t" + bean.getCreatedDatetime());
-			System.out.println("\t" + bean.getModifiedDatetime());
+	public static void testSearch() {
+		try {
+			RoleBean bean = new RoleBean();
+			List list = new ArrayList();
+			bean.setName("student");
+			list = model.search(bean, 0, 0);
+			if (list.size() < 0) {
+				System.out.println("Test Serach fail");
+			}
+			Iterator it = list.iterator();
+			while (it.hasNext()) {
+				bean = (RoleBean) it.next();
+				System.out.println(bean.getId());
+				System.out.println(bean.getName());
+				System.out.println(bean.getDescription());
+			}
+		} catch (ApplicationException e) {
+			e.printStackTrace();
 		}
 	}
 }

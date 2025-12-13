@@ -13,10 +13,23 @@ import in.co.rays.proj4.bean.RoleBean;
 import in.co.rays.proj4.exception.ApplicationException;
 import in.co.rays.proj4.model.RoleModel;
 import in.co.rays.proj4.util.DataUtility;
+import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet("/RoleListCtl")
+@WebServlet(name = "RoleListCtl", urlPatterns = { "/RoleListCtl" })
 public class RoleListCtl extends BaseCtl {
+
+	@Override
+	protected void preload(HttpServletRequest request) {
+		RoleModel roleModel = new RoleModel();
+
+		try {
+			List roleList = roleModel.list();
+			request.setAttribute("roleList", roleList);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
@@ -34,7 +47,7 @@ public class RoleListCtl extends BaseCtl {
 			throws ServletException, IOException {
 
 		int pageNo = 1;
-		int pageSize = 10;
+		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
 		RoleBean bean = (RoleBean) populateBean(request);
 		RoleModel model = new RoleModel();
@@ -47,7 +60,6 @@ public class RoleListCtl extends BaseCtl {
 				ServletUtility.setErrorMessage("No record found", request);
 			}
 
-			//request.setAttribute("list", list);
 			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
@@ -57,6 +69,7 @@ public class RoleListCtl extends BaseCtl {
 			ServletUtility.forward(getView(), request, response);
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			ServletUtility.handleException(e, request, response);
 			return;
 		}
 	}
@@ -69,10 +82,10 @@ public class RoleListCtl extends BaseCtl {
 		List next = null;
 
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-		int pageSize = 10;
+		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
-		pageSize = 10;
+		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		RoleBean bean = (RoleBean) populateBean(request);
 		RoleModel model = new RoleModel();
@@ -93,7 +106,7 @@ public class RoleListCtl extends BaseCtl {
 				}
 
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.ROLE_CTL, request, response);
+				ServletUtility.redirect(ORSView.USER_CTL, request, response);
 				return;
 
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
@@ -134,12 +147,13 @@ public class RoleListCtl extends BaseCtl {
 			ServletUtility.forward(getView(), request, response);
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			ServletUtility.handleException(e, request, response);
 			return;
 		}
 	}
 
 	@Override
-	public String getView() {
+	protected String getView() {
 		return ORSView.ROLE_LIST_VIEW;
 	}
 }

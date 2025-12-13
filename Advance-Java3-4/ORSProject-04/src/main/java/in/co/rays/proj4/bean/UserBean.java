@@ -8,11 +8,11 @@ public class UserBean extends BaseBean {
 	private String lastName;
 	private String login;
 	private String password;
+	private String confirmPassword;
 	private Date dob;
 	private String mobileNo;
 	private long roleId;
 	private String gender;
-	private String confirmPassword;
 
 	public String getFirstName() {
 		return firstName;
@@ -44,6 +44,14 @@ public class UserBean extends BaseBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public Date getDob() {
@@ -78,21 +86,13 @@ public class UserBean extends BaseBean {
 		this.gender = gender;
 	}
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-
 	@Override
 	public String getKey() {
-		return null;
+		return id + "";
 	}
 
 	@Override
 	public String getValue() {
-		return null;
+		return firstName + " " + lastName;
 	}
 }

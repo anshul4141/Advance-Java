@@ -15,9 +15,10 @@ import in.co.rays.proj4.exception.DuplicateRecordException;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
+import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet("/UserRegistrationCtl")
+@WebServlet(name = "UserRegistrationCtl", urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
 
 	public static final String OP_SIGN_UP = "Sign Up";
@@ -28,65 +29,72 @@ public class UserRegistrationCtl extends BaseCtl {
 		boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", "firstName is required");
+			request.setAttribute("firstName", PropertyReader.getValue("error.require", "First Name"));
 			pass = false;
 		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", "firstName contains only alphabates");
+			request.setAttribute("firstName", "Invalid First Name");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", "lastName is required");
+			request.setAttribute("lastName", PropertyReader.getValue("error.require", "Last Name"));
 			pass = false;
 		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", "lastName contains only alphabates");
+			request.setAttribute("lastName", "Invalid Last Name");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
-			request.setAttribute("login", "login is required");
+			request.setAttribute("login", PropertyReader.getValue("error.require", "Login Id"));
 			pass = false;
 		} else if (!DataValidator.isEmail(request.getParameter("login"))) {
-			request.setAttribute("login", "invalid login format");
+			request.setAttribute("login", PropertyReader.getValue("error.email", "Login"));
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("password"))) {
-			request.setAttribute("password", "password is required");
+			request.setAttribute("password", PropertyReader.getValue("error.require", "Password"));
 			pass = false;
 		} else if (!DataValidator.isPasswordLength(request.getParameter("password"))) {
-			request.setAttribute("password", "password lenght min 8 or max 12");
+			request.setAttribute("password", "Password should be 8 to 12 characters");
 			pass = false;
 		} else if (!DataValidator.isPassword(request.getParameter("password"))) {
-			request.setAttribute("password", "password must in xyz format");
-			pass = false;
-		}
-		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
-			request.setAttribute("confirmPassword", "confirmPassword is required");
-			pass = false;
-		} else if (!(request.getParameter("confirmPassword").equals(request.getParameter("password")))) {
-			request.setAttribute("confirmPassword", "password and confirmPassword must be equal");
+			request.setAttribute("password", "Must contain uppercase, lowercase, digit & special character");
 			pass = false;
 		}
 
-		if (DataValidator.isNull(request.getParameter("dob"))) {
-			request.setAttribute("dob", "dob is required");
+		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", PropertyReader.getValue("error.require", "Confirm Password"));
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("gender"))) {
-			request.setAttribute("gender", "gender is required");
+			request.setAttribute("gender", PropertyReader.getValue("error.require", "Gender"));
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("dob"))) {
+			request.setAttribute("dob", PropertyReader.getValue("error.require", "Date of Birth"));
+			pass = false;
+		} else if (!DataValidator.isDate(request.getParameter("dob"))) {
+			request.setAttribute("dob", PropertyReader.getValue("error.date", "Date of Birth"));
+			pass = false;
+		}
+
+		if (!request.getParameter("password").equals(request.getParameter("confirmPassword"))
+				&& !"".equals(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", "Password and Confirm Password must be Same!");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
-			request.setAttribute("mobileNo", "mobileNo is required");
-			pass = false;
-		} else if (!DataValidator.isPhoneNo(request.getParameter("mobileNo"))) {
-			request.setAttribute("mobileNo", "invalid mobileNo format");
+			request.setAttribute("mobileNo", PropertyReader.getValue("error.require", "Mobile No"));
 			pass = false;
 		} else if (!DataValidator.isPhoneLength(request.getParameter("mobileNo"))) {
-			request.setAttribute("mobileNo", "phoneNo contain only 10 digit");
+			request.setAttribute("mobileNo", "Mobile No must have 10 digits");
+			pass = false;
+		} else if (!DataValidator.isPhoneNo(request.getParameter("mobileNo"))) {
+			request.setAttribute("mobileNo", "Invalid Mobile No");
 			pass = false;
 		}
 
@@ -98,6 +106,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 		UserBean bean = new UserBean();
 
+		bean.setId(DataUtility.getLong(request.getParameter("id")));
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		bean.setLogin(DataUtility.getString(request.getParameter("login")));
@@ -107,6 +116,8 @@ public class UserRegistrationCtl extends BaseCtl {
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 		bean.setRoleId(RoleBean.STUDENT);
+
+		populateDTO(bean, request);
 
 		return bean;
 	}
@@ -118,7 +129,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("in userregistrationCtl doPost method");
+
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		UserModel model = new UserModel();
@@ -126,16 +137,15 @@ public class UserRegistrationCtl extends BaseCtl {
 		if (OP_SIGN_UP.equalsIgnoreCase(op)) {
 			UserBean bean = (UserBean) populateBean(request);
 			try {
-				long pk = model.add(bean);
-				// request.setAttribute("bean", bean);
+				long pk = model.registerUser(bean);
 				ServletUtility.setBean(bean, request);
-				// request.setAttribute("success", "Registration successful!");
 				ServletUtility.setSuccessMessage("Registration successful!", request);
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setErrorMessage("Login id already exists", request);
 			} catch (ApplicationException e) {
 				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			}
 			ServletUtility.forward(getView(), request, response);
@@ -146,7 +156,7 @@ public class UserRegistrationCtl extends BaseCtl {
 	}
 
 	@Override
-	public String getView() {
+	protected String getView() {
 		return ORSView.USER_REGISTRATION_VIEW;
 	}
 }
