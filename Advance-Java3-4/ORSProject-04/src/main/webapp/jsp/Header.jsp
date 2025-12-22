@@ -1,3 +1,4 @@
+<%@page import="in.co.rays.proj4.bean.RoleBean"%>
 <%@page import="in.co.rays.proj4.controller.LoginCtl"%>
 <%@page import="in.co.rays.proj4.bean.UserBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -19,16 +20,20 @@
 </head>
 <body>
 	<%
-		UserBean user = (UserBean) session.getAttribute("user");
+	UserBean user = (UserBean) session.getAttribute("user");
 	%>
 	<%
-		if (user != null) {
+	if (user != null) {
 	%>
 	<h3>
 		Hi,
 		<%=user.getFirstName()%>
 		(<%=session.getAttribute("role")%>)
 	</h3>
+
+	<%
+	if (user.getRoleId() == RoleBean.ADMIN) {
+	%>
 	<a href="MyProfileCtl"><b>My Profile</b></a>
 	<b>|</b>
 	<a href="ChangePasswordCtl"><b>Change Password</b></a>
@@ -77,14 +82,35 @@
 	<b>|</b>
 	<a href="LoginCtl?operation=<%=LoginCtl.OP_LOG_OUT%>"><b>Logout</b></a>
 	<%
-		} else {
+	} else if (user.getRoleId() == RoleBean.STUDENT) {
 	%>
+	<a href="StudentCtl"><b>Add Student</b></a>
+	<b>|</b>
+	<a href="StudentListCtl"><b>Student List</b></a>
+	<b>|</b>
+	<a href="MarksheetCtl"><b>Add Marksheet</b></a>
+	<b>|</b>
+	<a href="MarksheetListCtl"><b>Marksheet List</b></a>
+	<b>|</b>
+	<a href="TimetableListCtl"><b>Timetable List</b></a>
+	<b>|</b>
+	<a href="CourseListCtl"><b>Course List</b></a>
+	<b>|</b>
+	<a href="LoginCtl?operation=<%=LoginCtl.OP_LOG_OUT%>"><b>Logout</b></a>
+	<%
+	}
+	%>
+	<%
+	} else {
+	%>
+
 	<h3>Hi, Guest</h3>
 	<a href="WelcomeCtl"><b>Welcome</b></a> |
 	<a href="LoginCtl"><b>Login</b></a>
 	<%
-		}
+	}
 	%>
+
 	<hr>
 </body>
 </html>
