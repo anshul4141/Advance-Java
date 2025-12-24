@@ -18,7 +18,7 @@ import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet(name = "MyProfileCtl", urlPatterns = { "/MyProfileCtl" })
+@WebServlet(name = "MyProfileCtl", urlPatterns = { "/ctl/MyProfileCtl" })
 public class MyProfileCtl extends BaseCtl {
 
 	public static final String OP_CHANGE_MY_PASSWORD = "Change Password";
