@@ -15,7 +15,7 @@ public class TestDelete {
 
 		Statement stmt = conn.createStatement();
 
-		int i = stmt.executeUpdate("delete from st_user where id = 4");
+		int i = stmt.executeUpdate("delete from st_user where id = 3");
 
 		System.out.println(i + " row affected..(records deleted)");
 

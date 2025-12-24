@@ -20,14 +20,20 @@ public class TestSearch {
 
 		ResultSet rs = stmt.executeQuery("select * from st_user");
 
+		// Header
+		System.out.println("------------------------------------------------------------------------------------");
+		System.out.printf("| %-3s | %-10s | %-10s | %-20s | %-12s | %-10s |%n", "ID", "FirstName", "LastName", "Email",
+				"Password", "DOB");
+		System.out.println("------------------------------------------------------------------------------------");
+
+		// Data
 		while (rs.next()) {
-			System.out.print(rs.getInt(1));
-			System.out.print("\t" + rs.getString(2));
-			System.out.print("\t" + rs.getString(3));
-			System.out.print("\t" + rs.getString(4));
-			System.out.print("\t" + rs.getString(5));
-			System.out.println("\t" + rs.getDate(6));
+			System.out.printf("| %-3d | %-10s | %-10s | %-20s | %-12s | %-10s |%n", rs.getInt(1), rs.getString(2),
+					rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6));
 		}
+
+		// Footer line
+		System.out.println("------------------------------------------------------------------------------------");
 
 		conn.close();
 
