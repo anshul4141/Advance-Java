@@ -108,7 +108,7 @@ public class UserModel {
 
 	}
 
-	// <----- findByLogin method ----->
+	// <----- findByPk method ----->
 	public UserBean findByPk(int pk) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
