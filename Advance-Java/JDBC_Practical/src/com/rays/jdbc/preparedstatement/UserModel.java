@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 // communicate with st_user table to add, update, delete, search the records
 public class UserModel {
@@ -163,6 +165,35 @@ public class UserModel {
 		}
 
 		return bean;
+
+	}
+
+	// <----- search ------>
+	public List search() throws Exception {
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+		List list = new ArrayList();
+
+		while (rs.next()) {
+			bean = new UserBean();
+			bean.setId(rs.getInt(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLogin(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			list.add(bean);
+		}
+
+		return list;
 
 	}
 
