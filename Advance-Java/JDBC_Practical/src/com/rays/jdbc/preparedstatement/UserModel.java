@@ -10,6 +10,25 @@ import java.util.List;
 // communicate with st_user table to add, update, delete, search the records
 public class UserModel {
 
+	// <----- nextPk() ------>
+	public int nextPk() throws Exception {
+
+		int pk = 0;
+
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+
+		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
+
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			pk = rs.getInt(1);
+		}
+
+		return pk + 1;
+	}
+
 	// <----- add method ----->
 	public void add(UserBean bean) throws Exception {
 
@@ -19,7 +38,7 @@ public class UserModel {
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
-		pstmt.setInt(1, bean.getId());
+		pstmt.setInt(1, nextPk());
 		pstmt.setString(2, bean.getFirstName());
 		pstmt.setString(3, bean.getLastName());
 		pstmt.setString(4, bean.getLogin());
@@ -169,17 +188,28 @@ public class UserModel {
 	}
 
 	// <----- search ------>
-	public List search() throws Exception {
+	public List search(UserBean bean) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
 
-		PreparedStatement pstmt = conn.prepareStatement("select * from st_user");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
+
+		if (bean != null) {
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+			}
+			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+				sql.append(" and lastName like '" + bean.getLastName() + "%'");
+			}
+		}
+
+		System.out.println("sql ===> " + sql.toString());
+		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
 		ResultSet rs = pstmt.executeQuery();
 
-		UserBean bean = null;
 		List list = new ArrayList();
 
 		while (rs.next()) {
