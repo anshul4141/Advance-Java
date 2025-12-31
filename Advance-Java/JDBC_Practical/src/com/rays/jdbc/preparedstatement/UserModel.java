@@ -6,18 +6,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 // communicate with st_user table to add, update, delete, search the records
 public class UserModel {
+
+	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.app");
+
+	String driver = rb.getString("driver");
+	String url = rb.getString("url");
+	String username = rb.getString("username");
+	String password = rb.getString("password");
 
 	// <----- nextPk() ------>
 	public int nextPk() throws Exception {
 
 		int pk = 0;
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 
@@ -32,25 +40,37 @@ public class UserModel {
 	// <----- add method ----->
 	public void add(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
 
-		pstmt.setInt(1, nextPk());
-		pstmt.setString(2, bean.getFirstName());
-		pstmt.setString(3, bean.getLastName());
-		pstmt.setString(4, bean.getLogin());
-		pstmt.setString(5, bean.getPassword());
-		pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
+			conn.setAutoCommit(false);
 
-		int i = pstmt.executeUpdate();
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
-		System.out.println(i + " row affected(records inserted...)");
+			pstmt.setInt(1, nextPk());
+			pstmt.setString(2, bean.getFirstName());
+			pstmt.setString(3, bean.getLastName());
+			pstmt.setString(4, bean.getLogin());
+			pstmt.setString(5, bean.getPassword());
+			pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
 
-		conn.close();
-		pstmt.close();
+			int i = pstmt.executeUpdate();
+
+			System.out.println(i + " row affected(records inserted...)");
+
+			conn.commit();
+
+			conn.close();
+			pstmt.close();
+
+		} catch (Exception e) {
+			conn.rollback();
+		}
+
 	}
 
 	// <----- update method ----->

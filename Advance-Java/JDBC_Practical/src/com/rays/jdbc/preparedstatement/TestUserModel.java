@@ -7,13 +7,13 @@ import java.util.List;
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
-		 testAdd();
-		// testUpdate();
-		// testDelete();
+//		testAdd();
+//		testUpdate();
+//		testDelete();
 //		testfinByLogin();
 //		testfinByPk();
 //		testAuthenticate();
-//		testSearch();
+		testSearch();
 	}
 
 	public static void testAdd() throws Exception {
@@ -128,7 +128,7 @@ public class TestUserModel {
 		UserBean bean = new UserBean();
 
 		bean.setFirstName("s");
-		//bean.setLastName("Verma");
+		// bean.setLastName("Verma");
 
 		List list = model.search(bean);
 
