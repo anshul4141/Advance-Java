@@ -43,9 +43,9 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			conn.setAutoCommit(false);
 
@@ -76,9 +76,9 @@ public class UserModel {
 	// <----- update method ----->
 	public void update(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_user set firstName = ?, lastName = ?, login = ?, password = ?, dob = ? where id = ?");
@@ -102,9 +102,9 @@ public class UserModel {
 	// <----- delete method ----->
 	public void delete(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id = ?");
 
@@ -122,9 +122,9 @@ public class UserModel {
 	// <----- findByLogin method ----->
 	public UserBean findByLogin(String login) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ?");
 
@@ -145,6 +145,8 @@ public class UserModel {
 
 		}
 
+		conn.close();
+		pstmt.close();
 		return bean;
 
 	}
@@ -152,9 +154,9 @@ public class UserModel {
 	// <----- findByPk method ----->
 	public UserBean findByPk(int pk) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
 
@@ -173,15 +175,18 @@ public class UserModel {
 			bean.setPassword(rs.getString(5));
 			bean.setDob(rs.getDate(6));
 		}
+		
+		conn.close();
+		pstmt.close();
 		return bean;
 	}
 
 	// <----- findByLogin method ----->
 	public UserBean authenticate(String login, String password) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
 
@@ -203,6 +208,8 @@ public class UserModel {
 
 		}
 
+		conn.close();
+		pstmt.close();
 		return bean;
 
 	}
@@ -210,9 +217,9 @@ public class UserModel {
 	// <----- search ------>
 	public List search(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "root");
+		Connection conn = DriverManager.getConnection(url, username, password);
 
 		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 
@@ -243,6 +250,8 @@ public class UserModel {
 			list.add(bean);
 		}
 
+		conn.close();
+		pstmt.close();
 		return list;
 
 	}
