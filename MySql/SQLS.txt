@@ -1,0 +1,65 @@
+------------------ DATA BASE --------------------
+
+1. SHOW DATABASES; (all databases show karta hai)
+2. CREATE DATABASE rays; (new database create karta hai)
+3. DROP DATABASE rays; (database delete karta hai)
+4. USE rays; (database select/use karta hai)
+
+---
+
+--------------------- DDL & DML -----------------
+
+1. CREATE TABLE employee(id INT PRIMARY KEY, name VARCHAR(45), company VARCHAR(45), salary INT); (table create karta hai)
+2. INSERT INTO employee VALUES(1, 'Ram', 'Rays', 45000); (table me record insert karta hai)
+3. SELECT * FROM employee; (all records show karta hai)
+4. UPDATE employee SET name = 'Shyam' WHERE id = 1; (existing record update karta hai)
+5. DELETE FROM employee WHERE id = 1; (record delete karta hai)
+6. DROP TABLE employee; (table delete karta hai)
+
+---
+
+-------------------- SEARCHING ------------------
+
+1. SELECT * FROM employee WHERE name = 'Ram'; (exact search)
+2. SELECT * FROM employee WHERE salary > 40000; (condition based search)
+3. SELECT * FROM employee WHERE name LIKE 'R%'; (pattern based search)
+4. SELECT * FROM employee LIMIT 0, 5; (pagination – first 5 records)
+5. SELECT * FROM employee ORDER BY salary DESC LIMIT 0, 5; (top 5 salary records)
+
+---
+
+---------------- AGGREGATE FUNCTIONS -------------
+
+1. SELECT COUNT(*) FROM employee; (total records count)
+2. SELECT SUM(salary) FROM employee; (total salary)
+3. SELECT AVG(salary) FROM employee; (average salary)
+4. SELECT MIN(salary) FROM employee; (minimum salary)
+5. SELECT MAX(salary) FROM employee; (maximum salary)
+6. SELECT company, COUNT(*) FROM employee GROUP BY company; (company wise count)
+
+---
+
+-------------------- FOREIGN KEY ----------------
+
+1. CREATE TABLE department(dept_id INT PRIMARY KEY, dept_name VARCHAR(45)); (parent table)
+2. CREATE TABLE employee(id INT PRIMARY KEY, name VARCHAR(45), dept_id INT, FOREIGN KEY (dept_id) REFERENCES department(dept_id)); (foreign key relation)
+
+---
+
+----------------------- JOINS -------------------
+
+1. SELECT e.id, e.name, d.dept_name FROM employee e INNER JOIN department d ON e.dept_id = d.dept_id; (matching records only)
+2. SELECT e.id, e.name, d.dept_name FROM employee e LEFT JOIN department d ON e.dept_id = d.dept_id; (left table ke sab records)
+3. SELECT e.id, e.name, d.dept_name FROM employee e RIGHT JOIN department d ON e.dept_id = d.dept_id; (right table ke sab records)
+4. SELECT e.id, e.name, d.dept_name FROM employee e LEFT JOIN department d ON e.dept_id = d.dept_id UNION SELECT e.id, e.name, d.dept_name FROM employee e RIGHT JOIN department d ON e.dept_id = d.dept_id; (FULL OUTER JOIN – MySQL workaround)
+
+---
+
+----------------------- TRIGGERS ----------------
+
+1. CREATE TRIGGER before_insert_employee BEFORE INSERT ON employee FOR EACH ROW SET NEW.name = UPPER(NEW.name); (BEFORE INSERT trigger)
+2. CREATE TRIGGER after_insert_employee AFTER INSERT ON employee FOR EACH ROW INSERT INTO emp_log VALUES (NEW.id, NOW()); (AFTER INSERT trigger)
+3. CREATE TRIGGER before_update_employee BEFORE UPDATE ON employee FOR EACH ROW SET NEW.salary = NEW.salary + 1000; (BEFORE UPDATE trigger)
+4. CREATE TRIGGER after_delete_employee AFTER DELETE ON employee FOR EACH ROW INSERT INTO emp_delete_log VALUES (OLD.id, NOW()); (AFTER DELETE trigger)
+
+------------------------------------------------
