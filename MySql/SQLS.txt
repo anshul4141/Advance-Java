@@ -63,3 +63,301 @@
 4. CREATE TRIGGER after_delete_employee AFTER DELETE ON employee FOR EACH ROW INSERT INTO emp_delete_log VALUES (OLD.id, NOW()); (AFTER DELETE trigger)
 
 ------------------------------------------------
+
+
+------------------------ today -----------------------------------------------------
+
+mysql> INSERT INTO employee VALUES (3,'Amit','Wipro',48000),(4,'Rohit','HCL',52000),(5,'Suresh','Tech Mahindra',47000),(6,'Neha','TCS',55000),(7,'Priya','Infosys',60000),(8,'Ankit','Accenture',58000),(9,'Pooja','Capgemini',50000),(10,'Vikas','IBM',65000),(11,'Sunita','Cognizant',62000),(12,'Ravi','L&T',54000),(13,'Karan','Mindtree',51000),(14,'Meena','Persistent',49000),(15,'Deepak','Oracle',70000),(16,'Nitin','Google',120000),(17,'Anjali','Microsoft',110000);
+Query OK, 15 rows affected (0.00 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 12 | Ravi   | L&T           |  54000 |
+| 13 | Karan  | Mindtree      |  51000 |
+| 14 | Meena  | Persistent    |  49000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 16 | Nitin  | Google        | 120000 |
+| 17 | Anjali | Microsoft     | 110000 |
++----+--------+---------------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select name from employee;
++--------+
+| name   |
++--------+
+| Ram    |
+| Shyam  |
+| Amit   |
+| Rohit  |
+| Suresh |
+| Neha   |
+| Priya  |
+| Ankit  |
+| Pooja  |
+| Vikas  |
+| Sunita |
+| Ravi   |
+| Karan  |
+| Meena  |
+| Deepak |
+| Nitin  |
+| Anjali |
++--------+
+17 rows in set (0.00 sec)
+
+mysql> select name, company from employee;
+ERROR 1054 (42S22): Unknown column 'company' in 'field list'
+mysql> select name, comapany from employee;
+ERROR 1054 (42S22): Unknown column 'comapany' in 'field list'
+mysql> select name, comapny from employee;
++--------+---------------+
+| name   | comapny       |
++--------+---------------+
+| Ram    | TCS           |
+| Shyam  | Infosys       |
+| Amit   | Wipro         |
+| Rohit  | HCL           |
+| Suresh | Tech Mahindra |
+| Neha   | TCS           |
+| Priya  | Infosys       |
+| Ankit  | Accenture     |
+| Pooja  | Capgemini     |
+| Vikas  | IBM           |
+| Sunita | Cognizant     |
+| Ravi   | L&T           |
+| Karan  | Mindtree      |
+| Meena  | Persistent    |
+| Deepak | Oracle        |
+| Nitin  | Google        |
+| Anjali | Microsoft     |
++--------+---------------+
+17 rows in set (0.00 sec)
+
+mysql> select name empName from employee;
++---------+
+| empName |
++---------+
+| Ram     |
+| Shyam   |
+| Amit    |
+| Rohit   |
+| Suresh  |
+| Neha    |
+| Priya   |
+| Ankit   |
+| Pooja   |
+| Vikas   |
+| Sunita  |
+| Ravi    |
+| Karan   |
+| Meena   |
+| Deepak  |
+| Nitin   |
+| Anjali  |
++---------+
+17 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 12 | Ravi   | L&T           |  54000 |
+| 13 | Karan  | Mindtree      |  51000 |
+| 14 | Meena  | Persistent    |  49000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 16 | Nitin  | Google        | 120000 |
+| 17 | Anjali | Microsoft     | 110000 |
++----+--------+---------------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select * from employee where salary > 50000;
++----+--------+-----------+--------+
+| id | name   | comapny   | salary |
++----+--------+-----------+--------+
+|  4 | Rohit  | HCL       |  52000 |
+|  6 | Neha   | TCS       |  55000 |
+|  7 | Priya  | Infosys   |  60000 |
+|  8 | Ankit  | Accenture |  58000 |
+| 10 | Vikas  | IBM       |  65000 |
+| 11 | Sunita | Cognizant |  62000 |
+| 12 | Ravi   | L&T       |  54000 |
+| 13 | Karan  | Mindtree  |  51000 |
+| 15 | Deepak | Oracle    |  70000 |
+| 16 | Nitin  | Google    | 120000 |
+| 17 | Anjali | Microsoft | 110000 |
++----+--------+-----------+--------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee where salary >= 50000;
++----+--------+-----------+--------+
+| id | name   | comapny   | salary |
++----+--------+-----------+--------+
+|  2 | Shyam  | Infosys   |  50000 |
+|  4 | Rohit  | HCL       |  52000 |
+|  6 | Neha   | TCS       |  55000 |
+|  7 | Priya  | Infosys   |  60000 |
+|  8 | Ankit  | Accenture |  58000 |
+|  9 | Pooja  | Capgemini |  50000 |
+| 10 | Vikas  | IBM       |  65000 |
+| 11 | Sunita | Cognizant |  62000 |
+| 12 | Ravi   | L&T       |  54000 |
+| 13 | Karan  | Mindtree  |  51000 |
+| 15 | Deepak | Oracle    |  70000 |
+| 16 | Nitin  | Google    | 120000 |
+| 17 | Anjali | Microsoft | 110000 |
++----+--------+-----------+--------+
+13 rows in set (0.00 sec)
+
+mysql> select * from employee where salary = 50000;
++----+-------+-----------+--------+
+| id | name  | comapny   | salary |
++----+-------+-----------+--------+
+|  2 | Shyam | Infosys   |  50000 |
+|  9 | Pooja | Capgemini |  50000 |
++----+-------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where name = 'Priya';
++----+-------+---------+--------+
+| id | name  | comapny | salary |
++----+-------+---------+--------+
+|  7 | Priya | Infosys |  60000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where name = 'Uday';
+Empty set (0.00 sec)
+
+mysql> select * from employee where name like 's%';
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  2 | Shyam  | Infosys       |  50000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+| 11 | Sunita | Cognizant     |  62000 |
++----+--------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%s';
++----+-------+---------+--------+
+| id | name  | comapny | salary |
++----+-------+---------+--------+
+| 10 | Vikas | IBM     |  65000 |
++----+-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where name like '%s%';
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  2 | Shyam  | Infosys       |  50000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
++----+--------+---------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%a%';
++----+--------+------------+--------+
+| id | name   | comapny    | salary |
++----+--------+------------+--------+
+|  1 | Ram    | TCS        |  45000 |
+|  2 | Shyam  | Infosys    |  50000 |
+|  3 | Amit   | Wipro      |  48000 |
+|  6 | Neha   | TCS        |  55000 |
+|  7 | Priya  | Infosys    |  60000 |
+|  8 | Ankit  | Accenture  |  58000 |
+|  9 | Pooja  | Capgemini  |  50000 |
+| 10 | Vikas  | IBM        |  65000 |
+| 11 | Sunita | Cognizant  |  62000 |
+| 12 | Ravi   | L&T        |  54000 |
+| 13 | Karan  | Mindtree   |  51000 |
+| 14 | Meena  | Persistent |  49000 |
+| 15 | Deepak | Oracle     |  70000 |
+| 17 | Anjali | Microsoft  | 110000 |
++----+--------+------------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from employee where comapny = 'infosys';
++----+-------+---------+--------+
+| id | name  | comapny | salary |
++----+-------+---------+--------+
+|  2 | Shyam | Infosys |  50000 |
+|  7 | Priya | Infosys |  60000 |
++----+-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary asc;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  3 | Amit   | Wipro         |  48000 |
+| 14 | Meena  | Persistent    |  49000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 13 | Karan  | Mindtree      |  51000 |
+|  4 | Rohit  | HCL           |  52000 |
+| 12 | Ravi   | L&T           |  54000 |
+|  6 | Neha   | TCS           |  55000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  7 | Priya  | Infosys       |  60000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 17 | Anjali | Microsoft     | 110000 |
+| 16 | Nitin  | Google        | 120000 |
++----+--------+---------------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+| 16 | Nitin  | Google        | 120000 |
+| 17 | Anjali | Microsoft     | 110000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  6 | Neha   | TCS           |  55000 |
+| 12 | Ravi   | L&T           |  54000 |
+|  4 | Rohit  | HCL           |  52000 |
+| 13 | Karan  | Mindtree      |  51000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 14 | Meena  | Persistent    |  49000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  1 | Ram    | TCS           |  45000 |
++----+--------+---------------+--------+
+17 rows in set (0.00 sec)
+
+mysql>
