@@ -4,17 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>index page</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<%
+	for (int i = 1; i <= 6; i++) {
+	%>
 	<div align="center">
-		<h1 style="color: red">Welcome to my Website</h1>
+		<h<%=i%>><%=i%>Hello Java </h<%=i%>>
 	</div>
+	<%
+	}
+	%>
 </body>
 </html>
