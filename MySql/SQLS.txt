@@ -600,3 +600,109 @@ mysql> select * from marksheet;
 15 rows in set (0.00 sec)
 
 mysql>
+
+
+--------------------------------------------------------------- pagination --------------------------------------------------------------------
+
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 12 | Ravi   | L&T           |  54000 |
+| 13 | Karan  | Mindtree      |  51000 |
+| 14 | Meena  | Persistent    |  49000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 16 | Nitin  | Google        | 120000 |
+| 17 | Anjali | Microsoft     | 110000 |
++----+--------+---------------+--------+
+17 rows in set (0.03 sec)
+
+mysql> select * from employee limit 0, 5;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
++----+--------+---------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee limit 5, 5;
++----+-------+-----------+--------+
+| id | name  | comapny   | salary |
++----+-------+-----------+--------+
+|  6 | Neha  | TCS       |  55000 |
+|  7 | Priya | Infosys   |  60000 |
+|  8 | Ankit | Accenture |  58000 |
+|  9 | Pooja | Capgemini |  50000 |
+| 10 | Vikas | IBM       |  65000 |
++----+-------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee limit 10, 5;
++----+--------+------------+--------+
+| id | name   | comapny    | salary |
++----+--------+------------+--------+
+| 11 | Sunita | Cognizant  |  62000 |
+| 12 | Ravi   | L&T        |  54000 |
+| 13 | Karan  | Mindtree   |  51000 |
+| 14 | Meena  | Persistent |  49000 |
+| 15 | Deepak | Oracle     |  70000 |
++----+--------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee limit 15, 5;
++----+--------+-----------+--------+
+| id | name   | comapny   | salary |
++----+--------+-----------+--------+
+| 16 | Nitin  | Google    | 120000 |
+| 17 | Anjali | Microsoft | 110000 |
++----+--------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee limit 0, 10;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
++----+--------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee limit 10, 10;
++----+--------+------------+--------+
+| id | name   | comapny    | salary |
++----+--------+------------+--------+
+| 11 | Sunita | Cognizant  |  62000 |
+| 12 | Ravi   | L&T        |  54000 |
+| 13 | Karan  | Mindtree   |  51000 |
+| 14 | Meena  | Persistent |  49000 |
+| 15 | Deepak | Oracle     |  70000 |
+| 16 | Nitin  | Google     | 120000 |
+| 17 | Anjali | Microsoft  | 110000 |
++----+--------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql>
