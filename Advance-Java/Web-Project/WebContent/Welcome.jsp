@@ -4,19 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>index page</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<%@ include file="Header.jsp"%>
+
 	<div align="center">
-		<h1>
-			<a href="WelcomeCtl">Online Result System</a>
-		</h1>
+		<h1 style="color: blue">Welcome to online result system</h1>
 	</div>
+
+	<!-- footer -->
 </body>
 </html>

@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import com.rays.bean.UserBean;
 
 public class UserModel {
-	
+
 	ResourceBundle rb = ResourceBundle.getBundle("com.rays.bundle.app");
 
 	String driver = rb.getString("driver");
@@ -31,9 +31,8 @@ public class UserModel {
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 
 		ResultSet rs = pstmt.executeQuery();
-		while (rs.next()) {
+		while (rs.next())
 			pk = rs.getInt(1);
-		}
 
 		return pk + 1;
 	}
@@ -176,7 +175,7 @@ public class UserModel {
 			bean.setPassword(rs.getString(5));
 			bean.setDob(rs.getDate(6));
 		}
-		
+
 		conn.close();
 		pstmt.close();
 		return bean;

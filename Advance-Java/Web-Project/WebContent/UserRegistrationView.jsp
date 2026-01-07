@@ -7,8 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="Header.jsp"%>
 	<div align="center">
+		<%
+		String smsg = (String) request.getAttribute("successMsg");
+		%>
 		<h1>User Registration</h1>
+
+		<h2 style="color: green"><%=smsg != null ? smsg : ""%></h2>
 
 		<form action="UserRegistrationCtl" method="post">
 
@@ -48,5 +54,6 @@
 		</form>
 
 	</div>
+	<!-- footer -->
 </body>
 </html>

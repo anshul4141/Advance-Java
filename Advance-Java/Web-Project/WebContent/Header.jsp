@@ -4,19 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>index page</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div align="center">
-		<h1>
-			<a href="WelcomeCtl">Online Result System</a>
-		</h1>
-	</div>
+	<h3>Hii, Guest</h3>
+	<a href="LoginCtl">Login</a> |
+	<a href="WelcomeCtl">Welcome</a>
+	<hr>
 </body>
 </html>
