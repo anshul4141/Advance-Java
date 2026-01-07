@@ -706,3 +706,337 @@ mysql> select * from employee limit 10, 10;
 7 rows in set (0.00 sec)
 
 mysql>
+
+--------------------------------------------------------------------- update, delete, foreign key ---------------------------------------------------------------------
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 133
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use rays;
+Database changed
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 12 | Ravi   | L&T           |  54000 |
+| 13 | Karan  | Mindtree      |  51000 |
+| 14 | Meena  | Persistent    |  49000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 16 | Nitin  | Google        | 120000 |
+| 17 | Anjali | Microsoft     | 110000 |
++----+--------+---------------+--------+
+17 rows in set (0.03 sec)
+
+mysql> delete from employee where id = 17;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from employee;
++----+--------+---------------+--------+
+| id | name   | comapny       | salary |
++----+--------+---------------+--------+
+|  1 | Ram    | TCS           |  45000 |
+|  2 | Shyam  | Infosys       |  50000 |
+|  3 | Amit   | Wipro         |  48000 |
+|  4 | Rohit  | HCL           |  52000 |
+|  5 | Suresh | Tech Mahindra |  47000 |
+|  6 | Neha   | TCS           |  55000 |
+|  7 | Priya  | Infosys       |  60000 |
+|  8 | Ankit  | Accenture     |  58000 |
+|  9 | Pooja  | Capgemini     |  50000 |
+| 10 | Vikas  | IBM           |  65000 |
+| 11 | Sunita | Cognizant     |  62000 |
+| 12 | Ravi   | L&T           |  54000 |
+| 13 | Karan  | Mindtree      |  51000 |
+| 14 | Meena  | Persistent    |  49000 |
+| 15 | Deepak | Oracle        |  70000 |
+| 16 | Nitin  | Google        | 120000 |
++----+--------+---------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> update employee set name = 'Rohit Sharma' where id = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+--------------+---------------+--------+
+| id | name         | comapny       | salary |
++----+--------------+---------------+--------+
+|  1 | Ram          | TCS           |  45000 |
+|  2 | Shyam        | Infosys       |  50000 |
+|  3 | Amit         | Wipro         |  48000 |
+|  4 | Rohit Sharma | HCL           |  52000 |
+|  5 | Suresh       | Tech Mahindra |  47000 |
+|  6 | Neha         | TCS           |  55000 |
+|  7 | Priya        | Infosys       |  60000 |
+|  8 | Ankit        | Accenture     |  58000 |
+|  9 | Pooja        | Capgemini     |  50000 |
+| 10 | Vikas        | IBM           |  65000 |
+| 11 | Sunita       | Cognizant     |  62000 |
+| 12 | Ravi         | L&T           |  54000 |
+| 13 | Karan        | Mindtree      |  51000 |
+| 14 | Meena        | Persistent    |  49000 |
+| 15 | Deepak       | Oracle        |  70000 |
+| 16 | Nitin        | Google        | 120000 |
++----+--------------+---------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select name from employee;
++--------------+
+| name         |
++--------------+
+| Ram          |
+| Shyam        |
+| Amit         |
+| Rohit Sharma |
+| Suresh       |
+| Neha         |
+| Priya        |
+| Ankit        |
+| Pooja        |
+| Vikas        |
+| Sunita       |
+| Ravi         |
+| Karan        |
+| Meena        |
+| Deepak       |
+| Nitin        |
++--------------+
+16 rows in set (0.00 sec)
+
+mysql> select name empName from employee;
++--------------+
+| empName      |
++--------------+
+| Ram          |
+| Shyam        |
+| Amit         |
+| Rohit Sharma |
+| Suresh       |
+| Neha         |
+| Priya        |
+| Ankit        |
+| Pooja        |
+| Vikas        |
+| Sunita       |
+| Ravi         |
+| Karan        |
+| Meena        |
+| Deepak       |
+| Nitin        |
++--------------+
+16 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+--------------+---------------+--------+
+| id | name         | comapny       | salary |
++----+--------------+---------------+--------+
+|  1 | Ram          | TCS           |  45000 |
+|  2 | Shyam        | Infosys       |  50000 |
+|  3 | Amit         | Wipro         |  48000 |
+|  4 | Rohit Sharma | HCL           |  52000 |
+|  5 | Suresh       | Tech Mahindra |  47000 |
+|  6 | Neha         | TCS           |  55000 |
+|  7 | Priya        | Infosys       |  60000 |
+|  8 | Ankit        | Accenture     |  58000 |
+|  9 | Pooja        | Capgemini     |  50000 |
+| 10 | Vikas        | IBM           |  65000 |
+| 11 | Sunita       | Cognizant     |  62000 |
+| 12 | Ravi         | L&T           |  54000 |
+| 13 | Karan        | Mindtree      |  51000 |
+| 14 | Meena        | Persistent    |  49000 |
+| 15 | Deepak       | Oracle        |  70000 |
+| 16 | Nitin        | Google        | 120000 |
++----+--------------+---------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> create table department(id int primary key, deptName varchar(45));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into department(1, 'Account'),(2, 'Manager'),(3, 'Developer'),(4, 'HR'),(5, 'Admin');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1, 'Account'),(2, 'Manager'),(3, 'Developer'),(4, 'HR'),(5, 'Admin')' at line 1
+mysql> insert into department values(1, 'Account'),(2, 'Manager'),(3, 'Developer'),(4, 'HR'),(5, 'Admin');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+--------------+---------------+--------+
+| id | name         | comapny       | salary |
++----+--------------+---------------+--------+
+|  1 | Ram          | TCS           |  45000 |
+|  2 | Shyam        | Infosys       |  50000 |
+|  3 | Amit         | Wipro         |  48000 |
+|  4 | Rohit Sharma | HCL           |  52000 |
+|  5 | Suresh       | Tech Mahindra |  47000 |
+|  6 | Neha         | TCS           |  55000 |
+|  7 | Priya        | Infosys       |  60000 |
+|  8 | Ankit        | Accenture     |  58000 |
+|  9 | Pooja        | Capgemini     |  50000 |
+| 10 | Vikas        | IBM           |  65000 |
+| 11 | Sunita       | Cognizant     |  62000 |
+| 12 | Ravi         | L&T           |  54000 |
+| 13 | Karan        | Mindtree      |  51000 |
+| 14 | Meena        | Persistent    |  49000 |
+| 15 | Deepak       | Oracle        |  70000 |
+| 16 | Nitin        | Google        | 120000 |
++----+--------------+---------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | HR        |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add dept_id int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+--------------+---------------+--------+---------+
+| id | name         | comapny       | salary | dept_id |
++----+--------------+---------------+--------+---------+
+|  1 | Ram          | TCS           |  45000 |    NULL |
+|  2 | Shyam        | Infosys       |  50000 |    NULL |
+|  3 | Amit         | Wipro         |  48000 |    NULL |
+|  4 | Rohit Sharma | HCL           |  52000 |    NULL |
+|  5 | Suresh       | Tech Mahindra |  47000 |    NULL |
+|  6 | Neha         | TCS           |  55000 |    NULL |
+|  7 | Priya        | Infosys       |  60000 |    NULL |
+|  8 | Ankit        | Accenture     |  58000 |    NULL |
+|  9 | Pooja        | Capgemini     |  50000 |    NULL |
+| 10 | Vikas        | IBM           |  65000 |    NULL |
+| 11 | Sunita       | Cognizant     |  62000 |    NULL |
+| 12 | Ravi         | L&T           |  54000 |    NULL |
+| 13 | Karan        | Mindtree      |  51000 |    NULL |
+| 14 | Meena        | Persistent    |  49000 |    NULL |
+| 15 | Deepak       | Oracle        |  70000 |    NULL |
+| 16 | Nitin        | Google        | 120000 |    NULL |
++----+--------------+---------------+--------+---------+
+16 rows in set (0.00 sec)
+
+mysql> alter table employee add foreign key (dept_id) references department(id);
+Query OK, 16 rows affected (0.10 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | HR        |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set dept_id = 2 where id = 1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+--------------+---------------+--------+---------+
+| id | name         | comapny       | salary | dept_id |
++----+--------------+---------------+--------+---------+
+|  1 | Ram          | TCS           |  45000 |       2 |
+|  2 | Shyam        | Infosys       |  50000 |    NULL |
+|  3 | Amit         | Wipro         |  48000 |    NULL |
+|  4 | Rohit Sharma | HCL           |  52000 |    NULL |
+|  5 | Suresh       | Tech Mahindra |  47000 |    NULL |
+|  6 | Neha         | TCS           |  55000 |    NULL |
+|  7 | Priya        | Infosys       |  60000 |    NULL |
+|  8 | Ankit        | Accenture     |  58000 |    NULL |
+|  9 | Pooja        | Capgemini     |  50000 |    NULL |
+| 10 | Vikas        | IBM           |  65000 |    NULL |
+| 11 | Sunita       | Cognizant     |  62000 |    NULL |
+| 12 | Ravi         | L&T           |  54000 |    NULL |
+| 13 | Karan        | Mindtree      |  51000 |    NULL |
+| 14 | Meena        | Persistent    |  49000 |    NULL |
+| 15 | Deepak       | Oracle        |  70000 |    NULL |
+| 16 | Nitin        | Google        | 120000 |    NULL |
++----+--------------+---------------+--------+---------+
+16 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | HR        |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set dept_id = 4 where id = 6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set dept_id = 5 where id = 9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+--------------+---------------+--------+---------+
+| id | name         | comapny       | salary | dept_id |
++----+--------------+---------------+--------+---------+
+|  1 | Ram          | TCS           |  45000 |       2 |
+|  2 | Shyam        | Infosys       |  50000 |    NULL |
+|  3 | Amit         | Wipro         |  48000 |    NULL |
+|  4 | Rohit Sharma | HCL           |  52000 |    NULL |
+|  5 | Suresh       | Tech Mahindra |  47000 |    NULL |
+|  6 | Neha         | TCS           |  55000 |       4 |
+|  7 | Priya        | Infosys       |  60000 |    NULL |
+|  8 | Ankit        | Accenture     |  58000 |    NULL |
+|  9 | Pooja        | Capgemini     |  50000 |       5 |
+| 10 | Vikas        | IBM           |  65000 |    NULL |
+| 11 | Sunita       | Cognizant     |  62000 |    NULL |
+| 12 | Ravi         | L&T           |  54000 |    NULL |
+| 13 | Karan        | Mindtree      |  51000 |    NULL |
+| 14 | Meena        | Persistent    |  49000 |    NULL |
+| 15 | Deepak       | Oracle        |  70000 |    NULL |
+| 16 | Nitin        | Google        | 120000 |    NULL |
++----+--------------+---------------+--------+---------+
+16 rows in set (0.00 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | HR        |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.00 sec)
+
+mysql>
