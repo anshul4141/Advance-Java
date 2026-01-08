@@ -37,8 +37,6 @@ public class UserRegistrationCtl extends HttpServlet {
 		String password = request.getParameter("password");
 		String dob = request.getParameter("dob");
 
-//		System.out.println(fname + "\n" + lname + "\n" + login + "\n" + password + "\n" + dob);
-
 		try {
 			bean.setFirstName(fname);
 			bean.setLastName(lname);

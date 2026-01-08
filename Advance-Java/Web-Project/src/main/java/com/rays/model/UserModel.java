@@ -182,7 +182,7 @@ public class UserModel {
 	}
 
 	// <----- findByLogin method ----->
-	public UserBean authenticate(String login, String password) throws Exception {
+	public UserBean authenticate(String login, String pwd) throws Exception {
 
 		Class.forName(driver);
 
@@ -191,7 +191,7 @@ public class UserModel {
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
 
 		pstmt.setString(1, login);
-		pstmt.setString(2, password);
+		pstmt.setString(2, pwd);
 
 		ResultSet rs = pstmt.executeQuery();
 

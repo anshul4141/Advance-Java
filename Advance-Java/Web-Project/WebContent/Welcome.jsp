@@ -10,9 +10,9 @@
 	<%@ include file="Header.jsp"%>
 
 	<div align="center">
-		<h1 style="color: blue">Welcome to online result system</h1>
+		<h1 style="color: red; font-size: 45px; margin-top: 100px">Welcome to online result system</h1>
 	</div>
 
-	<!-- footer -->
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
