@@ -48,10 +48,10 @@
 
 ----------------------- JOINS -------------------
 
-1. SELECT e.id, e.name, d.dept_name FROM employee e INNER JOIN department d ON e.dept_id = d.dept_id; (matching records only)
-2. SELECT e.id, e.name, d.dept_name FROM employee e LEFT JOIN department d ON e.dept_id = d.dept_id; (left table ke sab records)
-3. SELECT e.id, e.name, d.dept_name FROM employee e RIGHT JOIN department d ON e.dept_id = d.dept_id; (right table ke sab records)
-4. SELECT e.id, e.name, d.dept_name FROM employee e LEFT JOIN department d ON e.dept_id = d.dept_id UNION SELECT e.id, e.name, d.dept_name FROM employee e RIGHT JOIN department d ON e.dept_id = d.dept_id; (FULL OUTER JOIN – MySQL workaround)
+1. select * from employee inner join department on employee.dept_id = department.id; (matching records only)
+2. select * from employee left join department on employee.dept_id = department.id; (left table ke sab records right table ka matching records)
+3. select * from employee right join department on employee.dept_id = department.id; (right table ke sab records left table ka matching records)
+4. select name, comapny, salary, deptName from employee left join department on employee.dept_id = department.id union select name, comapny, salary, deptName from employee right join department on employee.dept_id = department.id; (FULL OUTER JOIN – MySQL workaround)
 
 ---
 
@@ -1038,5 +1038,128 @@ mysql> select * from department;
 |  5 | Admin     |
 +----+-----------+
 5 rows in set (0.00 sec)
+
+mysql>
+
+-------------------------------------------------------------- joins --------------------------------------------------------------------------------
+
+mysql> use rays;
+Database changed
+mysql> select * from employee;
++----+--------------+---------------+--------+---------+
+| id | name         | comapny       | salary | dept_id |
++----+--------------+---------------+--------+---------+
+|  1 | Ram          | TCS           |  45000 |       2 |
+|  2 | Shyam        | Infosys       |  50000 |    NULL |
+|  3 | Amit         | Wipro         |  48000 |    NULL |
+|  4 | Rohit Sharma | HCL           |  52000 |    NULL |
+|  5 | Suresh       | Tech Mahindra |  47000 |    NULL |
+|  6 | Neha         | TCS           |  55000 |       4 |
+|  7 | Priya        | Infosys       |  60000 |    NULL |
+|  8 | Ankit        | Accenture     |  58000 |    NULL |
+|  9 | Pooja        | Capgemini     |  50000 |       5 |
+| 10 | Vikas        | IBM           |  65000 |    NULL |
+| 11 | Sunita       | Cognizant     |  62000 |    NULL |
+| 12 | Ravi         | L&T           |  54000 |    NULL |
+| 13 | Karan        | Mindtree      |  51000 |    NULL |
+| 14 | Meena        | Persistent    |  49000 |    NULL |
+| 15 | Deepak       | Oracle        |  70000 |    NULL |
+| 16 | Nitin        | Google        | 120000 |    NULL |
++----+--------------+---------------+--------+---------+
+16 rows in set (0.06 sec)
+
+mysql> select * from department;
++----+-----------+
+| id | deptName  |
++----+-----------+
+|  1 | Account   |
+|  2 | Manager   |
+|  3 | Developer |
+|  4 | HR        |
+|  5 | Admin     |
++----+-----------+
+5 rows in set (0.03 sec)
+
+mysql> select * from employee inner join department on employee.dept_id = department.id;
++----+-------+-----------+--------+---------+----+----------+
+| id | name  | comapny   | salary | dept_id | id | deptName |
++----+-------+-----------+--------+---------+----+----------+
+|  1 | Ram   | TCS       |  45000 |       2 |  2 | Manager  |
+|  6 | Neha  | TCS       |  55000 |       4 |  4 | HR       |
+|  9 | Pooja | Capgemini |  50000 |       5 |  5 | Admin    |
++----+-------+-----------+--------+---------+----+----------+
+3 rows in set (0.03 sec)
+
+mysql> select name, company, salary, deptName from employee inner join department on employee.dept_id = department.id;
+ERROR 1054 (42S22): Unknown column 'company' in 'field list'
+mysql> select name, comapny, salary, deptName from employee inner join department on employee.dept_id = department.id;
++-------+-----------+--------+----------+
+| name  | comapny   | salary | deptName |
++-------+-----------+--------+----------+
+| Ram   | TCS       |  45000 | Manager  |
+| Neha  | TCS       |  55000 | HR       |
+| Pooja | Capgemini |  50000 | Admin    |
++-------+-----------+--------+----------+
+3 rows in set (0.02 sec)
+
+mysql> select name, comapny, salary, deptName from employee left join department on employee.dept_id = department.id;
++--------------+---------------+--------+----------+
+| name         | comapny       | salary | deptName |
++--------------+---------------+--------+----------+
+| Ram          | TCS           |  45000 | Manager  |
+| Shyam        | Infosys       |  50000 | NULL     |
+| Amit         | Wipro         |  48000 | NULL     |
+| Rohit Sharma | HCL           |  52000 | NULL     |
+| Suresh       | Tech Mahindra |  47000 | NULL     |
+| Neha         | TCS           |  55000 | HR       |
+| Priya        | Infosys       |  60000 | NULL     |
+| Ankit        | Accenture     |  58000 | NULL     |
+| Pooja        | Capgemini     |  50000 | Admin    |
+| Vikas        | IBM           |  65000 | NULL     |
+| Sunita       | Cognizant     |  62000 | NULL     |
+| Ravi         | L&T           |  54000 | NULL     |
+| Karan        | Mindtree      |  51000 | NULL     |
+| Meena        | Persistent    |  49000 | NULL     |
+| Deepak       | Oracle        |  70000 | NULL     |
+| Nitin        | Google        | 120000 | NULL     |
++--------------+---------------+--------+----------+
+16 rows in set (0.03 sec)
+
+mysql> select name, comapny, salary, deptName from employee right join department on employee.dept_id = department.id;
++-------+-----------+--------+-----------+
+| name  | comapny   | salary | deptName  |
++-------+-----------+--------+-----------+
+| NULL  | NULL      |   NULL | Account   |
+| Ram   | TCS       |  45000 | Manager   |
+| NULL  | NULL      |   NULL | Developer |
+| Neha  | TCS       |  55000 | HR        |
+| Pooja | Capgemini |  50000 | Admin     |
++-------+-----------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select name, comapny, salary, deptName from employee left join department on employee.dept_id = department.id union select name, comapny, salary, deptName from employee right join department on employee.dept_id = department.id;
++--------------+---------------+--------+-----------+
+| name         | comapny       | salary | deptName  |
++--------------+---------------+--------+-----------+
+| Ram          | TCS           |  45000 | Manager   |
+| Shyam        | Infosys       |  50000 | NULL      |
+| Amit         | Wipro         |  48000 | NULL      |
+| Rohit Sharma | HCL           |  52000 | NULL      |
+| Suresh       | Tech Mahindra |  47000 | NULL      |
+| Neha         | TCS           |  55000 | HR        |
+| Priya        | Infosys       |  60000 | NULL      |
+| Ankit        | Accenture     |  58000 | NULL      |
+| Pooja        | Capgemini     |  50000 | Admin     |
+| Vikas        | IBM           |  65000 | NULL      |
+| Sunita       | Cognizant     |  62000 | NULL      |
+| Ravi         | L&T           |  54000 | NULL      |
+| Karan        | Mindtree      |  51000 | NULL      |
+| Meena        | Persistent    |  49000 | NULL      |
+| Deepak       | Oracle        |  70000 | NULL      |
+| Nitin        | Google        | 120000 | NULL      |
+| NULL         | NULL          |   NULL | Account   |
+| NULL         | NULL          |   NULL | Developer |
++--------------+---------------+--------+-----------+
+18 rows in set (0.03 sec)
 
 mysql>
