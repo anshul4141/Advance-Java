@@ -16,6 +16,15 @@ public class LoginCtl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String op = request.getParameter("operation");
+		System.out.println("op === " + op);
+
+		if (op != null) {
+			HttpSession session = request.getSession();
+			session.invalidate(); // session destroy
+		}
+
 		response.sendRedirect("LoginView.jsp");
 	}
 
@@ -24,6 +33,11 @@ public class LoginCtl extends HttpServlet {
 		System.out.println("in do post method");
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
+
+		String op = request.getParameter("operation");
+		if (op.equals("signUp")) {
+			response.sendRedirect("UserRegistrationCtl");
+		}
 
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
