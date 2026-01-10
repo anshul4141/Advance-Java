@@ -7,9 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	String smsg = (String) request.getAttribute("successMsg");
+	%>
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<h1>Login</h1>
+
+		<%
+		if (smsg != null) {
+		%>
+		<h3 style="color: green"><%=smsg%></h3>
+		<%
+		}
+		%>
+
 		<form action="LoginCtl" method="post">
 
 			<table>

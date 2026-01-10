@@ -1,6 +1,8 @@
 package com.rays.ctl;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +25,11 @@ public class LoginCtl extends HttpServlet {
 		if (op != null) {
 			HttpSession session = request.getSession();
 			session.invalidate(); // session destroy
+			request.setAttribute("successMsg", "user logout successfully");
 		}
 
-		response.sendRedirect("LoginView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
