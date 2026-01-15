@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,8 +55,13 @@ public class UserListCtl extends HttpServlet {
 			}
 		}
 
+		if (op.equals("search")) {
+			bean.setFirstName(request.getParameter("firstName"));
+			bean.setLastName(request.getParameter("lastName"));
+		}
+
 		try {
-			List list = model.search(null);
+			List list = model.search(bean);
 			request.setAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();

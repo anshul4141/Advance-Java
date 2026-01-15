@@ -18,7 +18,20 @@
 	<div align="center">
 		<h1>User List</h1>
 
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
+
+			<table>
+				<tr>
+					<th>First Name</th>
+					<td><input type="text" name="firstName"
+						placeholder="search by firstName">
+					<th>last Name</th>
+					<td><input type="text" name="lastName"
+						placeholder="search by lastName"> <input type="submit"
+						name="operation" value="search"></td>
+				</tr>
+			</table>
+
 			<table width="100%" border="1px">
 				<tr style="background: skyblue">
 					<th>Delete</th>
@@ -43,7 +56,7 @@
 					<td><%=bean.getLastName()%></td>
 					<td><%=bean.getLogin()%></td>
 					<td><%=bean.getDob()%></td>
-					<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}

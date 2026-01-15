@@ -9,6 +9,7 @@
 <body>
 	<%
 	String smsg = (String) request.getAttribute("successMsg");
+	String errorMsg = (String) request.getAttribute("errorMsg");
 	%>
 	<%@ include file="Header.jsp"%>
 	<div align="center">
@@ -18,6 +19,14 @@
 		if (smsg != null) {
 		%>
 		<h3 style="color: green"><%=smsg%></h3>
+		<%
+		}
+		%>
+
+		<%
+		if (errorMsg != null) {
+		%>
+		<h3 style="color: red"><%=errorMsg%></h3>
 		<%
 		}
 		%>
