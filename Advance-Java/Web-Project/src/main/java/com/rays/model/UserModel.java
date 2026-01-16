@@ -214,6 +214,10 @@ public class UserModel {
 
 	}
 
+	public List list() throws Exception {
+		return search(null);
+	}
+
 	// <----- search ------>
 	public List search(UserBean bean) throws Exception {
 

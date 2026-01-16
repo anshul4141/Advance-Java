@@ -30,6 +30,8 @@ public class FrontCtl implements Filter {
 
 		HttpSession session = request.getSession();
 
+		session.setMaxInactiveInterval(30);
+
 		if (session.getAttribute("user") == null) {
 			request.setAttribute("errorMsg", "your session has been expired! please login again...");
 			RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
