@@ -10,7 +10,7 @@
 
 	<div align="center">
 
-		<form>
+		<form action="HelloServlet" method="post">
 			<h1>Form</h1>
 			<table>
 				<tr>
