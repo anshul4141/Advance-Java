@@ -187,7 +187,7 @@ public class UserModel {
 
 		Class.forName(driver);
 
-		Connection conn = DriverManager.getConnection(url, username, password);
+		Connection conn = DriverManager.getConnection(url, username, "root");
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
 
