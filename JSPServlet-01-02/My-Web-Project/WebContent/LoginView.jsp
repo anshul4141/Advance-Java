@@ -9,19 +9,8 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<div align="center">
-		<%
-		String msg = (String) request.getAttribute("msg");
-		%>
 		<form action="LoginCtl" method="post">
 			<h1>Login</h1>
-
-			<%
-			if (msg != null) {
-			%>
-			<h2><%=msg%></h2>
-			<%
-			}
-			%>
 			<table>
 				<tr>
 					<th>login</th>
