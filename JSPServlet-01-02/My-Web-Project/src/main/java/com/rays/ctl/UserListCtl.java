@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +36,36 @@ public class UserListCtl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+		String op = request.getParameter("operation");
+		String[] ids = request.getParameterValues("ids");
+
+		if (op.equals("delete")) {
+			if (ids != null && ids.length > 0) {
+				for (String id : ids) {
+					bean.setId(Integer.parseInt(id));
+					try {
+						model.delete(bean);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
+		try {
+			List list = model.search(bean);
+			request.setAttribute("list", list);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
+		rd.forward(request, response);
 
 	}
 

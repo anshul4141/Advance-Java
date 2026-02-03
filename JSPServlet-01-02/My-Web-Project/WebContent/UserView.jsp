@@ -12,7 +12,7 @@
 		<%
 		String msg = (String) request.getAttribute("msg");
 		%>
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 			<h1>Add User</h1>
 
 			<%

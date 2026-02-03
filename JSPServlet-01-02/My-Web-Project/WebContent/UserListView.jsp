@@ -17,11 +17,12 @@
 	<%@ include file="Header.jsp"%>
 
 	<div align="center">
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
 			<h1>User List</h1>
 
 			<table width="100%" border="1px">
 				<tr>
+					<th>select</th>
 					<th>Id</th>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -36,7 +37,9 @@
 				while (it.hasNext()) {
 					UserBean bean = (UserBean) it.next();
 				%>
-				<tr>
+				<tr align="center">
+					<td><input type="checkbox" name="ids"
+						value="<%=bean.getId()%>"></td>
 					<td><%=bean.getId()%></td>
 					<td><%=bean.getFirstName()%></td>
 					<td><%=bean.getLastName()%></td>
@@ -47,6 +50,13 @@
 				<%
 				}
 				%>
+			</table>
+
+			<table>
+
+				<tr>
+					<td><input type="submit" name="operation" value="delete"></td>
+				</tr>
 
 			</table>
 
