@@ -56,6 +56,10 @@ public class UserListCtl extends HttpServlet {
 			}
 		}
 
+		if (op.equals("search")) {
+			bean.setFirstName(request.getParameter("firstName"));
+		}
+
 		try {
 			List list = model.search(bean);
 			request.setAttribute("list", list);
