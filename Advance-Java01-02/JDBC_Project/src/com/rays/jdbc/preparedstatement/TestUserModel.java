@@ -21,6 +21,8 @@ public class TestUserModel {
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
 
+		bean.setFirstName("H");
+
 		List<UserBean> list = model.search(bean);
 
 		Iterator<UserBean> it = list.iterator();
