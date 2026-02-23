@@ -9,15 +9,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.rays.jdbc.exception.DuplicateRecordException;
+import com.rays.jdbc.util.JDBCDataSource;
 
 public class UserModel {
-
-	ResourceBundle rb = ResourceBundle.getBundle("com.rays.jdbc.bundle.app");
-
-	String url = rb.getString("url");
-	String driver = rb.getString("driver");
-	String username = rb.getString("username");
-	String password = rb.getString("password");
 
 	public int add(UserBean bean) throws Exception {
 
@@ -27,9 +21,7 @@ public class UserModel {
 			throw new DuplicateRecordException("email id already exists");
 		}
 
-		Class.forName(driver);
-
-		Connection conn = DriverManager.getConnection(url, username, password);
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
@@ -52,9 +44,7 @@ public class UserModel {
 
 	public void update(UserBean bean) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sunrays", "root", "root");
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_user set firstName = ?, lastName = ?, login = ?, password = ?, dob = ? where id = ?");
@@ -94,9 +84,7 @@ public class UserModel {
 
 	public UserBean findByLogin(String login) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sunrays", "root", "root");
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ?");
 
