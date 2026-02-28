@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,25 @@ import com.rays.exception.DuplicateRecordException;
 import com.rays.util.JDBCDataSource;
 
 public class UserModel {
-	
+
+	public int nextPk() throws SQLException {
+
+		int pk = 0;
+
+		Connection conn = JDBCDataSource.getConnection();
+
+		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
+
+		ResultSet rs = pstmt.executeQuery();
+
+		while (rs.next()) {
+			pk = rs.getInt(1);
+		}
+
+		return pk + 1;
+
+	}
+
 	public int add(UserBean bean) throws Exception {
 
 		UserBean existsBean = findByLogin(bean.getLogin());
@@ -25,7 +44,7 @@ public class UserModel {
 
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
-		pstmt.setInt(1, bean.getId());
+		pstmt.setInt(1, nextPk());
 		pstmt.setString(2, bean.getFirstName());
 		pstmt.setString(3, bean.getLastName());
 		pstmt.setString(4, bean.getLogin());

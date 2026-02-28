@@ -39,15 +39,16 @@ public class UserRegistrationCtl extends HttpServlet {
 		String dob = request.getParameter("dob");
 
 		try {
-			bean.setId(5);
 			bean.setFirstName(fname);
 			bean.setLastName(lname);
 			bean.setLogin(login);
 			bean.setPassword(password);
 			bean.setDob(sdf.parse(dob));
 
-			model.add(bean);
+			model.add(bean);	
+			request.setAttribute("successMsg", "user registration successfully");
 		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
 

@@ -8,8 +8,17 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
+
+	<%
+	String smsg = (String) request.getAttribute("successMsg");
+	String emsg = (String) request.getAttribute("errorMsg");
+	%>
+
 	<div align="center">
 		<h1>User Registration</h1>
+
+		<h3 style="color: green;"><%=smsg != null ? smsg : ""%></h3>
+		<h3 style="color: red;"><%=emsg != null ? emsg : ""%></h3>
 
 		<form action="UserRegistrationCtl" method="post">
 
