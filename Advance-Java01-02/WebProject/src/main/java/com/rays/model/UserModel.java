@@ -184,7 +184,7 @@ public class UserModel {
 
 	}
 
-	public List<UserBean> search(UserBean bean) throws Exception {
+	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws Exception {
 
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -199,6 +199,11 @@ public class UserModel {
 			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
 				sql.append(" and lastName like '" + bean.getLastName() + "%'");
 			}
+		}
+
+		if (pageSize > 0) {
+			pageNo = (pageNo - 1) * pageSize;
+			sql.append(" limit " + pageNo + ", " + pageSize);
 		}
 
 		System.out.println("sql ===> " + sql.toString());

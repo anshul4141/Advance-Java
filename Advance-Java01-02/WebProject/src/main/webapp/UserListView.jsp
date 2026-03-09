@@ -14,10 +14,15 @@
 	List<UserBean> list = (List<UserBean>) request.getAttribute("list");
 	String smsg = (String) request.getAttribute("successMsg");
 	String emsg = (String) request.getAttribute("errorMsg");
-	int index = 1;
+	int pageNo = (int) request.getAttribute("pageNo");
+	int index = (pageNo - 1) * 5 + 1;
 	%>
 
 	<%@ include file="Header.jsp"%>
+
+	<%
+	if (list.size() != 0) {
+	%>
 	<div align="center">
 		<h1>User List</h1>
 		<h3 style="color: green;"><%=smsg != null ? smsg : ""%></h3>
@@ -39,7 +44,7 @@
 			<table border="1px" width="100%">
 				<tr style="background-color: skyblue">
 					<th>Select</th>
-					<th>Id</th>
+					<th>S No.</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Login</th>
@@ -74,12 +79,28 @@
 			<br>
 			<table width="100%">
 				<tr>
+					<td><input type="submit" name="operation" value="previous"
+						<%=pageNo == 1 ? "disabled" : ""%>></td>
 					<td align="center"><input type="submit" name="operation"
 						value="delete"></td>
+					<td align="right"><input type="submit" name="operation"
+						value="next" <%=list.size() < 5 ? "disabled" : ""%>></td>
 				</tr>
 			</table>
+			<input type="hidden" name="pageNo" value="<%=pageNo%>">
 		</form>
-
 	</div>
+	<%
+	} else {
+	%>
+	<div align="center">
+		<h2 style="color: red">record not found</h2>
+		<h3>
+			<a href="UserListCtl.do">back to the list</a>
+		</h3>
+	</div>
+	<%
+	}
+	%>
 </body>
 </html>

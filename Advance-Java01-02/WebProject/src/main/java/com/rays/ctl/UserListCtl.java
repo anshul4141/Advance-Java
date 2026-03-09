@@ -22,9 +22,13 @@ public class UserListCtl extends HttpServlet {
 		List<UserBean> list = null;
 		UserModel model = new UserModel();
 
+		int pageNo = 1;
+		int pageSize = 5;
+
 		try {
-			list = model.search(null);
+			list = model.search(null, pageNo, pageSize);
 			request.setAttribute("list", list);
+			request.setAttribute("pageNo", pageNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,6 +42,9 @@ public class UserListCtl extends HttpServlet {
 
 		UserModel model = new UserModel();
 		UserBean bean = new UserBean();
+
+		int pageNo = 1;
+		int pageSize = 5;
 
 		String op = request.getParameter("operation");
 		String[] ids = request.getParameterValues("ids");
@@ -65,11 +72,22 @@ public class UserListCtl extends HttpServlet {
 			bean.setLastName(request.getParameter("lastName"));
 		}
 
+		if (op.equals("next")) {
+			pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			pageNo++;
+		}
+
+		if (op.equals("previous")) {
+			pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			pageNo--;
+		}
+
 		List<UserBean> list = null;
 
 		try {
-			list = model.search(bean);
+			list = model.search(bean, pageNo, pageSize);
 			request.setAttribute("list", list);
+			request.setAttribute("pageNo", pageNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
