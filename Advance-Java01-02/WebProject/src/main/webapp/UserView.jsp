@@ -61,9 +61,7 @@
 						value="<%=bean != null ? "update" : "save"%>"></td>
 				</tr>
 			</table>
-
 		</form>
-
 	</div>
 </body>
 </html>
