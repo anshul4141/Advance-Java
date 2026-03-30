@@ -55,14 +55,11 @@
 
 ---
 
------------------------ TRIGGERS ----------------
-
-1. CREATE TRIGGER before_insert_employee BEFORE INSERT ON employee FOR EACH ROW SET NEW.name = UPPER(NEW.name); (BEFORE INSERT trigger)
-2. CREATE TRIGGER after_insert_employee AFTER INSERT ON employee FOR EACH ROW INSERT INTO emp_log VALUES (NEW.id, NOW()); (AFTER INSERT trigger)
-3. CREATE TRIGGER before_update_employee BEFORE UPDATE ON employee FOR EACH ROW SET NEW.salary = NEW.salary + 1000; (BEFORE UPDATE trigger)
-4. CREATE TRIGGER after_delete_employee AFTER DELETE ON employee FOR EACH ROW INSERT INTO emp_delete_log VALUES (OLD.id, NOW()); (AFTER DELETE trigger)
-
-------------------------------------------------
+## foreign key with on update cascade & on delete cascade
+1. create table emp(id int primary key, name varchar(50), salary int);
+2. create table dept(id int primary key, dept_name varchar(50));
+3. alter table emp add dept_id int;
+4. alter table emp add foreign key(dept_id) references dept(id) on update cascade on delete cascade;
 
 
 ------------------------ today -----------------------------------------------------
