@@ -1,7 +1,6 @@
 package com.rays.ctl;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,43 +12,40 @@ import javax.servlet.http.HttpServletResponse;
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/UserRegistrationCtl")
-public class UserRegistrationCtl extends HttpServlet {
+@WebServlet("/LoginCtl")
+public class LoginCtl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("in do post");
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
 
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		String dob = request.getParameter("dob");
 
 		try {
-			bean.setFirstName(firstName);
-			bean.setLastName(lastName);
-			bean.setLogin(login);
-			bean.setPassword(password);
-			bean.setDob(sdf.parse(dob));
-			model.add(bean);
-			request.setAttribute("successMsg", "user register successfully");
+			bean = model.authenticate(login, password);
+			System.out.println("user bean === " + bean.getFirstName());
+			if (bean != null) {
+				System.out.println("user login successfully");
+				request.setAttribute("user", bean);
+			} else {
+				request.setAttribute("errorMsg", "invalid login or password");
+			}
+
 		} catch (Exception e) {
-			request.setAttribute("erorrMsg", e.getMessage());
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
 		rd.forward(request, response);
 
 	}
