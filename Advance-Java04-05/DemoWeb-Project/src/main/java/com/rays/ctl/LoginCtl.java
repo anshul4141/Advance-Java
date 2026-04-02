@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
@@ -30,15 +31,14 @@ public class LoginCtl extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-
 		try {
+
 			bean = model.authenticate(login, password);
-			System.out.println("user bean === " + bean.getFirstName());
+
 			if (bean != null) {
-				System.out.println("user login successfully");
 				request.setAttribute("user", bean);
 			} else {
-				request.setAttribute("errorMsg", "invalid login or password");
+				request.setAttribute("erorrMsg", "Invalid login or passwrod");
 			}
 
 		} catch (Exception e) {

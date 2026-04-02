@@ -10,14 +10,14 @@
 
 	<%
 	String succesMsg = (String) request.getAttribute("successMsg");
-	String errorMsg = (String) request.getAttribute("erorrMsg");
+	String erorrMsg = (String) request.getAttribute("erorrMsg");
 	%>
 
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<h1>Login</h1>
 		<h3 style="color: green"><%=succesMsg != null ? succesMsg : ""%></h3>
-		<h3 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h3>
+		<h3 style="color: red"><%=erorrMsg != null ? erorrMsg : ""%></h3>
 		<form action="LoginCtl" method="post">
 
 			<table>
