@@ -10,13 +10,16 @@
 <body>
 
 	<%
-	UserBean userBean = (UserBean) request.getAttribute("user");
+	UserBean userBean = (UserBean) session.getAttribute("user");
 	%>
 
 	<%
 	if (userBean != null) {
 	%>
 	<h1><%="Hii, " + userBean.getFirstName()%></h1>
+	<a href="#">Add User</a> |
+	<a href="#">User List</a> |
+	<a href="LoginCtl?operation=logout">Logout</a> |
 	<%
 	} else {
 	%>

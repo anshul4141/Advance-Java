@@ -19,6 +19,14 @@ public class LoginCtl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String op = request.getParameter("operation");
+
+		if (op != null) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			request.setAttribute("successMsg", "User logout successfully");
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
 		rd.forward(request, response);
 	}
@@ -32,11 +40,13 @@ public class LoginCtl extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		try {
-
+			HttpSession session = request.getSession();
 			bean = model.authenticate(login, password);
 
 			if (bean != null) {
-				request.setAttribute("user", bean);
+				session.setAttribute("user", bean);
+				response.sendRedirect("WelcomeCtl");
+				return;
 			} else {
 				request.setAttribute("erorrMsg", "Invalid login or passwrod");
 			}
