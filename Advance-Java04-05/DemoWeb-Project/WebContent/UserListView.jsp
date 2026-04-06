@@ -14,6 +14,8 @@
 	List<UserBean> list = (List) request.getAttribute("list");
 	int pageNo = (int) request.getAttribute("pageNo");
 	Iterator<UserBean> it = list.iterator();
+	String succesMsg = (String) request.getAttribute("successMsg");
+	String erorrMsg = (String) request.getAttribute("erorrMsg");
 	%>
 
 	<%@ include file="Header.jsp"%>
@@ -25,6 +27,10 @@
 
 	<form action="UserListCtl" method="post">
 
+		<div align="center">
+			<h2 style="color: green"><%=succesMsg != null ? succesMsg : ""%></h2>
+			<h2 style="color: red"><%=erorrMsg != null ? erorrMsg : ""%></h2>
+		</div>
 		<%
 		if (list.size() == 0) {
 		%>
@@ -35,8 +41,24 @@
 		<input type="hidden" name="pageNo" value="<%=pageNo%>">
 
 		<div align="center">
+
+			<table>
+				<tr>
+					<th>First Name</th>
+					<td><input type="text" name="firstName"
+						value="<%=request.getParameter("firstName") != null ? request.getParameter("firstName") : ""%>"
+						placeholder="search by firstName"></td>
+					<th>Last Name</th>
+					<td><input type="text" name="lastName"
+						value="<%=request.getParameter("lastName") != null ? request.getParameter("lastName") : ""%>"
+						placeholder="search by lastName"></td>
+					<td><input type="submit" name="operation" value="search"></td>
+				</tr>
+			</table>
+
 			<table width="100%" border="1px">
 				<tr style="background-color: skyblue">
+					<th>Select</th>
 					<th>Id</th>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -51,6 +73,7 @@
 				%>
 
 				<tr align="center" style="background-color: #D3D3D3;">
+					<td><input type="checkbox" name="ids" value=<%=bean.getId()%>></td>
 					<td><%=bean.getId()%></td>
 					<td><%=bean.getFirstName()%></td>
 					<td><%=bean.getLastName()%></td>
@@ -68,6 +91,7 @@
 				<tr>
 					<td><input type="submit" name="operation"
 						<%=pageNo == 1 ? "disabled" : ""%> value="previous"></td>
+					<td><input type="submit" name="operation" value="delete"></td>
 					<td align="right"><input type="submit" name="operation"
 						<%=list.size() < 10 ? "disabled" : ""%> value="next"></td>
 				</tr>

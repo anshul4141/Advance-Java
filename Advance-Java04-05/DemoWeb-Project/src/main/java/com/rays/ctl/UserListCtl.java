@@ -48,6 +48,24 @@ public class UserListCtl extends HttpServlet {
 		int pageNo = 1;
 		int pageSize = 10;
 
+		String[] ids = request.getParameterValues("ids");
+
+		if (op.equals("delete")) {
+			if (ids != null && ids.length > 0) {
+				for (String id : ids) {
+					bean.setId(Integer.parseInt(id));
+					try {
+						model.delete(bean);
+						request.setAttribute("successMsg", "record deleted successfully");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				request.setAttribute("erorrMsg", "select at least one record");
+			}
+		}
+
 		if (op.equals("next")) {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			pageNo++;
@@ -56,6 +74,11 @@ public class UserListCtl extends HttpServlet {
 		if (op.equals("previous")) {
 			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			pageNo--;
+		}
+
+		if (op.equals("search")) {
+			bean.setFirstName(request.getParameter("firstName"));
+			bean.setLastName(request.getParameter("lastName"));
 		}
 
 		try {
