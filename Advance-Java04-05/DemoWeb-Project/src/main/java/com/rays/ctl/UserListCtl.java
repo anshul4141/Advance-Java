@@ -27,8 +27,11 @@ public class UserListCtl extends HttpServlet {
 
 		try {
 			List<UserBean> list = model.search(bean, pageNo, pageSize);
+			List<UserBean> nextList = model.search(bean, pageNo + 1, pageSize);
 			request.setAttribute("list", list);
+			request.setAttribute("nextList", nextList);
 			request.setAttribute("pageNo", pageNo);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +86,9 @@ public class UserListCtl extends HttpServlet {
 
 		try {
 			List<UserBean> list = model.search(bean, pageNo, pageSize);
+			List<UserBean> nextList = model.search(bean, pageNo + 1, pageSize);
 			request.setAttribute("list", list);
+			request.setAttribute("nextList", nextList);
 			request.setAttribute("pageNo", pageNo);
 		} catch (Exception e) {
 			e.printStackTrace();

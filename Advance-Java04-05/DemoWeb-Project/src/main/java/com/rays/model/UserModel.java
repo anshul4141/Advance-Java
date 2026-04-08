@@ -186,6 +186,9 @@ public class UserModel {
 			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
 				sql.append(" and lastName like '" + bean.getLastName() + "%'");
 			}
+			if (bean.getLogin() != null && bean.getLogin().length() > 0) {
+				sql.append(" and login = '" + bean.getLastName() + "'");
+			}
 		}
 
 		if (pageSize > 0) {

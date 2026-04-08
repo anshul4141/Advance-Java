@@ -12,6 +12,7 @@
 
 	<%
 	List<UserBean> list = (List) request.getAttribute("list");
+	List<UserBean> nextList = (List) request.getAttribute("nextList");
 	int pageNo = (int) request.getAttribute("pageNo");
 	Iterator<UserBean> it = list.iterator();
 	String succesMsg = (String) request.getAttribute("successMsg");
@@ -65,6 +66,7 @@
 					<th>Login</th>
 					<th>Password</th>
 					<th>Dob</th>
+					<th>Edit</th>
 				</tr>
 
 				<%
@@ -80,6 +82,7 @@
 					<td><%=bean.getLogin()%></td>
 					<td><%=bean.getPassword()%></td>
 					<td><%=bean.getDob()%></td>
+					<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}
@@ -93,7 +96,7 @@
 						<%=pageNo == 1 ? "disabled" : ""%> value="previous"></td>
 					<td><input type="submit" name="operation" value="delete"></td>
 					<td align="right"><input type="submit" name="operation"
-						<%=list.size() < 10 ? "disabled" : ""%> value="next"></td>
+						<%=nextList.size() == 0 ? "disabled" : ""%> value="next"></td>
 				</tr>
 			</table>
 		</div>
