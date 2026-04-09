@@ -1,0 +1,38 @@
+# User Registration Flow:
+
+1. UserRegistrationView.jsp par user registration ka form banaya.
+
+2. Form me <form action="UserRegistrationCtl" method="post"> set kiya.
+
+3. User ne form fill karke submit button (signUp) par click kiya.
+
+4. Request UserRegistrationCtl par gayi aur uski doPost() method call hui.
+
+5. doPost() me request se parameters get kiye: firstName, lastName, login, password, dob.
+
+6. Ek UserBean ka object banaya aur usme data set kiya:
+   bean.setFirstName(), bean.setLastName(), bean.setLogin(), bean.setPassword(), bean.setDob()
+
+7. UserModel ka object banaya aur add(bean) method call ki.
+
+8. add() method me sabse pehle findByLogin() call karke check kiya ki login already exist to nahi karta.
+
+9. Agar login already exist mila to DuplicaterecordException throw ki aur error message set kiya.
+
+10. Agar duplicate nahi mila to nextPk() call karke next id nikali (max(id) + 1).
+
+11. Database me insert query execute hui:
+    insert into st_user values(?, ?, ?, ?, ?, ?)
+
+12. Record successfully insert hone par "user register successfully" success message request me set kiya.
+
+13. Agar koi exception aayi to error message "erorrMsg" request me set kiya.
+
+14. Servlet ne RequestDispatcher se dobara UserRegistrationView.jsp par forward kiya.
+
+15. JSP me request attribute se successMsg aur errorMsg get kiya.
+
+16. JSP par message display hua:
+
+    * Success → green color me
+    * Error → red color me
