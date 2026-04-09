@@ -20,7 +20,7 @@
 
 		<h3 style="color: green"><%=succesMsg != null ? succesMsg : ""%></h3>
 		<h3 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h3>
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 
 			<input type="hidden" name="id"
 				value="<%=bean != null ? bean.getId() : ""%>">
