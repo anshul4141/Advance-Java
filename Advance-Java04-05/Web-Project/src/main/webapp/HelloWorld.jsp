@@ -8,17 +8,19 @@
 </head>
 <body>
 
+	<%-- <%  %> script-let-tag are used to write java code only not html in jsp's --%>
+	<%-- <%= %> expression tag are used to print java variables and objects --%>
+
 	<%
-	for (int i = 1; i <= 10; i++) {
+	for (int i = 1; i <= 5; i++) {
 	%>
-	<h1><%=i + " "%>Hello World
+	<h1>
+		<%=i%>
+		Hello World
 	</h1>
 	<%
 	}
 	%>
-
-	<%-- (<% %> ---> script let tag use to write java code in jsp) --%>
-	<%-- (<%= %> ---> expression tag use to print java variable or value) --%>
 
 </body>
 </html>
