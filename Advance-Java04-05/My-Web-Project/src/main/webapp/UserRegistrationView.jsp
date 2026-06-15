@@ -12,7 +12,7 @@
 	<div align="center">
 		<h1>User Registeration</h1>
 
-		<form action="LoginCtl" method="post">
+		<form action="UserRegistrationCtl" method="post">
 
 			<table>
 				<tr>
@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" name="operation" value="signUn"></td>
+					<td><input type="submit" name="operation" value="signUp"></td>
 				</tr>
 			</table>
 
