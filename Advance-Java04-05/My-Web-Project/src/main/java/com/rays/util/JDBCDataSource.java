@@ -20,6 +20,7 @@ public final class JDBCDataSource {
 	// of single/this class
 	private JDBCDataSource() {
 		try {
+			cpds = new ComboPooledDataSource();
 			cpds.setDriverClass(rb.getString("driver"));
 			cpds.setJdbcUrl(rb.getString("url"));
 			cpds.setUser(rb.getString("username"));

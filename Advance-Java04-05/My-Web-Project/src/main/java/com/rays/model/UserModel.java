@@ -32,6 +32,12 @@ public class UserModel {
 		int pk = nextPk();
 		Connection conn = null;
 
+		UserBean existBean = findByLogin(bean.getLoginId());
+
+		if (existBean != null) {
+			throw new RuntimeException("loginId already exist");
+		}
+
 		try {
 			conn = JDBCDataSource.getConnection();
 
@@ -58,6 +64,37 @@ public class UserModel {
 
 		return pk;
 
+	}
+
+	public UserBean findByLogin(String loginId) {
+
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ST_USER WHERE loginId = ?");
+
+			pstmt.setString(1, loginId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt(1));
+				bean.setFirstName(rs.getString(2));
+				bean.setLastName(rs.getString(3));
+				bean.setLoginId(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setDob(rs.getDate(6));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
 	}
 
 }
