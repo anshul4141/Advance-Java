@@ -7,11 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	String _suc = (String) request.getAttribute("successMsg");
+	String _err = (String) request.getAttribute("errorMsg");
+	%>
 	<%@ include file="Header.jsp"%>
 
 	<div align="center">
 		<h1>Login</h1>
-
+		
+		<h3 style="color: green"><%=_suc != null ? _suc : ""%></h3>
+		<h3 style="color: red"><%=_err != null ? _err : ""%></h3>
+		
 		<form action="LoginCtl" method="post">
 
 			<table>

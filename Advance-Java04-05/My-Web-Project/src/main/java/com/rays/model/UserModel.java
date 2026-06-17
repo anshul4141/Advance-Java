@@ -97,4 +97,36 @@ public class UserModel {
 		return bean;
 	}
 
+	public UserBean authenticate(String loginId, String password) {
+
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ST_USER WHERE loginId = ? AND password = ?");
+
+			pstmt.setString(1, loginId);
+			pstmt.setString(2, password);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt(1));
+				bean.setFirstName(rs.getString(2));
+				bean.setLastName(rs.getString(3));
+				bean.setLoginId(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setDob(rs.getDate(6));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
+
 }
