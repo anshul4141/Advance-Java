@@ -25,6 +25,8 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		JDBCDataSource.closeConnection(conn);
 		return pk + 1;
 
 	}
@@ -64,6 +66,7 @@ public class UserModel {
 			e.printStackTrace();
 		}
 
+		JDBCDataSource.closeConnection(conn);
 		return pk;
 
 	}
@@ -96,6 +99,8 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 
@@ -128,6 +133,8 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
 
@@ -187,6 +194,7 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		JDBCDataSource.closeConnection(conn);
 		return list;
 	}
 
