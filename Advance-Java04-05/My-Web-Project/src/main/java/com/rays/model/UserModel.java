@@ -25,7 +25,7 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		JDBCDataSource.closeConnection(conn);
 		return pk + 1;
 
@@ -71,6 +71,100 @@ public class UserModel {
 
 	}
 
+	public void update(UserBean bean) {
+
+		Connection conn = null;
+
+		try {
+			conn = JDBCDataSource.getConnection();
+
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement(
+					"UPDATE st_user SET firstName = ?, lastName = ?, loginId = ?, password = ?, dob = ? WHERE id = ?");
+
+			pstmt.setString(1, bean.getFirstName());
+			pstmt.setString(2, bean.getLastName());
+			pstmt.setString(3, bean.getLoginId());
+			pstmt.setString(4, bean.getPassword());
+			pstmt.setDate(5, new java.sql.Date(bean.getDob().getTime()));
+			pstmt.setInt(6, bean.getId());
+
+			pstmt.executeUpdate();
+			conn.commit(); // database changes committed successfully
+		} catch (Exception e) {
+			try {
+				conn.rollback(); // database changes revert successfully
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+
+		JDBCDataSource.closeConnection(conn);
+
+	}
+
+	public void delete(int id) {
+
+		Connection conn = null;
+
+		try {
+			conn = JDBCDataSource.getConnection();
+
+			conn.setAutoCommit(false);
+
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM st_user WHERE id = ?");
+			pstmt.setInt(1, id);
+
+			pstmt.executeUpdate();
+			conn.commit(); // database changes committed successfully
+		} catch (Exception e) {
+			try {
+				conn.rollback(); // database changes revert successfully
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+
+		JDBCDataSource.closeConnection(conn);
+
+	}
+
+	public UserBean findByPk(int id) {
+
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM ST_USER WHERE id = ?");
+
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt(1));
+				bean.setFirstName(rs.getString(2));
+				bean.setLastName(rs.getString(3));
+				bean.setLoginId(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setDob(rs.getDate(6));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		JDBCDataSource.closeConnection(conn);
+		return bean;
+	}
+
 	public UserBean findByLogin(String loginId) {
 
 		Connection conn = null;
@@ -99,7 +193,7 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}
@@ -133,7 +227,7 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		JDBCDataSource.closeConnection(conn);
 		return bean;
 	}

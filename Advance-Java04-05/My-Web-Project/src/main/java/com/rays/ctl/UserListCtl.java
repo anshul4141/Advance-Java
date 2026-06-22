@@ -19,9 +19,7 @@ public class UserListCtl extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doPost(request, response);
-
 	}
 
 	@Override
@@ -38,6 +36,18 @@ public class UserListCtl extends HttpServlet {
 		if (op != null && op.equals("search")) {
 			bean.setFirstName(request.getParameter("firstName"));
 			bean.setLastName(request.getParameter("lastName"));
+		}
+
+		if (op != null && op.equals("delete")) {
+			String[] ids = request.getParameterValues("ids");
+			if(ids != null && ids.length > 0) {
+				for(String id : ids) {
+					model.delete(Integer.parseInt(id));
+					request.setAttribute("successMsg", "record deleted successfully");
+				}
+			} else {
+				request.setAttribute("errorMsg", "select at least one record to delete..!");
+			}
 		}
 
 		List<UserBean> list = model.search(bean, pageNo, pageSize);

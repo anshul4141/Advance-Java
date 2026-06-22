@@ -18,13 +18,14 @@
 	<%@ include file="Header.jsp"%>
 
 	<div align="center">
-		<h1>Add User</h1>
+		<h1><%=bean != null && bean.getId() > 0 ? "Update User" : "Add User"%></h1>
 
 		<h3 style="color: green"><%=_suc != null ? _suc : ""%></h3>
 		<h3 style="color: red"><%=_err != null ? _err : ""%></h3>
 
 		<form action="UserCtl" method="post">
-
+			<input type="hidden" name="id"
+				value="<%=bean != null ? bean.getId() : ""%>">
 			<table>
 				<tr>
 					<th>FirstName<span style="color: red">*</span></th>
@@ -58,7 +59,8 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit" name="operation" value="save"></td>
+					<td><input type="submit" name="operation"
+						value="<%=bean != null && bean.getId() > 0 ? "update" : "save"%>"></td>
 				</tr>
 			</table>
 
