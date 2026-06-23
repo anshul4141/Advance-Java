@@ -22,7 +22,7 @@
 		<h3 style="color: green"><%=_suc != null ? _suc : ""%></h3>
 		<h3 style="color: red"><%=_err != null ? _err : ""%></h3>
 
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
 
 			<table>
 				<tr>
@@ -63,7 +63,7 @@
 					<td><%=bean.getLastName()%></td>
 					<td><%=bean.getLoginId()%></td>
 					<td><%=bean.getDob()%></td>
-					<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}

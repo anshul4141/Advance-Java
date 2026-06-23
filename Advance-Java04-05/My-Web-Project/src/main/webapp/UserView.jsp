@@ -23,7 +23,7 @@
 		<h3 style="color: green"><%=_suc != null ? _suc : ""%></h3>
 		<h3 style="color: red"><%=_err != null ? _err : ""%></h3>
 
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 			<input type="hidden" name="id"
 				value="<%=bean != null ? bean.getId() : ""%>">
 			<table>
