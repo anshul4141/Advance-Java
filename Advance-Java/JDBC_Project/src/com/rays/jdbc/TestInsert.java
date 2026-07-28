@@ -8,16 +8,29 @@ public class TestInsert {
 
 	public static void main(String[] args) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;
 
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-		Statement stmt = conn.createStatement();
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
 
-		int i = stmt.executeUpdate(
-				"insert into st_user values(7, 'Shyam', 'Yadav', 'shyam@gmail.com', 'shyam123', '2001-02-02'),(8, 'Aman', 'Kumar', 'aman@gmail.com', 'aman123', '2001-02-02')");
+			conn.setAutoCommit(false); // Transaction begin
 
-		System.out.println("record inserted " + i + " row affected");
+			Statement stmt = conn.createStatement();
+
+			int i = stmt.executeUpdate(
+					"insert into st_user values(7, 'Shyam', 'Yadav', 'shyam@gmail.com', 'shyam123', '2001-02-02'),(8, 'Aman', 'Kumar', 'aman@gmail.com', 'aman123', '2001-02-02')");
+
+			System.out.println("record inserted " + i + " row affected");
+
+			conn.commit(); // Transaction commit
+		} catch (Exception e) {
+			System.out.println("exception: " + e.getMessage());
+			conn.rollback();
+		} finally {
+			conn.close(); // Transaction end
+		}
 
 	}
 
