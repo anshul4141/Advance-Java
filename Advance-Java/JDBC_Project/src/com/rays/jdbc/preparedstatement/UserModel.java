@@ -6,29 +6,28 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.rays.jdbc.util.JDBCDataSource;
+
 public class UserModel {
 
-	public void add(int id, String firstName, String lastName, String login, String password, Date dob)
-			throws SQLException {
+	public void add(UserBean bean) throws SQLException {
 
 		Connection conn = null;
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?)");
 
-			pstmt.setInt(1, id);
-			pstmt.setString(2, firstName);
-			pstmt.setString(3, lastName);
-			pstmt.setString(4, login);
-			pstmt.setString(5, password);
-			pstmt.setDate(6, new java.sql.Date(dob.getTime()));
+			pstmt.setInt(1, bean.getId());
+			pstmt.setString(2, bean.getFirstName());
+			pstmt.setString(3, bean.getLastName());
+			pstmt.setString(4, bean.getLoginId());
+			pstmt.setString(5, bean.getPassword());
+			pstmt.setDate(6, new java.sql.Date(bean.getDob().getTime()));
 
 			int i = pstmt.executeUpdate();
 
@@ -45,28 +44,25 @@ public class UserModel {
 
 	}
 
-	public void update(int id, String firstName, String lastName, String login, String password, Date dob)
-			throws SQLException {
+	public void update(UserBean bean) throws SQLException {
 
 		Connection conn = null;
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement(
 					"update st_user set firstName = ?, lastName = ?, loginId = ?, password = ?, dob = ? where id = ?");
 
-			pstmt.setString(1, firstName);
-			pstmt.setString(2, lastName);
-			pstmt.setString(3, login);
-			pstmt.setString(4, password);
-			pstmt.setDate(5, new java.sql.Date(dob.getTime()));
-			pstmt.setInt(6, id);
+			pstmt.setString(1, bean.getFirstName());
+			pstmt.setString(2, bean.getLastName());
+			pstmt.setString(3, bean.getLoginId());
+			pstmt.setString(4, bean.getPassword());
+			pstmt.setDate(5, new java.sql.Date(bean.getDob().getTime()));
+			pstmt.setInt(6, bean.getId());
 
 			int i = pstmt.executeUpdate();
 
@@ -89,9 +85,7 @@ public class UserModel {
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 

@@ -8,8 +8,8 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 //		testAdd();
-//		testUpdate();
-		testDelete();
+		testUpdate();
+//		testDelete();
 	}
 
 	public static void testAdd() throws Exception {
@@ -17,16 +17,35 @@ public class TestUserModel {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserModel model = new UserModel();
 
-		model.add(8, "Abhay", "Malve", "mave@gmail.com", "pass123", sdf.parse("2002-04-09"));
+		UserBean bean = new UserBean();
+
+		bean.setId(9);
+		bean.setFirstName("Ayan");
+		bean.setLastName("Choudhary");
+		bean.setLoginId("ayan@gmail.com");
+		bean.setPassword("ayan123");
+		bean.setDob(sdf.parse("2004-10-09"));
+
+		model.add(bean);
 
 	}
 
 	public static void testUpdate() throws SQLException, ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
 		UserModel model = new UserModel();
 
-		model.update(8, "Abhay", "Malve", "mave@gmail.com", "abhay123", sdf.parse("2002-04-09"));
+		UserBean bean = new UserBean();
+
+		bean.setId(9);
+		bean.setFirstName("Ayan");
+		bean.setLastName("Ahmed Choudhary");
+		bean.setLoginId("ayan@gmail.com");
+		bean.setPassword("ayan123");
+		bean.setDob(sdf.parse("2004-10-09"));
+
+		model.update(bean);
 
 	}
 
