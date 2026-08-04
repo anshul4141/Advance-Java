@@ -3,16 +3,19 @@ package com.rays.jdbc.preparedstatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
 	public static UserModel model = new UserModel();
 
 	public static void main(String[] args) throws Exception {
-		testAdd();
+//		testAdd();
 //		testUpdate();
 //		testDelete();
 //		testFindByPk();
+		testSearch();
 	}
 
 	public static void testAdd() throws Exception {
@@ -70,6 +73,26 @@ public class TestUserModel {
 			System.out.println("\t" + bean.getDob());
 		} else {
 			throw new RuntimeException("record not found");
+		}
+
+	}
+
+	public static void testSearch() throws SQLException {
+
+		UserBean bean = new UserBean();
+	//	bean.setFirstName("v");
+		List<UserBean> list = model.search(bean, 1, 5);
+
+		Iterator<UserBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = it.next();
+			System.out.print(bean.getId());
+			System.out.print("\t" + bean.getFirstName());
+			System.out.print("\t" + bean.getLastName());
+			System.out.print("\t" + bean.getLoginId());
+			System.out.print("\t" + bean.getPassword());
+			System.out.println("\t" + bean.getDob());
 		}
 
 	}
