@@ -10,20 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rays.util.ServletUtility;
 
-@WebServlet("/UserRegistrationCtl")
-public class UserRegistrationCtl extends HttpServlet {
+@WebServlet("/WelcomeCtl")
+public class WelcomeCtl extends HttpServlet {
 
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("this is doGet() method");
-
-		ServletUtility.forward("UserRegistrationView.jsp", request, response);
+		ServletUtility.forward("WelcomeView.jsp", request, response);
 
 	}
 
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

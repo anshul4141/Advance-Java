@@ -8,13 +8,11 @@
 </head>
 <body>
 
-	<div align="center">
+	<a href="LoginCtl">Login</a> |
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="WelcomeCtl">Welcome</a>
 
-		<h1>
-			<a href="WelcomeCtl">Online Result System</a>
-		</h1>
-
-	</div>
+	<hr>
 
 </body>
 </html>

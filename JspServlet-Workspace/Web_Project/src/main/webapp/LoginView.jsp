@@ -12,22 +12,9 @@
 
 		<div align="center">
 
-			<h1 style="color: darkblue;">User Registration</h1>
+			<h1 style="color: darkblue;">Login</h1>
 
 			<table>
-
-				<tr>
-					<th>First Name:<font color="red">*</font></th>
-					<td><input type="text" name="firstName" value=""
-						placeholder="enter firstName"></td>
-				</tr>
-
-				<tr>
-					<th>Last Name:<font color="red">*</font></th>
-					<td><input type="text" name="lastName" value=""
-						placeholder="enter lastName"></td>
-				</tr>
-
 				<tr>
 					<th>Login:<font color="red">*</font></th>
 					<td><input type="email" name="login" value=""
@@ -41,15 +28,9 @@
 				</tr>
 
 				<tr>
-					<th>Dob:<font color="red">*</font></th>
-					<td><input type="date" name="dob" value=""></td>
-				</tr>
-
-				<tr>
 					<th></th>
-					<td><input type="submit" value="signUp"></td>
+					<td><input type="submit" value="signIn"></td>
 				</tr>
-
 			</table>
 
 		</div>
