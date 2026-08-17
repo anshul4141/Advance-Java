@@ -27,7 +27,7 @@ public class UserModel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 		return pk + 1; // return next auto-increment non-business primary key
 	}
@@ -65,9 +65,9 @@ public class UserModel {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			conn.rollback();
+			JDBCDataSource.trnRollBack(conn);
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 	}
