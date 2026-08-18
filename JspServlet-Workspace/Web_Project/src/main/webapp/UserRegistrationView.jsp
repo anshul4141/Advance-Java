@@ -10,6 +10,7 @@
 
 	<%
 	String succ = (String) request.getAttribute("successMsg");
+	String err = (String) request.getAttribute("errorMsg");
 	%>
 
 	<%@ include file="Header.jsp"%>
@@ -19,7 +20,8 @@
 
 			<h1 style="color: darkblue;">User Registration</h1>
 
-			<h3><%=succ != null ? succ : ""%></h3>
+			<h3 style="color: green"><%=succ != null ? succ : ""%></h3>
+			<h3 style="color: red"><%=err != null ? err : ""%></h3>
 
 			<table>
 

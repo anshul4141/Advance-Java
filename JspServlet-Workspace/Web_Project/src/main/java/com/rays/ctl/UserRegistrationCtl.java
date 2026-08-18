@@ -41,7 +41,7 @@ public class UserRegistrationCtl extends HttpServlet {
 		String password = request.getParameter("password");
 		String dob = request.getParameter("dob");
 
-		System.out.println(firstName + "\n" + lastName + "\n" + login + "\n" + password + "\n" + dob);
+//		System.out.println(firstName + "\n" + lastName + "\n" + login + "\n" + password + "\n" + dob);
 
 		try {
 
@@ -55,6 +55,7 @@ public class UserRegistrationCtl extends HttpServlet {
 			request.setAttribute("successMsg", "user registration successfully");
 
 		} catch (Exception e) {
+			request.setAttribute("errorMsg", "loginId already exist");
 			e.printStackTrace();
 		}
 
