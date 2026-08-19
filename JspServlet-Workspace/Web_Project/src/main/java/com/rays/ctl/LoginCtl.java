@@ -10,10 +10,27 @@ import javax.servlet.http.HttpSession;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
+import com.rays.util.InputValidatorUtility;
 import com.rays.util.ServletUtility;
 
 @WebServlet("/LoginCtl")
 public class LoginCtl extends HttpServlet {
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		System.out.println("request method == " + request.getMethod());
+
+		if (request.getMethod().equalsIgnoreCase("POST")) {
+			if (InputValidatorUtility.loginValidator(request) == false) {
+				ServletUtility.forward("LoginView.jsp", request, response);
+				return;
+			}
+		}
+
+		super.service(request, response);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
