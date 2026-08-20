@@ -17,4 +17,14 @@ public class ServletUtility {
 
 	}
 
+	public static String getErrorMessage(String key, HttpServletRequest request) {
+
+		String val = (String) request.getAttribute(key);
+
+		if (val != null) {
+			return val;
+		}
+		return "";
+	}
+
 }

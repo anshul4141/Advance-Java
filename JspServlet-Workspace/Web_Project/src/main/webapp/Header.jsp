@@ -16,6 +16,8 @@
 	if (user != null) {
 	%>
 	<h2><%="Hii, " + user.getFirstName()%></h2>
+	<a href="UserListCtl">User List</a> |
+	<a href="UserCtl">Add User</a> |
 	<a href="LoginCtl?operation=logout">logout</a> |
 	<%
 	} else {
