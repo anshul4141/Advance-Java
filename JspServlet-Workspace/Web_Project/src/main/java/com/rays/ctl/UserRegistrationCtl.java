@@ -45,11 +45,11 @@ public class UserRegistrationCtl extends HttpServlet {
 
 		try {
 
-			bean.setFirstName(firstName);
-			bean.setLastName(lastName);
-			bean.setLoginId(login);
-			bean.setPassword(password);
-			bean.setDob(sdf.parse(dob));
+			bean.setFirstName(firstName.trim());
+			bean.setLastName(lastName.trim());
+			bean.setLoginId(login.trim());
+			bean.setPassword(password.trim());
+			bean.setDob(sdf.parse(dob.trim()));
 			model.add(bean);
 
 			request.setAttribute("successMsg", "user registration successfully");
