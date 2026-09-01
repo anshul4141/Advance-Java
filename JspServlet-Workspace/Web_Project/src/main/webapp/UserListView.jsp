@@ -15,17 +15,20 @@
 	Iterator<UserBean> it = list.iterator();
 	String succ = (String) request.getAttribute("successMsg");
 	String err = (String) request.getAttribute("errorMsg");
+	int pageNo = (int) request.getAttribute("pageNo");
 	%>
 
 	<%@ include file="Header.jsp"%>
 
-	<form action="UserListCtl" method="post">
+	<form action="UserListCtl.do" method="post">
 		<div align="center">
 
 			<h1>User List</h1>
 
 			<h3 style="color: red"><%=err != null ? err : ""%></h3>
 			<h3 style="color: green"><%=succ != null ? succ : ""%></h3>
+
+			<input type="hidden" name="pageNo" value="<%=pageNo%>">
 
 			<table>
 				<tr>
@@ -66,14 +69,18 @@
 				}
 				%>
 			</table>
+			<h3>
+				pageNo=<%=pageNo%>
+			</h3>
 		</div>
 		<table width="100%">
 			<tr>
-				<td><input type="submit" name="operation" value="previous"></td>
+				<td><input type="submit" name="operation" value="previous"
+					<%=pageNo == 1 ? "disabled" : ""%>></td>
 				<td align="center"><input type="submit" name="operation"
 					value="delete"></td>
 				<td align="right"><input type="submit" name="operation"
-					value="next"></td>
+					value="next" <%=list.size() < 5 ? "disabled" : ""%>></td>
 			</tr>
 		</table>
 	</form>

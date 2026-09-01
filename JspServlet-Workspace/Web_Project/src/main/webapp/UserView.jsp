@@ -13,7 +13,7 @@
 	%>
 
 	<%@ include file="Header.jsp"%>
-	<form action="UserCtl" method="post">
+	<form action="UserCtl.do" method="post">
 
 		<div align="center">
 

@@ -13,7 +13,7 @@ import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 import com.rays.util.ServletUtility;
 
-@WebServlet("/UserCtl")
+@WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
