@@ -50,6 +50,7 @@
 					<th>Last Name</th>
 					<th>Login</th>
 					<th>Dob</th>
+					<th>Edit</th>
 				</tr>
 
 				<%
@@ -64,6 +65,7 @@
 					<td><%=bean.getLastName()%></td>
 					<td><%=bean.getLoginId()%></td>
 					<td><%=bean.getDob()%></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}

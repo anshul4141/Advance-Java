@@ -21,6 +21,19 @@ public class UserCtl extends HttpServlet {
 
 		System.out.println("this is doGet() method");
 
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+		String id = request.getParameter("id");
+
+		if (id != null) {
+			try {
+				bean = model.findByPk(Integer.parseInt(id));
+				request.setAttribute("bean", bean);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		ServletUtility.forward("UserView.jsp", request, response);
 
 	}
@@ -30,6 +43,7 @@ public class UserCtl extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("this is doPost() method");
+		String op = request.getParameter("operation");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
@@ -49,9 +63,15 @@ public class UserCtl extends HttpServlet {
 			bean.setLoginId(login);
 			bean.setPassword(password);
 			bean.setDob(sdf.parse(dob));
-			model.add(bean);
 
-			request.setAttribute("successMsg", "user saved successfully");
+			if (op.equals("save")) {
+				model.add(bean);
+				request.setAttribute("successMsg", "user saved successfully");
+			} else if (op.equals("update")) {
+				bean.setId(Integer.parseInt(request.getParameter("id")));
+				model.update(bean);
+				request.setAttribute("successMsg", "user updated successfully");
+			}
 
 		} catch (Exception e) {
 			request.setAttribute("errorMsg", "loginId already exist");
