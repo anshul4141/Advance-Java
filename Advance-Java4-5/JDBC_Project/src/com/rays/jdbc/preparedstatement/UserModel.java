@@ -1,10 +1,11 @@
 package com.rays.jdbc.preparedstatement;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.rays.util.JDBCDataSource;
 
 public class UserModel {
 
@@ -14,9 +15,7 @@ public class UserModel {
 		int pk = 0;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 
@@ -29,7 +28,7 @@ public class UserModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 		return pk + 1;
@@ -46,9 +45,7 @@ public class UserModel {
 		}
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -67,9 +64,9 @@ public class UserModel {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			JDBCDataSource.trnRollBack(conn);
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 	}
@@ -79,9 +76,7 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -101,9 +96,9 @@ public class UserModel {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			JDBCDataSource.trnRollBack(conn);
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 	}
@@ -113,9 +108,7 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -129,9 +122,9 @@ public class UserModel {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			JDBCDataSource.trnRollBack(conn);
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 	}
@@ -146,9 +139,7 @@ public class UserModel {
 		UserBean bean = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
 
@@ -169,7 +160,7 @@ public class UserModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 		return bean;
@@ -182,10 +173,7 @@ public class UserModel {
 		UserBean bean = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
-
+			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
 
 			pstmt.setString(1, loginId);
@@ -205,7 +193,7 @@ public class UserModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 		return bean;
