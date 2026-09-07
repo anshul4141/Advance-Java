@@ -1,16 +1,19 @@
 package com.rays.jdbc.preparedstatement;
 
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		testAdd();
+//		testAdd();
 //		testUpdate();
 //		testDelete();
 //		testFindByPk();
 //		testFindByLogin();
+		testSearch();
 
 	}
 
@@ -89,6 +92,28 @@ public class TestUserModel {
 		System.out.println(bean.getPassword());
 		System.out.println(bean.getLoginId());
 		System.out.println(bean.getDob());
+
+	}
+
+	public static void testSearch() {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		List list = model.search(bean, 1, 5);
+
+		Iterator it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = (UserBean) it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getDob());
+			System.out.println("-----------------");
+		}
 
 	}
 

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.rays.util.JDBCDataSource;
 
@@ -22,7 +24,7 @@ public class UserModel {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				pk = rs.getInt("id");
+				pk = rs.getInt(1);
 			}
 
 		} catch (SQLException e) {
@@ -211,6 +213,67 @@ public class UserModel {
 		}
 
 		return null;
+
+	}
+
+	public List search(UserBean bean, int pageNo, int pageSize) {
+
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1"); /* where 1=1 is sql injection */
+		List list = new ArrayList();
+		Connection conn = null;
+
+		try {
+
+			if (bean != null) {
+				if (bean.getId() > 0) {
+					sql.append(" and id = " + bean.getId());
+				}
+				if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+					sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+				}
+				if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+					sql.append(" and lastName like '" + bean.getLastName() + "%'");
+				}
+				if (bean.getLoginId() != null && bean.getLoginId().length() > 0) {
+					sql.append(" and loginId = '" + bean.getLoginId() + "'");
+				}
+				if (bean.getPassword() != null && bean.getPassword().length() > 0) {
+					sql.append(" and password = '" + bean.getPassword() + "'");
+				}
+				if (bean.getDob() != null && bean.getDob().getTime() > 0) {
+					sql.append(" and dob = '" + new java.sql.Date(bean.getDob().getTime()) + "'");
+				}
+			}
+
+			if (pageSize > 0) {
+				int index = (pageNo - 1) * pageSize;
+				sql.append(" limit " + index + ", " + pageSize);
+			}
+
+			System.out.println("sql ====> " + sql.toString());
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt("id"));
+				bean.setFirstName(rs.getString("firstName"));
+				bean.setLastName(rs.getString("lastName"));
+				bean.setLoginId(rs.getString("loginId"));
+				bean.setPassword(rs.getString("password"));
+				bean.setDob(rs.getDate("dob"));
+				list.add(bean);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
+
+		return list;
 
 	}
 
