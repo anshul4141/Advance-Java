@@ -9,7 +9,9 @@
 <body>
 
 	<div align="center">
-		<h1>User Management System</h1>
+		<h1>
+			<a href="WelcomeCtl">User Management System</a>
+		</h1>
 	</div>
 
 </body>
