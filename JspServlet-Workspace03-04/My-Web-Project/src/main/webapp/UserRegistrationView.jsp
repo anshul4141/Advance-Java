@@ -10,7 +10,7 @@
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<h1>User Registration</h1>
-		<form>
+		<form action="UserRegistrationCtl" method="post">
 
 			<table>
 
@@ -53,5 +53,6 @@
 		</form>
 
 	</div>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
