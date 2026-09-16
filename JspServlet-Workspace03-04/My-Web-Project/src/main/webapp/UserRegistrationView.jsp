@@ -8,8 +8,18 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
+
+	<%
+	String succ = (String) request.getAttribute("succMsg");
+	String err = (String) request.getAttribute("errorMsg");
+	%>
+
 	<div align="center">
 		<h1>User Registration</h1>
+
+		<h2 style="color: green"><%=succ != null ? succ : ""%></h2>
+		<h2 style="color: red"><%=err != null ? err : ""%></h2>
+
 		<form action="UserRegistrationCtl" method="post">
 
 			<table>

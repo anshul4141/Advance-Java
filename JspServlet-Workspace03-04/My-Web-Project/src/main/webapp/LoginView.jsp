@@ -10,7 +10,7 @@
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<h1>Login</h1>
-		<form>
+		<form action="LoginCtl" method="post">
 
 			<table>
 				<tr>

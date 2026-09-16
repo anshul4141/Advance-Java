@@ -44,16 +44,18 @@ public class UserRegistrationCtl extends HttpServlet {
 //		System.out.println(firstName + "\n" + lastName + "\n" + login + "\n" + password + "\n" + dob);
 
 		try {
-		
+
 			bean.setFirstName(firstName);
 			bean.setLastName(lastName);
 			bean.setLoginId(login);
 			bean.setPassword(password);
 			bean.setDob(sdf.parse(dob));
-			
+
 			model.add(bean);
-	
+			request.setAttribute("succMsg", "user register successfully");
+
 		} catch (Exception e) {
+			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
 
