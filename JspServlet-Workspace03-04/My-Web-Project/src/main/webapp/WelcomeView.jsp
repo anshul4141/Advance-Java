@@ -9,7 +9,8 @@
 <body>
 	<%@ include file="Header.jsp"%>
 	<div align="center">
-		<h1 style="color: red">Welcome To My Web-Site</h1>
+		<h1 style="color: red">
+			Welcome To My Web-Site<%=userBean != null ? "(" + userBean.getFirstName() + ")" : ""%></h1>
 	</div>
 	<%@ include file="Footer.jsp"%>
 </body>
