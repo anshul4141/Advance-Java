@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
-	<div align="center">
-		<h1>Welcome to my web-site</h1>
-	</div>
-	<%@ include file="Footer.jsp"%>
+	<h1>Hii, Guest</h1>
+	<a href="LoginView.jsp">Login</a> |
+	<a href="UserRegistrationView.jsp">SignUp</a> |
+	<a href="WelcomeView.jsp">Welcome</a>
+
+	<hr>
 </body>
 </html>

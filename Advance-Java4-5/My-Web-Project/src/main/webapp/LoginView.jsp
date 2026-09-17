@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file="Header.jsp"%>
 	<form>
 
 		<div align="center">
-
+			<h1>Login</h1>
 			<table>
 
 				<tr>
@@ -26,13 +26,16 @@
 						placeholder="enter your password"></td>
 				</tr>
 
-				<tr></tr>
+				<tr>
+					<th></th>
+					<td><input type="submit" name="operation" value="signIn"></td>
+				</tr>
 
 			</table>
 
 		</div>
 
 	</form>
-
+<%@ include file="Footer.jsp"%>
 </body>
 </html>
