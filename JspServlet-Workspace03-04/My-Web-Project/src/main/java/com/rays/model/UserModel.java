@@ -217,10 +217,10 @@ public class UserModel {
 
 	}
 
-	public List search(UserBean bean, int pageNo, int pageSize) {
+	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) {
 
 		StringBuffer sql = new StringBuffer("select * from st_user where 1=1"); /* where 1=1 is sql injection */
-		List list = new ArrayList();
+		List<UserBean> list = new ArrayList<UserBean>();
 		Connection conn = null;
 
 		try {
