@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h1>Hii, Guest</h1>
-	<a href="LoginView.jsp">Login</a> |
-	<a href="UserRegistrationView.jsp">SignUp</a> |
-	<a href="WelcomeView.jsp">Welcome</a>
+	<a href="LoginCtl">Login</a> |
+	<a href="UserRegistrationCtl">SignUp</a> |
+	<a href="WelcomeCtl">Welcome</a>
 
 	<hr>
 </body>
