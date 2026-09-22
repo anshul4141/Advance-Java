@@ -8,12 +8,17 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<form>
+
+	<%
+	String succMsg = (String) request.getAttribute("succMsg");
+	%>
+
+	<form action="UserRegistrationCtl" method="post">
 
 		<div align="center">
 
 			<h1>User Registration</h1>
-
+			<h1 style="color: green"><%=succMsg != null ? succMsg : ""%></h1>
 			<table>
 
 				<tr>
@@ -55,6 +60,6 @@
 		</div>
 
 	</form>
-<%@ include file="Footer.jsp"%>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
