@@ -17,13 +17,23 @@
 	int pageSize = (int) request.getAttribute("pageSize");
 	Iterator<UserBean> it = list.iterator();
 	int index = (pageNo - 1) * pageSize + 1;
+	String errorMsg = (String) request.getAttribute("errorMsg");
+	String succMsg = (String) request.getAttribute("succMsg");
 	%>
 	<div align="center">
 		<h1>User List</h1>
-		<form>
+
+		<h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
+		<h2 style="color: green"><%=succMsg != null ? succMsg : ""%></h2>
+
+		<form action="UserListCtl" method="post">
+
+			<input type="hidden" name="pageNo" value="<%=pageNo%>">
+
 			<table border="1px" width="100%">
 
 				<tr style="background-color: skyblue">
+					<th>Delete</th>
 					<th>S No.</th>
 					<th>First Name</th>
 					<th>Last Name</th>
@@ -36,6 +46,8 @@
 					UserBean bean = it.next();
 				%>
 				<tr align="center" style="background-color: lightgrey">
+					<td><input type="checkbox" name="ids"
+						value="<%=bean.getId()%>"></td>
 					<td><%=index++%></td>
 					<td><%=bean.getFirstName()%></td>
 					<td><%=bean.getLastName()%></td>
@@ -45,8 +57,19 @@
 				<%
 				}
 				%>
-
 			</table>
+
+			<table width="100%">
+				<tr>
+					<td><input type="submit" name="operation" value="previous"
+						<%=pageNo == 1 ? "disabled" : ""%>></td>
+					<td align="center"><input type="submit" name="operation"
+						value="delete"></td>
+					<td align="right"><input type="submit" name="operation"
+						value="next" <%=list.size() < 5 ? "disabled" : ""%>></td>
+				</tr>
+			</table>
+
 		</form>
 	</div>
 	<%@ include file="Footer.jsp"%>
