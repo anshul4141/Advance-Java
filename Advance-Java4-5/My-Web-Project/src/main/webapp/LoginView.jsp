@@ -7,11 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<%
+	String errorMsg = (String) request.getAttribute("errorMsg");
+	String succMsg = (String) request.getAttribute("succMsg");
+	%>
+
 	<%@ include file="Header.jsp"%>
-	<form>
+	<form action="LoginCtl" method="post">
 
 		<div align="center">
 			<h1>Login</h1>
+
+			<h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
+			<h2 style="color: green"><%=succMsg != null ? succMsg : ""%></h2>
+
 			<table>
 
 				<tr>
@@ -36,6 +46,6 @@
 		</div>
 
 	</form>
-<%@ include file="Footer.jsp"%>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>
