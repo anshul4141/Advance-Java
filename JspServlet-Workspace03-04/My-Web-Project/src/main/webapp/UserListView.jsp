@@ -26,7 +26,7 @@
 		<h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
 		<h2 style="color: green"><%=succMsg != null ? succMsg : ""%></h2>
 
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
 
 			<input type="hidden" name="pageNo" value="<%=pageNo%>">
 

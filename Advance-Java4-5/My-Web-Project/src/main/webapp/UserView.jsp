@@ -1,45 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
 
 	<%
-	String succ = (String) request.getAttribute("succMsg");
-	String err = (String) request.getAttribute("errorMsg");
+	String succMsg = (String) request.getAttribute("succMsg");
 	%>
 
-	<div align="center">
-		<h1>Add User</h1>
+	<form action="UserCtl" method="post">
 
-		<h2 style="color: green"><%=succ != null ? succ : ""%></h2>
-		<h2 style="color: red"><%=err != null ? err : ""%></h2>
+		<div align="center">
 
-		<form action="UserCtl.do" method="post">
-
+			<h1>Add User</h1>
+			<h1 style="color: green"><%=succMsg != null ? succMsg : ""%></h1>
 			<table>
 
 				<tr>
 					<th>First Name</th>
 					<td><input type="text" name="firstName" value=""
-						placeholder="enter first name"></td>
+						placeholder="enter your firstName"></td>
 				</tr>
 
 				<tr>
 					<th>Last Name</th>
 					<td><input type="text" name="lastName" value=""
-						placeholder="enter last name"></td>
+						placeholder="enter your lastName"></td>
 				</tr>
 
 				<tr>
 					<th>Login</th>
-					<td><input type="email" name="login" value=""
-						placeholder="enter your login"></td>
+					<td><input type="email" name="loginId" value=""
+						placeholder="enter your gmail"></td>
 				</tr>
 
 				<tr>
@@ -60,9 +57,9 @@
 
 			</table>
 
-		</form>
+		</div>
 
-	</div>
+	</form>
 	<%@ include file="Footer.jsp"%>
 </body>
 </html>

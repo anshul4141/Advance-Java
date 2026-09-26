@@ -1,6 +1,7 @@
 package com.rays.ctl;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,54 +9,49 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
 
-@WebServlet("/LoginCtl")
-public class LoginCtl extends HttpServlet {
+@WebServlet("/UserCtl")
+public class UserCtl extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// RequestDispatcher's forward method is used to forward request to it's own
-		// view.
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
 		rd.forward(request, response);
-
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		UserModel model = new UserModel();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
-		HttpSession session = request.getSession();
+		UserModel model = new UserModel();
 
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
+		String dob = request.getParameter("dob");
 
 		try {
-			bean = model.authenticate(loginId, password);
+			bean.setFirstName(firstName);
+			bean.setLastName(lastName);
+			bean.setLoginId(loginId);
+			bean.setPassword(password);
+			bean.setDob(sdf.parse(dob));
 
-			if (bean != null) {
-				session.setAttribute("user", bean);
-				response.sendRedirect("WelcomeCtl");
-				return;
-			} else {
-				request.setAttribute("errorMsg", "invalid login or password");
-			}
-
+			model.add(bean);
+			request.setAttribute("succMsg", "user saved successully");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
 		rd.forward(request, response);
-
 	}
 
 }
