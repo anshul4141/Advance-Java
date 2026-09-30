@@ -1,3 +1,4 @@
+<%@page import="com.rays.util.ServletUtility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,16 +10,16 @@
 <body>
 
 	<%
-	String succ = (String) request.getAttribute("succMsg");
-	String err = (String) request.getAttribute("errorMsg");
+	String succ = ServletUtility.getSuccesMessage(request);
+	String err = ServletUtility.getErrorMessage(request);
 	%>
 
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<h1>Login</h1>
 
-		<h2 style="color: green"><%=succ != null ? succ : ""%></h2>
-		<h2 style="color: red"><%=err != null ? err : ""%></h2>
+		<h2 style="color: green"><%=succ%></h2>
+		<h2 style="color: red"><%=err%></h2>
 
 		<form action="LoginCtl" method="post">
 

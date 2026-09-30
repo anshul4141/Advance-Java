@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
+import com.rays.util.ServletUtility;
 
 @WebServlet("/UserCtl.do")
 public class UserCtl extends HttpServlet {
@@ -22,8 +23,7 @@ public class UserCtl extends HttpServlet {
 
 		System.out.println("in do get method");
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
-		rd.forward(request, response); // forward method used to forward same request to it's own view
+		ServletUtility.forward("UserView.jsp", request, response);
 
 	}
 
@@ -59,8 +59,7 @@ public class UserCtl extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
-		rd.forward(request, response);
+		ServletUtility.forward("UserView.jsp", request, response);
 
 	}
 

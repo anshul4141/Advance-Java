@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.rays.util.ServletUtility;
+
 @WebFilter("*.do")
 public class FrontCtl implements Filter {
 
@@ -33,8 +35,7 @@ public class FrontCtl implements Filter {
 
 		if (session.getAttribute("user") == null) {
 			request.setAttribute("errorMsg", "you session has been expired please re-login :(");
-			RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-			rd.forward(request, response);
+			ServletUtility.forward("LoginView.jsp", request, response);
 		} else {
 			chain.doFilter(request, response); // call next filter or controller in the chain if session.user exist.
 		}

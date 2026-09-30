@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
+import com.rays.util.ServletUtility;
 
 @WebServlet("/LoginCtl")
 public class LoginCtl extends HttpServlet {
@@ -27,8 +28,7 @@ public class LoginCtl extends HttpServlet {
 			session.invalidate();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-		rd.forward(request, response);
+		ServletUtility.forward("LoginView.jsp", request, response);
 
 	}
 
@@ -56,8 +56,7 @@ public class LoginCtl extends HttpServlet {
 
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-		rd.forward(request, response);
+		ServletUtility.forward("LoginView.jsp", request, response);
 	}
 
 }

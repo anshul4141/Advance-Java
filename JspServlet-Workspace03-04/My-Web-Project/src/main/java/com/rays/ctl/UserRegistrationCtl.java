@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rays.bean.UserBean;
 import com.rays.model.UserModel;
+import com.rays.util.ServletUtility;
 
 @WebServlet("/UserRegistrationCtl")
 public class UserRegistrationCtl extends HttpServlet {
@@ -52,10 +53,10 @@ public class UserRegistrationCtl extends HttpServlet {
 			bean.setDob(sdf.parse(dob));
 
 			model.add(bean);
-			request.setAttribute("succMsg", "user register successfully");
+			ServletUtility.setSuccMessage("user register successfully", request);
 
 		} catch (Exception e) {
-			request.setAttribute("errorMsg", e.getMessage());
+			ServletUtility.setErrorMessage(e.getMessage(), request);
 			e.printStackTrace();
 		}
 
