@@ -20,6 +20,13 @@ public class LoginCtl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String op = request.getParameter("operation");
+
+		if (op != null) {
+			HttpSession session = request.getSession();
+			session.invalidate(); // session destroy
+		}
+
 		// RequestDispatcher's forward method is used to forward request to it's own
 		// view.
 		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
