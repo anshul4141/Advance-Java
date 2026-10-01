@@ -1,14 +1,16 @@
 package com.rays.jdbc.preparedstatement;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 
-		testAdd();
+//		testAdd();
 //		testUpdate();
 //		testDelete();
+		testFindByPk();
 
 	}
 
@@ -51,6 +53,22 @@ public class TestUserModel {
 		UserModel model = new UserModel();
 
 		model.delete(22);
+
+	}
+
+	public static void testFindByPk() throws SQLException {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+		bean = model.findByPk(200);
+
+		System.out.println(bean.getId());
+		System.out.println(bean.getFirstName());
+		System.out.println(bean.getLastName());
+		System.out.println(bean.getLoginId());
+		System.out.println(bean.getPassword());
+		System.out.println(bean.getDob());
 
 	}
 

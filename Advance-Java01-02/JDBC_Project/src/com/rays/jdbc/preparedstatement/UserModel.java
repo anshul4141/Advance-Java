@@ -3,6 +3,7 @@ package com.rays.jdbc.preparedstatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 // Data Access Logic
@@ -99,6 +100,96 @@ public class UserModel {
 			conn.rollback();
 		} finally {
 			conn.close();
+		}
+
+	}
+
+//	findByPk(int id) = select * from st_user where id = ?
+//  findByLogin(String loginId) = select * from st_user where loginId = ?
+//  authenticate(String loginId, String password) = select * from st_user where loginId = ? and password = ?
+
+	public UserBean findByPk(int id) throws SQLException {
+
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
+
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt("id"));
+				bean.setFirstName(rs.getString("firstName"));
+				bean.setLastName(rs.getString("lastName"));
+				bean.setLoginId(rs.getString("loginId"));
+				bean.setPassword(rs.getString("password"));
+				bean.setDob(rs.getDate("dob"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+
+		return bean;
+
+	}
+
+	public UserBean findByLogin(String loginId) throws SQLException {
+
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
+
+			pstmt.setString(1, loginId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new UserBean();
+				bean.setId(rs.getInt("id"));
+				bean.setFirstName(rs.getString("firstName"));
+				bean.setLastName(rs.getString("lastName"));
+				bean.setLoginId(rs.getString("loginId"));
+				bean.setPassword(rs.getString("password"));
+				bean.setDob(rs.getDate("dob"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conn.close();
+		}
+
+		return bean;
+
+	}
+
+	public UserBean authenticate(String loginId, String password) throws SQLException {
+
+		UserBean bean = findByLogin(loginId);
+
+		if (bean != null && bean.getPassword().equals(password)) {
+			return bean;
+		} else {
+			return null;
 		}
 
 	}
