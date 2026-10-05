@@ -2,6 +2,8 @@ package com.rays.jdbc.preparedstatement;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
@@ -10,7 +12,8 @@ public class TestUserModel {
 //		testAdd();
 //		testUpdate();
 //		testDelete();
-		testFindByPk();
+//		testFindByPk();
+		testSearch();
 
 	}
 
@@ -20,9 +23,9 @@ public class TestUserModel {
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
 
-		bean.setId(23);
+		bean.setId(22);
 		bean.setFirstName("Naman");
-		bean.setLastName("yadav");
+		bean.setLastName("sharma");
 		bean.setLoginId("naman@gmail.com");
 		bean.setPassword("pass");
 		bean.setDob(sdf.parse("2002-02-02"));
@@ -69,6 +72,30 @@ public class TestUserModel {
 		System.out.println(bean.getLoginId());
 		System.out.println(bean.getPassword());
 		System.out.println(bean.getDob());
+
+	}
+
+	public static void testSearch() throws SQLException {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+
+//		bean.setFirstName("r");
+
+		List<UserBean> list = model.search(bean, 1, 5);
+
+		Iterator<UserBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLoginId());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getDob());
+			System.out.println("-------------");
+		}
 
 	}
 
