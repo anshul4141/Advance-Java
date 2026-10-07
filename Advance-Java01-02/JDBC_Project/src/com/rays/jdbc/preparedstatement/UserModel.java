@@ -8,9 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 // Data Access Logic
 public class UserModel {
+
+	ResourceBundle rb = ResourceBundle.getBundle("com.rays.jdbc.bundle.app");
+
+	String url = rb.getString("url");
+	String driver = rb.getString("driver");
+	String username = rb.getString("username");
+	String password = rb.getString("password");
 
 	public void add(UserBean bean) throws Exception {
 
@@ -23,9 +31,9 @@ public class UserModel {
 		}
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			conn.setAutoCommit(false);
 
@@ -56,9 +64,9 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			conn.setAutoCommit(false);
 
@@ -90,9 +98,9 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			conn.setAutoCommit(false);
 
@@ -124,9 +132,9 @@ public class UserModel {
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
 
@@ -161,9 +169,9 @@ public class UserModel {
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
 
@@ -242,9 +250,9 @@ public class UserModel {
 		System.out.println("sql ===> " + sql.toString());
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "root");
+			conn = DriverManager.getConnection(url, username, password);
 
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
