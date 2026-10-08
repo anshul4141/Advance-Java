@@ -2,13 +2,14 @@ package com.rays.jdbc.preparedstatement;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.rays.jdbc.util.JDBCDataSource;
 
 // Data Access Logic
 public class UserModel {
@@ -31,9 +32,8 @@ public class UserModel {
 		}
 
 		try {
-			Class.forName(driver);
 
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -52,9 +52,9 @@ public class UserModel {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			conn.rollback();
+			JDBCDataSource.trnRollBack(conn);
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 
 	}
@@ -64,9 +64,7 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName(driver);
-
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -98,9 +96,7 @@ public class UserModel {
 		Connection conn = null;
 
 		try {
-			Class.forName(driver);
-
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			conn.setAutoCommit(false);
 
@@ -132,9 +128,7 @@ public class UserModel {
 
 		try {
 
-			Class.forName(driver);
-
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where id = ?");
 
@@ -169,9 +163,7 @@ public class UserModel {
 
 		try {
 
-			Class.forName(driver);
-
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
 
@@ -250,9 +242,7 @@ public class UserModel {
 		System.out.println("sql ===> " + sql.toString());
 
 		try {
-			Class.forName(driver);
-
-			conn = DriverManager.getConnection(url, username, password);
+			conn = JDBCDataSource.getConnection();
 
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
