@@ -27,6 +27,18 @@ public class HelloServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("in doPost() ....");
+
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
+		String dob = request.getParameter("dob");
+
+		System.out.println(firstName + "\n" + lastName + "\n" + login + "\n" + password + "\n" + dob);
+
+		RequestDispatcher rd = request.getRequestDispatcher("HelloView.jsp");
+		rd.forward(request, response);
 	}
 
 }
