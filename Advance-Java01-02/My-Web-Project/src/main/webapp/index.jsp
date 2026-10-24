@@ -8,7 +8,9 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Welcome to My Web-Site</h1>
+		<h1>
+			<a href="WelcomeCtl">Welcome to My Web-Site</a>
+		</h1>
 	</div>
 </body>
 </html>
