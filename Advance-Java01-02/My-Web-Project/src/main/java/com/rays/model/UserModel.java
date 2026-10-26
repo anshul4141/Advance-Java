@@ -181,7 +181,7 @@ public class UserModel {
 
 			conn = JDBCDataSource.getConnection();
 
-			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where loginId = ?");
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ?");
 
 			pstmt.setString(1, loginId);
 

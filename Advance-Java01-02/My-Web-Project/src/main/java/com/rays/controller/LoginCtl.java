@@ -28,6 +28,8 @@ public class LoginCtl extends HttpServlet {
 
 		System.out.println(login);
 		System.out.println(password);
+		
+		
 
 		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
 		rd.forward(request, response);
