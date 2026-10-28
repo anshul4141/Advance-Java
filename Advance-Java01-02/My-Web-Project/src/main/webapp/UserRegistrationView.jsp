@@ -5,12 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="Header.jsp"%>
+	<%
+	String successMsg = (String) request.getAttribute("successMsg");
+	%>
+	<%@ include file="Header.jsp"%>
 	<form action="UserRegistrationCtl" method="post">
 
 		<div align="center">
 
 			<h1>User Registration</h1>
+
+			<h2 style="color: green"><%=successMsg != null ? successMsg : ""%></h2>
 
 			<table>
 

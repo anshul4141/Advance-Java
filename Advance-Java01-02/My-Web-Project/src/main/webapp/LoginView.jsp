@@ -5,13 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	String errorMsg = (String) request.getAttribute("errorMsg");
+	%>
 	<%@ include file="Header.jsp"%>
 	<form action="LoginCtl" method="post">
 
 		<div align="center">
 
 			<h1>Login</h1>
-
+			<h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
 			<table>
 
 				<tr>

@@ -192,7 +192,7 @@ public class UserModel {
 				bean.setId(rs.getInt("id"));
 				bean.setFirstName(rs.getString("firstName"));
 				bean.setLastName(rs.getString("lastName"));
-				bean.setLogin(rs.getString("loginId"));
+				bean.setLogin(rs.getString("login"));
 				bean.setPassword(rs.getString("password"));
 				bean.setDob(rs.getDate("dob"));
 			}
