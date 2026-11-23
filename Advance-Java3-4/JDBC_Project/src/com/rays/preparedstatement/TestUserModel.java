@@ -2,6 +2,8 @@ package com.rays.preparedstatement;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestUserModel {
 
@@ -11,7 +13,8 @@ public class TestUserModel {
 //			testAdd();
 //			testDelete();
 //			testUpdate();
-			testFindByPk();
+//			testFindByPk();
+			testSearch();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,6 +81,29 @@ public class TestUserModel {
 			System.out.println(bean.getDob());
 		} else {
 			System.out.println("user not found");
+		}
+
+	}
+
+	public static void testSearch() throws SQLException {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+		bean.setFirstName("a");
+		List<UserBean> list = model.search(bean, 1, 5);
+
+		Iterator<UserBean> it = list.iterator();
+
+		while (it.hasNext()) {
+			bean = it.next();
+			System.out.println(bean.getId());
+			System.out.println(bean.getFirstName());
+			System.out.println(bean.getLastName());
+			System.out.println(bean.getLogin());
+			System.out.println(bean.getPassword());
+			System.out.println(bean.getDob());
+			System.out.println("------------");
+			// it.remove();
 		}
 
 	}
