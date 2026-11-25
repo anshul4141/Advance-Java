@@ -167,3 +167,380 @@ mysql> select * from student;
 3 rows in set (0.00 sec)
 
 mysql>
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1664
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use rays;
+Database changed
+mysql> select * from student;
++----+-----------+--------------+-------------------+----------+------------+
+| id | firstName | lastName     | login             | password | dob        |
++----+-----------+--------------+-------------------+----------+------------+
+|  1 | Durgesh   | Badole       | durgesh@gmail.com | pass123  | 2004-10-25 |
+|  2 | Ram       | Sharma       | ram@gmail.com     | ram123   | 2005-10-25 |
+|  3 | Rishabh   | Singh Prihar | rishabh@gmail.com | singh123 | 2005-10-07 |
++----+-----------+--------------+-------------------+----------+------------+
+3 rows in set (0.03 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| demo                 |
+| hibernate_project    |
+| information_schema   |
+| mysql                |
+| p04                  |
+| performance_schema   |
+| rays                 |
+| spring_boot_simple   |
+| spring_dao_hibernate |
+| spring_dao_jdbc      |
+| sys                  |
++----------------------+
+11 rows in set (0.00 sec)
+
+mysql> use demo;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_demo |
++----------------+
+| dept           |
+| emp            |
+| st_user        |
++----------------+
+3 rows in set (0.01 sec)
+
+mysql> use rays;
+Database changed
+mysql> create table employee(id int primary key, name varchar(50), company varchar(45), int salary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int salary)' at line 1
+mysql> create table employee(id int primary key, name varchar(50), company varchar(45), salary int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO employee (id, name, company, salary) VALUES (1, 'Rahul Sharma', 'TCS', 45000), (2, 'Amit Verma', 'Infosys', 55000), (3, 'Priya Singh', 'Wipro', 40000), (4, 'Rahul Sharma', 'TCS', 60000), (5, 'Neha Patel', 'HCL', 50000), (6, 'Amit Verma', 'Infosys', 65000), (7, 'Rohit Kumar', 'Tech Mahindra', 35000), (8, 'Sneha Gupta', 'TCS', 48000), (9, 'Vikas Yadav', 'Wipro', 52000), (10, 'Priya Singh', 'Infosys', 58000), (11, 'Ankit Jain', 'Accenture', 70000), (12, 'Pooja Sharma', 'HCL', 42000), (13, 'Rohit Kumar', 'TCS', 55000), (14, 'Karan Mehta', 'Capgemini', 62000), (15, 'Neha Patel', 'HCL', 75000), (16, 'Suresh Patel', 'Infosys', 38000), (17, 'Anjali Mishra', 'Wipro', 46000), (18, 'Deepak Singh', 'Accenture', 80000), (19, 'Pooja Sharma', 'TCS', 51000), (20, 'Manish Gupta', 'Tech Mahindra', 43000);
+Query OK, 20 rows affected (0.03 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+|  1 | Rahul Sharma  | TCS           |  45000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary asc;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
+|  1 | Rahul Sharma  | TCS           |  45000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by name asc;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by name desc;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee where salary = 40000;
++----+-------------+---------+--------+
+| id | name        | company | salary |
++----+-------------+---------+--------+
+|  3 | Priya Singh | Wipro   |  40000 |
++----+-------------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> select * from employee where salary > 40000;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+17 rows in set (0.00 sec)
+
+mysql> select * from employee where salary >= 40000;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+18 rows in set (0.00 sec)
+
+mysql> select * from employee where salary <= 40000;
++----+--------------+---------------+--------+
+| id | name         | company       | salary |
++----+--------------+---------------+--------+
+|  3 | Priya Singh  | Wipro         |  40000 |
+|  7 | Rohit Kumar  | Tech Mahindra |  35000 |
+| 16 | Suresh Patel | Infosys       |  38000 |
++----+--------------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee limit 0, 5;
++----+--------------+---------+--------+
+| id | name         | company | salary |
++----+--------------+---------+--------+
+|  1 | Rahul Sharma | TCS     |  45000 |
+|  2 | Amit Verma   | Infosys |  55000 |
+|  3 | Priya Singh  | Wipro   |  40000 |
+|  4 | Rahul Sharma | TCS     |  60000 |
+|  5 | Neha Patel   | HCL     |  50000 |
++----+--------------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee limit 5, 5;
++----+-------------+---------------+--------+
+| id | name        | company       | salary |
++----+-------------+---------------+--------+
+|  6 | Amit Verma  | Infosys       |  65000 |
+|  7 | Rohit Kumar | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta | TCS           |  48000 |
+|  9 | Vikas Yadav | Wipro         |  52000 |
+| 10 | Priya Singh | Infosys       |  58000 |
++----+-------------+---------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+|  1 | Rahul Sharma  | TCS           |  45000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 0, 1;
++----+--------------+-----------+--------+
+| id | name         | company   | salary |
++----+--------------+-----------+--------+
+| 18 | Deepak Singh | Accenture |  80000 |
++----+--------------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee order by salary desc limit 1, 1;
++----+------------+---------+--------+
+| id | name       | company | salary |
++----+------------+---------+--------+
+| 15 | Neha Patel | HCL     |  75000 |
++----+------------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql>
