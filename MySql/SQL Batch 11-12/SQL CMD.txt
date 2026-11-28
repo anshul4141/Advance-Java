@@ -1,6 +1,6 @@
 Enter password: ****
 Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 1657
+Your MySQL connection id is 1881
 Server version: 8.0.31 MySQL Community Server - GPL
 
 Copyright (c) 2000, 2022, Oracle and/or its affiliates.
@@ -11,199 +11,236 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> show databases;
-+----------------------+
-| Database             |
-+----------------------+
-| demo                 |
-| information_schema   |
-| mysql                |
-| p04                  |
-| performance_schema   |
-| spring_boot_simple   |
-| spring_dao_hibernate |
-| spring_dao_jdbc      |
-| sys                  |
-+----------------------+
-9 rows in set (0.03 sec)
-
-mysql> create database rays;
-Query OK, 1 row affected (0.04 sec)
-
-mysql> show databases;
-+----------------------+
-| Database             |
-+----------------------+
-| demo                 |
-| information_schema   |
-| mysql                |
-| p04                  |
-| performance_schema   |
-| rays                 |
-| spring_boot_simple   |
-| spring_dao_hibernate |
-| spring_dao_jdbc      |
-| sys                  |
-+----------------------+
-10 rows in set (0.00 sec)
-
 mysql> use rays;
 Database changed
-mysql> create table student(id int primary key, firstName varchar(45), lastName varchar(45), login varchar(45), password varchar(45), dob date);
-Query OK, 0 rows affected (0.09 sec)
+mysql> show tables;
++----------------+
+| Tables_in_rays |
++----------------+
+| employee       |
+| student        |
++----------------+
+2 rows in set (0.04 sec)
+
+mysql> select * from employee;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+20 rows in set (0.04 sec)
+
+mysql> select * from employee where name like 'A%'
+    -> ;
++----+---------------+-----------+--------+
+| id | name          | company   | salary |
++----+---------------+-----------+--------+
+|  2 | Amit Verma    | Infosys   |  55000 |
+|  6 | Amit Verma    | Infosys   |  65000 |
+| 11 | Ankit Jain    | Accenture |  70000 |
+| 17 | Anjali Mishra | Wipro     |  46000 |
++----+---------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%A'
+    -> ;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%A%'
+    -> ;
++----+---------------+---------------+--------+
+| id | name          | company       | salary |
++----+---------------+---------------+--------+
+|  1 | Rahul Sharma  | TCS           |  45000 |
+|  2 | Amit Verma    | Infosys       |  55000 |
+|  3 | Priya Singh   | Wipro         |  40000 |
+|  4 | Rahul Sharma  | TCS           |  60000 |
+|  5 | Neha Patel    | HCL           |  50000 |
+|  6 | Amit Verma    | Infosys       |  65000 |
+|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta   | TCS           |  48000 |
+|  9 | Vikas Yadav   | Wipro         |  52000 |
+| 10 | Priya Singh   | Infosys       |  58000 |
+| 11 | Ankit Jain    | Accenture     |  70000 |
+| 12 | Pooja Sharma  | HCL           |  42000 |
+| 13 | Rohit Kumar   | TCS           |  55000 |
+| 14 | Karan Mehta   | Capgemini     |  62000 |
+| 15 | Neha Patel    | HCL           |  75000 |
+| 16 | Suresh Patel  | Infosys       |  38000 |
+| 17 | Anjali Mishra | Wipro         |  46000 |
+| 18 | Deepak Singh  | Accenture     |  80000 |
+| 19 | Pooja Sharma  | TCS           |  51000 |
+| 20 | Manish Gupta  | Tech Mahindra |  43000 |
++----+---------------+---------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%u%';
++----+--------------+---------------+--------+
+| id | name         | company       | salary |
++----+--------------+---------------+--------+
+|  1 | Rahul Sharma | TCS           |  45000 |
+|  4 | Rahul Sharma | TCS           |  60000 |
+|  7 | Rohit Kumar  | Tech Mahindra |  35000 |
+|  8 | Sneha Gupta  | TCS           |  48000 |
+| 13 | Rohit Kumar  | TCS           |  55000 |
+| 16 | Suresh Patel | Infosys       |  38000 |
+| 20 | Manish Gupta | Tech Mahindra |  43000 |
++----+--------------+---------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select count(*) from employee;
++----------+
+| count(*) |
++----------+
+|       20 |
++----------+
+1 row in set (0.04 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|     1070000 |
++-------------+
+1 row in set (0.04 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|       35000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       80000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from employee;
++-------------+
+| avg(salary) |
++-------------+
+|  53500.0000 |
++-------------+
+1 row in set (0.02 sec)
+
+mysql> select company, count(*) from employee group by company;
++---------------+----------+
+| company       | count(*) |
++---------------+----------+
+| TCS           |        5 |
+| Infosys       |        4 |
+| Wipro         |        3 |
+| HCL           |        3 |
+| Tech Mahindra |        2 |
+| Accenture     |        2 |
+| Capgemini     |        1 |
++---------------+----------+
+7 rows in set (0.04 sec)
+
+mysql> select salary, count(*) from employee group by salary;
++--------+----------+
+| salary | count(*) |
++--------+----------+
+|  45000 |        1 |
+|  55000 |        2 |
+|  40000 |        1 |
+|  60000 |        1 |
+|  50000 |        1 |
+|  65000 |        1 |
+|  35000 |        1 |
+|  48000 |        1 |
+|  52000 |        1 |
+|  58000 |        1 |
+|  70000 |        1 |
+|  42000 |        1 |
+|  62000 |        1 |
+|  75000 |        1 |
+|  38000 |        1 |
+|  46000 |        1 |
+|  80000 |        1 |
+|  51000 |        1 |
+|  43000 |        1 |
++--------+----------+
+19 rows in set (0.00 sec)
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       80000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee where salary < (select max(salary) from employee);
++-------------+
+| max(salary) |
++-------------+
+|       75000 |
++-------------+
+1 row in set (0.05 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|       35000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from employee where salary > (select min(salary) from employee);
++-------------+
+| min(salary) |
++-------------+
+|       38000 |
++-------------+
+1 row in set (0.00 sec)
 
 mysql> show tables;
 +----------------+
 | Tables_in_rays |
 +----------------+
+| employee       |
 | student        |
 +----------------+
-1 row in set (0.01 sec)
-
-mysql> insert into student values(1, 'Durgesh', 'Badole', 'durgesh@gmail.com', 'pass123', '2004-10-25');
-Query OK, 1 row affected (0.03 sec)
-
-mysql> select * from student;
-+----+-----------+----------+-------------------+----------+------------+
-| id | firstName | lastName | login             | password | dob        |
-+----+-----------+----------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole   | durgesh@gmail.com | pass123  | 2004-10-25 |
-+----+-----------+----------+-------------------+----------+------------+
-1 row in set (0.00 sec)
-
-mysql> insert into student values(2, 'Ram', 'Sharma', 'ram@gmail.com', 'ram123', '2005-10-25'),(3, 'Rishabh', 'Singh', 'rishabh@gmail.com', 'singh123', '2005-10-07);
-    '> ^C
-mysql> insert into student values(2, 'Ram', 'Sharma', 'ram@gmail.com', 'ram123', '2005-10-25'),(3, 'Rishabh', 'Singh', 'rishabh@gmail.com', 'singh123', '2005-10-7');
-Query OK, 2 rows affected (0.01 sec)
-Records: 2  Duplicates: 0  Warnings: 0
-
-mysql> select * from student;
-+----+-----------+----------+-------------------+----------+------------+
-| id | firstName | lastName | login             | password | dob        |
-+----+-----------+----------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole   | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma   | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh    | rishabh@gmail.com | singh123 | 2005-10-07 |
-+----+-----------+----------+-------------------+----------+------------+
-3 rows in set (0.00 sec)
-
-mysql> select firstName from student;
-+-----------+
-| firstName |
-+-----------+
-| Durgesh   |
-| Ram       |
-| Rishabh   |
-+-----------+
-3 rows in set (0.00 sec)
-
-mysql> select firstName, lastName from student;
-+-----------+----------+
-| firstName | lastName |
-+-----------+----------+
-| Durgesh   | Badole   |
-| Ram       | Sharma   |
-| Rishabh   | Singh    |
-+-----------+----------+
-3 rows in set (0.00 sec)
-
-mysql> select * from student;
-+----+-----------+----------+-------------------+----------+------------+
-| id | firstName | lastName | login             | password | dob        |
-+----+-----------+----------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole   | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma   | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh    | rishabh@gmail.com | singh123 | 2005-10-07 |
-+----+-----------+----------+-------------------+----------+------------+
-3 rows in set (0.00 sec)
-
-mysql> select * from student where firstName = 'ram';
-+----+-----------+----------+---------------+----------+------------+
-| id | firstName | lastName | login         | password | dob        |
-+----+-----------+----------+---------------+----------+------------+
-|  2 | Ram       | Sharma   | ram@gmail.com | ram123   | 2005-10-25 |
-+----+-----------+----------+---------------+----------+------------+
-1 row in set (0.00 sec)
-
-mysql> insert into student values(4, 'Ram', 'Yadav', 'ram123@gmail.com', 'ram123', '2003-10-25');
-Query OK, 1 row affected (0.03 sec)
-
-mysql> select * from student;
-+----+-----------+----------+-------------------+----------+------------+
-| id | firstName | lastName | login             | password | dob        |
-+----+-----------+----------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole   | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma   | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh    | rishabh@gmail.com | singh123 | 2005-10-07 |
-|  4 | Ram       | Yadav    | ram123@gmail.com  | ram123   | 2003-10-25 |
-+----+-----------+----------+-------------------+----------+------------+
-4 rows in set (0.00 sec)
-
-mysql> delete from student where id = 4;
-Query OK, 1 row affected (0.03 sec)
-
-mysql> select * from student;
-+----+-----------+----------+-------------------+----------+------------+
-| id | firstName | lastName | login             | password | dob        |
-+----+-----------+----------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole   | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma   | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh    | rishabh@gmail.com | singh123 | 2005-10-07 |
-+----+-----------+----------+-------------------+----------+------------+
-3 rows in set (0.00 sec)
-
-mysql> update student set lastName = 'Singh Prihar' where id = 3;
-Query OK, 1 row affected (0.02 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from student;
-+----+-----------+--------------+-------------------+----------+------------+
-| id | firstName | lastName     | login             | password | dob        |
-+----+-----------+--------------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole       | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma       | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh Prihar | rishabh@gmail.com | singh123 | 2005-10-07 |
-+----+-----------+--------------+-------------------+----------+------------+
-3 rows in set (0.00 sec)
-
-mysql>
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-Enter password: ****
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 1664
-Server version: 8.0.31 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2022, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> use rays;
-Database changed
-mysql> select * from student;
-+----+-----------+--------------+-------------------+----------+------------+
-| id | firstName | lastName     | login             | password | dob        |
-+----+-----------+--------------+-------------------+----------+------------+
-|  1 | Durgesh   | Badole       | durgesh@gmail.com | pass123  | 2004-10-25 |
-|  2 | Ram       | Sharma       | ram@gmail.com     | ram123   | 2005-10-25 |
-|  3 | Rishabh   | Singh Prihar | rishabh@gmail.com | singh123 | 2005-10-07 |
-+----+-----------+--------------+-------------------+----------+------------+
-3 rows in set (0.03 sec)
+2 rows in set (0.01 sec)
 
 mysql> show databases;
 +----------------------+
@@ -221,7 +258,7 @@ mysql> show databases;
 | spring_dao_jdbc      |
 | sys                  |
 +----------------------+
-11 rows in set (0.00 sec)
+11 rows in set (0.05 sec)
 
 mysql> use demo;
 Database changed
@@ -233,314 +270,122 @@ mysql> show tables;
 | emp            |
 | st_user        |
 +----------------+
-3 rows in set (0.01 sec)
-
-mysql> use rays;
-Database changed
-mysql> create table employee(id int primary key, name varchar(50), company varchar(45), int salary);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int salary)' at line 1
-mysql> create table employee(id int primary key, name varchar(50), company varchar(45), salary int);
-Query OK, 0 rows affected (0.05 sec)
-
-mysql> INSERT INTO employee (id, name, company, salary) VALUES (1, 'Rahul Sharma', 'TCS', 45000), (2, 'Amit Verma', 'Infosys', 55000), (3, 'Priya Singh', 'Wipro', 40000), (4, 'Rahul Sharma', 'TCS', 60000), (5, 'Neha Patel', 'HCL', 50000), (6, 'Amit Verma', 'Infosys', 65000), (7, 'Rohit Kumar', 'Tech Mahindra', 35000), (8, 'Sneha Gupta', 'TCS', 48000), (9, 'Vikas Yadav', 'Wipro', 52000), (10, 'Priya Singh', 'Infosys', 58000), (11, 'Ankit Jain', 'Accenture', 70000), (12, 'Pooja Sharma', 'HCL', 42000), (13, 'Rohit Kumar', 'TCS', 55000), (14, 'Karan Mehta', 'Capgemini', 62000), (15, 'Neha Patel', 'HCL', 75000), (16, 'Suresh Patel', 'Infosys', 38000), (17, 'Anjali Mishra', 'Wipro', 46000), (18, 'Deepak Singh', 'Accenture', 80000), (19, 'Pooja Sharma', 'TCS', 51000), (20, 'Manish Gupta', 'Tech Mahindra', 43000);
-Query OK, 20 rows affected (0.03 sec)
-Records: 20  Duplicates: 0  Warnings: 0
-
-mysql> select * from employee;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
-
-mysql> select * from employee order by salary desc;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-|  1 | Rahul Sharma  | TCS           |  45000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
-
-mysql> select * from employee order by salary asc;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-|  1 | Rahul Sharma  | TCS           |  45000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
-
-mysql> select * from employee order by name asc;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
-
-mysql> select * from employee order by name desc;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
-
-mysql> select * from employee where salary = 40000;
-+----+-------------+---------+--------+
-| id | name        | company | salary |
-+----+-------------+---------+--------+
-|  3 | Priya Singh | Wipro   |  40000 |
-+----+-------------+---------+--------+
-1 row in set (0.00 sec)
-
-mysql>
-mysql> select * from employee where salary > 40000;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-+----+---------------+---------------+--------+
-17 rows in set (0.00 sec)
-
-mysql> select * from employee where salary >= 40000;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-+----+---------------+---------------+--------+
-18 rows in set (0.00 sec)
-
-mysql> select * from employee where salary <= 40000;
-+----+--------------+---------------+--------+
-| id | name         | company       | salary |
-+----+--------------+---------------+--------+
-|  3 | Priya Singh  | Wipro         |  40000 |
-|  7 | Rohit Kumar  | Tech Mahindra |  35000 |
-| 16 | Suresh Patel | Infosys       |  38000 |
-+----+--------------+---------------+--------+
 3 rows in set (0.00 sec)
 
-mysql> select * from employee;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-|  1 | Rahul Sharma  | TCS           |  45000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
+mysql> use p04;
+Database changed
+mysql> select roll_no, name, physics, chemistry, maths from st_marksheet;
++---------+---------------------+---------+-----------+-------+
+| roll_no | name                | physics | chemistry | maths |
++---------+---------------------+---------+-----------+-------+
+| 1       | Manish Sharma       |      99 |        99 |    99 |
+| 2       | Manish Sharma       |      55 |        55 |    55 |
+| 3       | Manish Sharma       |      77 |        77 |    77 |
+| 4       | Rahul Sahu          |      88 |        88 |    85 |
+| 5       | Sivam Kumar         |      74 |        74 |    78 |
+| 6       | Gurpreet Singh      |      55 |        55 |    55 |
+| 7       | Sivam Kumar         |      82 |        82 |    89 |
+| 9       | Gurpreet Singh      |      88 |        99 |    78 |
+| 10      | Viju kumar chandore |      77 |        77 |    77 |
+| 11      | Vipin Chandore      |      88 |        99 |    79 |
+| 12      | Viju kumar chandore |      88 |        88 |    88 |
+| 13      | Rahul Sahu          |      85 |        88 |    99 |
++---------+---------------------+---------+-----------+-------+
+12 rows in set (0.00 sec)
 
-mysql> select * from employee limit 0, 5;
-+----+--------------+---------+--------+
-| id | name         | company | salary |
-+----+--------------+---------+--------+
-|  1 | Rahul Sharma | TCS     |  45000 |
-|  2 | Amit Verma   | Infosys |  55000 |
-|  3 | Priya Singh  | Wipro   |  40000 |
-|  4 | Rahul Sharma | TCS     |  60000 |
-|  5 | Neha Patel   | HCL     |  50000 |
-+----+--------------+---------+--------+
-5 rows in set (0.00 sec)
+mysql> select id, roll_no, name, physics, chemistry, maths from st_marksheet;
++----+---------+---------------------+---------+-----------+-------+
+| id | roll_no | name                | physics | chemistry | maths |
++----+---------+---------------------+---------+-----------+-------+
+|  1 | 1       | Manish Sharma       |      99 |        99 |    99 |
+|  2 | 2       | Manish Sharma       |      55 |        55 |    55 |
+|  3 | 3       | Manish Sharma       |      77 |        77 |    77 |
+|  4 | 4       | Rahul Sahu          |      88 |        88 |    85 |
+|  5 | 5       | Sivam Kumar         |      74 |        74 |    78 |
+|  6 | 6       | Gurpreet Singh      |      55 |        55 |    55 |
+|  7 | 7       | Sivam Kumar         |      82 |        82 |    89 |
+|  8 | 9       | Gurpreet Singh      |      88 |        99 |    78 |
+|  9 | 10      | Viju kumar chandore |      77 |        77 |    77 |
+| 10 | 11      | Vipin Chandore      |      88 |        99 |    79 |
+| 11 | 12      | Viju kumar chandore |      88 |        88 |    88 |
+| 12 | 13      | Rahul Sahu          |      85 |        88 |    99 |
++----+---------+---------------------+---------+-----------+-------+
+12 rows in set (0.00 sec)
 
-mysql> select * from employee limit 5, 5;
-+----+-------------+---------------+--------+
-| id | name        | company       | salary |
-+----+-------------+---------------+--------+
-|  6 | Amit Verma  | Infosys       |  65000 |
-|  7 | Rohit Kumar | Tech Mahindra |  35000 |
-|  8 | Sneha Gupta | TCS           |  48000 |
-|  9 | Vikas Yadav | Wipro         |  52000 |
-| 10 | Priya Singh | Infosys       |  58000 |
-+----+-------------+---------------+--------+
-5 rows in set (0.00 sec)
+mysql> select id, roll_no, name, physics phy, chemistry chm, maths mt from st_marksheet;
++----+---------+---------------------+------+------+------+
+| id | roll_no | name                | phy  | chm  | mt   |
++----+---------+---------------------+------+------+------+
+|  1 | 1       | Manish Sharma       |   99 |   99 |   99 |
+|  2 | 2       | Manish Sharma       |   55 |   55 |   55 |
+|  3 | 3       | Manish Sharma       |   77 |   77 |   77 |
+|  4 | 4       | Rahul Sahu          |   88 |   88 |   85 |
+|  5 | 5       | Sivam Kumar         |   74 |   74 |   78 |
+|  6 | 6       | Gurpreet Singh      |   55 |   55 |   55 |
+|  7 | 7       | Sivam Kumar         |   82 |   82 |   89 |
+|  8 | 9       | Gurpreet Singh      |   88 |   99 |   78 |
+|  9 | 10      | Viju kumar chandore |   77 |   77 |   77 |
+| 10 | 11      | Vipin Chandore      |   88 |   99 |   79 |
+| 11 | 12      | Viju kumar chandore |   88 |   88 |   88 |
+| 12 | 13      | Rahul Sahu          |   85 |   88 |   99 |
++----+---------+---------------------+------+------+------+
+12 rows in set (0.00 sec)
 
-mysql> select * from employee order by salary desc;
-+----+---------------+---------------+--------+
-| id | name          | company       | salary |
-+----+---------------+---------------+--------+
-| 18 | Deepak Singh  | Accenture     |  80000 |
-| 15 | Neha Patel    | HCL           |  75000 |
-| 11 | Ankit Jain    | Accenture     |  70000 |
-|  6 | Amit Verma    | Infosys       |  65000 |
-| 14 | Karan Mehta   | Capgemini     |  62000 |
-|  4 | Rahul Sharma  | TCS           |  60000 |
-| 10 | Priya Singh   | Infosys       |  58000 |
-|  2 | Amit Verma    | Infosys       |  55000 |
-| 13 | Rohit Kumar   | TCS           |  55000 |
-|  9 | Vikas Yadav   | Wipro         |  52000 |
-| 19 | Pooja Sharma  | TCS           |  51000 |
-|  5 | Neha Patel    | HCL           |  50000 |
-|  8 | Sneha Gupta   | TCS           |  48000 |
-| 17 | Anjali Mishra | Wipro         |  46000 |
-|  1 | Rahul Sharma  | TCS           |  45000 |
-| 20 | Manish Gupta  | Tech Mahindra |  43000 |
-| 12 | Pooja Sharma  | HCL           |  42000 |
-|  3 | Priya Singh   | Wipro         |  40000 |
-| 16 | Suresh Patel  | Infosys       |  38000 |
-|  7 | Rohit Kumar   | Tech Mahindra |  35000 |
-+----+---------------+---------------+--------+
-20 rows in set (0.00 sec)
+mysql> select id, roll_no, name, physics, chemistry, maths, (physics+chemistry+maths) as total from st_marksheet;
++----+---------+---------------------+---------+-----------+-------+-------+
+| id | roll_no | name                | physics | chemistry | maths | total |
++----+---------+---------------------+---------+-----------+-------+-------+
+|  1 | 1       | Manish Sharma       |      99 |        99 |    99 |   297 |
+|  2 | 2       | Manish Sharma       |      55 |        55 |    55 |   165 |
+|  3 | 3       | Manish Sharma       |      77 |        77 |    77 |   231 |
+|  4 | 4       | Rahul Sahu          |      88 |        88 |    85 |   261 |
+|  5 | 5       | Sivam Kumar         |      74 |        74 |    78 |   226 |
+|  6 | 6       | Gurpreet Singh      |      55 |        55 |    55 |   165 |
+|  7 | 7       | Sivam Kumar         |      82 |        82 |    89 |   253 |
+|  8 | 9       | Gurpreet Singh      |      88 |        99 |    78 |   265 |
+|  9 | 10      | Viju kumar chandore |      77 |        77 |    77 |   231 |
+| 10 | 11      | Vipin Chandore      |      88 |        99 |    79 |   266 |
+| 11 | 12      | Viju kumar chandore |      88 |        88 |    88 |   264 |
+| 12 | 13      | Rahul Sahu          |      85 |        88 |    99 |   272 |
++----+---------+---------------------+---------+-----------+-------+-------+
+12 rows in set (0.00 sec)
 
-mysql> select * from employee order by salary desc limit 0, 1;
-+----+--------------+-----------+--------+
-| id | name         | company   | salary |
-+----+--------------+-----------+--------+
-| 18 | Deepak Singh | Accenture |  80000 |
-+----+--------------+-----------+--------+
-1 row in set (0.00 sec)
+mysql> select id, roll_no, name, physics, chemistry, maths, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as parcentage from st_marksheet;
++----+---------+---------------------+---------+-----------+-------+-------+------------+
+| id | roll_no | name                | physics | chemistry | maths | total | parcentage |
++----+---------+---------------------+---------+-----------+-------+-------+------------+
+|  1 | 1       | Manish Sharma       |      99 |        99 |    99 |   297 |    99.0000 |
+|  2 | 2       | Manish Sharma       |      55 |        55 |    55 |   165 |    55.0000 |
+|  3 | 3       | Manish Sharma       |      77 |        77 |    77 |   231 |    77.0000 |
+|  4 | 4       | Rahul Sahu          |      88 |        88 |    85 |   261 |    87.0000 |
+|  5 | 5       | Sivam Kumar         |      74 |        74 |    78 |   226 |    75.3333 |
+|  6 | 6       | Gurpreet Singh      |      55 |        55 |    55 |   165 |    55.0000 |
+|  7 | 7       | Sivam Kumar         |      82 |        82 |    89 |   253 |    84.3333 |
+|  8 | 9       | Gurpreet Singh      |      88 |        99 |    78 |   265 |    88.3333 |
+|  9 | 10      | Viju kumar chandore |      77 |        77 |    77 |   231 |    77.0000 |
+| 10 | 11      | Vipin Chandore      |      88 |        99 |    79 |   266 |    88.6667 |
+| 11 | 12      | Viju kumar chandore |      88 |        88 |    88 |   264 |    88.0000 |
+| 12 | 13      | Rahul Sahu          |      85 |        88 |    99 |   272 |    90.6667 |
++----+---------+---------------------+---------+-----------+-------+-------+------------+
+12 rows in set (0.05 sec)
 
-mysql> select * from employee order by salary desc limit 1, 1;
-+----+------------+---------+--------+
-| id | name       | company | salary |
-+----+------------+---------+--------+
-| 15 | Neha Patel | HCL     |  75000 |
-+----+------------+---------+--------+
-1 row in set (0.00 sec)
+mysql> select id, roll_no, name, physics, chemistry, maths, (physics+chemistry+maths) as total, ((physics+chemistry+maths)/3) as parcentage, if(physics >= 33 and chemistry >= 33 and maths >= 33, 'pass', 'fail') as result from st_marksheet;
++----+---------+---------------------+---------+-----------+-------+-------+------------+--------+
+| id | roll_no | name                | physics | chemistry | maths | total | parcentage | result |
++----+---------+---------------------+---------+-----------+-------+-------+------------+--------+
+|  1 | 1       | Manish Sharma       |      99 |        99 |    99 |   297 |    99.0000 | pass   |
+|  2 | 2       | Manish Sharma       |      55 |        55 |    55 |   165 |    55.0000 | pass   |
+|  3 | 3       | Manish Sharma       |      77 |        77 |    77 |   231 |    77.0000 | pass   |
+|  4 | 4       | Rahul Sahu          |      88 |        88 |    85 |   261 |    87.0000 | pass   |
+|  5 | 5       | Sivam Kumar         |      74 |        74 |    78 |   226 |    75.3333 | pass   |
+|  6 | 6       | Gurpreet Singh      |      55 |        55 |    55 |   165 |    55.0000 | pass   |
+|  7 | 7       | Sivam Kumar         |      82 |        82 |    89 |   253 |    84.3333 | pass   |
+|  8 | 9       | Gurpreet Singh      |      88 |        99 |    78 |   265 |    88.3333 | pass   |
+|  9 | 10      | Viju kumar chandore |      77 |        77 |    77 |   231 |    77.0000 | pass   |
+| 10 | 11      | Vipin Chandore      |      88 |        99 |    79 |   266 |    88.6667 | pass   |
+| 11 | 12      | Viju kumar chandore |      88 |        88 |    88 |   264 |    88.0000 | pass   |
+| 12 | 13      | Rahul Sahu          |      85 |        88 |    99 |   272 |    90.6667 | pass   |
++----+---------+---------------------+---------+-----------+-------+-------+------------+--------+
+12 rows in set (0.00 sec)
 
 mysql>
